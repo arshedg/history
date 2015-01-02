@@ -1,0 +1,1251 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--NewPage-->
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>
+GenericKeyedObjectPool (Apache Commons Pool 2.2 API)
+</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="GenericKeyedObjectPool (Apache Commons Pool 2.2 API)";
+    }
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
+
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<A NAME="navbar_top"><!-- --></A>
+<A HREF="#skip-navbar_top" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_top_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/GenericKeyedObjectPool.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../../../../org/apache/commons/pool2/impl/EvictionPolicy.html" title="interface in org.apache.commons.pool2.impl"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../../../../index.html?org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="GenericKeyedObjectPool.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../../../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_org.apache.commons.pool2.impl.BaseGenericObjectPool">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_top"></A>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+<HR>
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<FONT SIZE="-1">
+org.apache.commons.pool2.impl</FONT>
+<BR>
+Class GenericKeyedObjectPool&lt;K,T&gt;</H2>
+<PRE>
+<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</A>
+  <IMG SRC="../../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html" title="class in org.apache.commons.pool2.impl">org.apache.commons.pool2.impl.BaseGenericObjectPool</A>&lt;T&gt;
+      <IMG SRC="../../../../../resources/inherit.gif" ALT="extended by "><B>org.apache.commons.pool2.impl.GenericKeyedObjectPool&lt;K,T&gt;</B>
+</PRE>
+<DL>
+<DT><DT><B>Type Parameters:</B><DD><CODE>K</CODE> - The type of keys maintained by this pool.<DD><CODE>T</CODE> - Type of element pooled in this pool.</DL>
+<DL>
+<DT><B>All Implemented Interfaces:</B> <DD><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericKeyedObjectPoolMXBean</A>&lt;K&gt;, <A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html" title="interface in org.apache.commons.pool2">KeyedObjectPool</A>&lt;K,T&gt;</DD>
+</DL>
+<HR>
+<DL>
+<DT><PRE>public class <B>GenericKeyedObjectPool&lt;K,T&gt;</B><DT>extends <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html" title="class in org.apache.commons.pool2.impl">BaseGenericObjectPool</A>&lt;T&gt;<DT>implements <A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html" title="interface in org.apache.commons.pool2">KeyedObjectPool</A>&lt;K,T&gt;, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericKeyedObjectPoolMXBean</A>&lt;K&gt;</DL>
+</PRE>
+
+<P>
+A configurable <code>KeyedObjectPool</code> implementation.
+ <p>
+ When coupled with the appropriate <A HREF="../../../../../org/apache/commons/pool2/KeyedPooledObjectFactory.html" title="interface in org.apache.commons.pool2"><CODE>KeyedPooledObjectFactory</CODE></A>,
+ <code>GenericKeyedObjectPool</code> provides robust pooling functionality for
+ keyed objects. A <code>GenericKeyedObjectPool</code> can be viewed as a map
+ of sub-pools, keyed on the (unique) key values provided to the
+ <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#preparePool(K)"><CODE>preparePool</CODE></A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#addObject(K)"><CODE>addObject</CODE></A> or
+ <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#borrowObject(K)"><CODE>borrowObject</CODE></A> methods. Each time a new key value is
+ provided to one of these methods, a sub-new pool is created under the given
+ key to be managed by the containing <code>GenericKeyedObjectPool.</code>
+ <p>
+ Optionally, one may configure the pool to examine and possibly evict objects
+ as they sit idle in the pool and to ensure that a minimum number of idle
+ objects is maintained for each key. This is performed by an "idle object
+ eviction" thread, which runs asynchronously. Caution should be used when
+ configuring this optional feature. Eviction runs contend with client threads
+ for access to objects in the pool, so if they run too frequently performance
+ issues may result.
+ <p>
+ Implementation note: To prevent possible deadlocks, care has been taken to
+ ensure that no call to a factory method will occur within a synchronization
+ block. See POOL-125 and DBCP-44 for more information.
+ <p>
+ This class is intended to be thread-safe.
+<P>
+
+<P>
+<DL>
+<DT><B>Since:</B></DT>
+  <DD>2.0</DD>
+<DT><B>Version:</B></DT>
+  <DD>$Revision: 1569016 $</DD>
+<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="class in org.apache.commons.pool2.impl"><CODE>GenericObjectPool</CODE></A></DL>
+<HR>
+
+<P>
+<!-- =========== FIELD SUMMARY =========== -->
+
+<A NAME="field_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Field Summary</B></FONT></TH>
+</TR>
+</TABLE>
+&nbsp;<A NAME="fields_inherited_from_class_org.apache.commons.pool2.impl.BaseGenericObjectPool"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Fields inherited from class org.apache.commons.pool2.impl.<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html" title="class in org.apache.commons.pool2.impl">BaseGenericObjectPool</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#MEAN_TIMING_STATS_CACHE_SIZE">MEAN_TIMING_STATS_CACHE_SIZE</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+
+<A NAME="constructor_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Constructor Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#GenericKeyedObjectPool(org.apache.commons.pool2.KeyedPooledObjectFactory)">GenericKeyedObjectPool</A></B>(<A HREF="../../../../../org/apache/commons/pool2/KeyedPooledObjectFactory.html" title="interface in org.apache.commons.pool2">KeyedPooledObjectFactory</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>,<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A>&gt;&nbsp;factory)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create a new <code>GenericKeyedObjectPool</code> using defaults from
+ <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl"><CODE>GenericKeyedObjectPoolConfig</CODE></A>.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#GenericKeyedObjectPool(org.apache.commons.pool2.KeyedPooledObjectFactory, org.apache.commons.pool2.impl.GenericKeyedObjectPoolConfig)">GenericKeyedObjectPool</A></B>(<A HREF="../../../../../org/apache/commons/pool2/KeyedPooledObjectFactory.html" title="interface in org.apache.commons.pool2">KeyedPooledObjectFactory</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>,<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A>&gt;&nbsp;factory,
+                       <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl">GenericKeyedObjectPoolConfig</A>&nbsp;config)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create a new <code>GenericKeyedObjectPool</code> using a specific
+ configuration.</TD>
+</TR>
+</TABLE>
+&nbsp;
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#addObject(K)">addObject</A></B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&nbsp;key)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create an object using the <A HREF="../../../../../org/apache/commons/pool2/KeyedPooledObjectFactory.html#makeObject(K)"><CODE>factory</CODE></A>, passivate it, and then place it in the idle object pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#borrowObject(K)">borrowObject</A></B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&nbsp;key)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Equivalent to <code><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#borrowObject(K, long)"><CODE>borrowObject</CODE></A>(key,
+ <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxWaitMillis()"><CODE>BaseGenericObjectPool.getMaxWaitMillis()</CODE></A>)</code>.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#borrowObject(K, long)">borrowObject</A></B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&nbsp;key,
+             long&nbsp;borrowMaxWaitMillis)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Borrows an object from the sub-pool associated with the given key using
+ the specified waiting time which only applies if
+ <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBlockWhenExhausted()"><CODE>BaseGenericObjectPool.getBlockWhenExhausted()</CODE></A> is true.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#clear()">clear</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clears any objects sitting idle in the pool by removing them from the
+ idle instance sub-pools and then invoking the configured
+ PoolableObjectFactory's
+ <A HREF="../../../../../org/apache/commons/pool2/KeyedPooledObjectFactory.html#destroyObject(K, org.apache.commons.pool2.PooledObject)"><CODE>KeyedPooledObjectFactory.destroyObject(Object, PooledObject)</CODE></A>
+ method on each idle instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#clear(K)">clear</A></B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&nbsp;key)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clears the specified sub-pool, removing all pooled instances
+ corresponding to the given <code>key</code>.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#clearOldest()">clearOldest</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clears oldest 15% of objects in pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#close()">close</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Closes the keyed object pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#evict()">evict</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Perform <code>numTests</code> idle object eviction tests, evicting
+ examined objects that meet the criteria for eviction.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../../org/apache/commons/pool2/KeyedPooledObjectFactory.html" title="interface in org.apache.commons.pool2">KeyedPooledObjectFactory</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>,<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#getFactory()">getFactory</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Obtain a reference to the factory used to create, destroy and validate
+ the objects used by this pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#getMaxIdlePerKey()">getMaxIdlePerKey</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the cap on the number of "idle" instances per key in the pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#getMaxTotalPerKey()">getMaxTotalPerKey</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the limit on the number of object instances allocated by the pool
+ (checked out or idle), per key.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#getMinIdlePerKey()">getMinIdlePerKey</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the target for the minimum number of idle objects to maintain in
+ each of the keyed sub-pools.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#getNumActive()">getNumActive</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the total number of instances current borrowed from this pool but
+ not yet returned.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#getNumActive(K)">getNumActive</A></B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&nbsp;key)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the number of instances currently borrowed from but not yet
+ returned to the pool corresponding to the given <code>key</code>.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="http://docs.oracle.com/javase/6/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</A>&lt;<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>,<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#getNumActivePerKey()">getNumActivePerKey</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#getNumActivePerKey()"><CODE>getNumActivePerKey()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#getNumIdle()">getNumIdle</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The number of instances currently idle in this pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#getNumIdle(K)">getNumIdle</A></B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&nbsp;key)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the number of instances corresponding to the given
+ <code>key</code> currently idle in this pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#getNumWaiters()">getNumWaiters</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return an estimate of the number of threads currently blocked waiting for
+ an object from the pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="http://docs.oracle.com/javase/6/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</A>&lt;<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>,<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#getNumWaitersByKey()">getNumWaitersByKey</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return an estimate of the number of threads currently blocked waiting for
+ an object from the pool for each key.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#invalidateObject(K, T)">invalidateObject</A></B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&nbsp;key,
+                 <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A>&nbsp;obj)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Invalidates an object from the pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="http://docs.oracle.com/javase/6/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</A>&lt;<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>,<A HREF="http://docs.oracle.com/javase/6/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/DefaultPooledObjectInfo.html" title="class in org.apache.commons.pool2.impl">DefaultPooledObjectInfo</A>&gt;&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#listAllObjects()">listAllObjects</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Provides information on all the objects in the pool, both idle (waiting
+ to be borrowed) and active (currently borrowed).</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#preparePool(K)">preparePool</A></B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&nbsp;key)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Registers a key for pool control and ensures that
+ <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#getMinIdlePerKey()"><CODE>getMinIdlePerKey()</CODE></A> idle instances are created.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#returnObject(K, T)">returnObject</A></B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&nbsp;key,
+             <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A>&nbsp;obj)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns an object to a keyed sub-pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#setConfig(org.apache.commons.pool2.impl.GenericKeyedObjectPoolConfig)">setConfig</A></B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl">GenericKeyedObjectPoolConfig</A>&nbsp;conf)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the configuration.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#setMaxIdlePerKey(int)">setMaxIdlePerKey</A></B>(int&nbsp;maxIdlePerKey)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the cap on the number of "idle" instances per key in the pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#setMaxTotalPerKey(int)">setMaxTotalPerKey</A></B>(int&nbsp;maxTotalPerKey)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the limit on the number of object instances allocated by the pool
+ (checked out or idle), per key.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#setMinIdlePerKey(int)">setMinIdlePerKey</A></B>(int&nbsp;minIdlePerKey)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the target for the minimum number of idle objects to maintain in
+ each of the keyed sub-pools.</TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_org.apache.commons.pool2.impl.BaseGenericObjectPool"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class org.apache.commons.pool2.impl.<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html" title="class in org.apache.commons.pool2.impl">BaseGenericObjectPool</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBlockWhenExhausted()">getBlockWhenExhausted</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBorrowedCount()">getBorrowedCount</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getCreatedCount()">getCreatedCount</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getCreationStackTrace()">getCreationStackTrace</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getDestroyedByBorrowValidationCount()">getDestroyedByBorrowValidationCount</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getDestroyedByEvictorCount()">getDestroyedByEvictorCount</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getDestroyedCount()">getDestroyedCount</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getEvictionPolicyClassName()">getEvictionPolicyClassName</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getJmxName()">getJmxName</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getLifo()">getLifo</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxBorrowWaitTimeMillis()">getMaxBorrowWaitTimeMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxTotal()">getMaxTotal</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxWaitMillis()">getMaxWaitMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMeanActiveTimeMillis()">getMeanActiveTimeMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMeanBorrowWaitTimeMillis()">getMeanBorrowWaitTimeMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMeanIdleTimeMillis()">getMeanIdleTimeMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMinEvictableIdleTimeMillis()">getMinEvictableIdleTimeMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getNumTestsPerEvictionRun()">getNumTestsPerEvictionRun</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getReturnedCount()">getReturnedCount</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getSoftMinEvictableIdleTimeMillis()">getSoftMinEvictableIdleTimeMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getSwallowedExceptionListener()">getSwallowedExceptionListener</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnBorrow()">getTestOnBorrow</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnCreate()">getTestOnCreate</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnReturn()">getTestOnReturn</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestWhileIdle()">getTestWhileIdle</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTimeBetweenEvictionRunsMillis()">getTimeBetweenEvictionRunsMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#isClosed()">isClosed</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setBlockWhenExhausted(boolean)">setBlockWhenExhausted</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setEvictionPolicyClassName(java.lang.String)">setEvictionPolicyClassName</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setLifo(boolean)">setLifo</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setMaxTotal(int)">setMaxTotal</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setMaxWaitMillis(long)">setMaxWaitMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setMinEvictableIdleTimeMillis(long)">setMinEvictableIdleTimeMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setNumTestsPerEvictionRun(int)">setNumTestsPerEvictionRun</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setSoftMinEvictableIdleTimeMillis(long)">setSoftMinEvictableIdleTimeMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setSwallowedExceptionListener(org.apache.commons.pool2.SwallowedExceptionListener)">setSwallowedExceptionListener</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setTestOnBorrow(boolean)">setTestOnBorrow</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setTestOnCreate(boolean)">setTestOnCreate</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setTestOnReturn(boolean)">setTestOnReturn</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setTestWhileIdle(boolean)">setTestWhileIdle</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setTimeBetweenEvictionRunsMillis(long)">setTimeBetweenEvictionRunsMillis</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class java.lang.<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang">toString</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long, int)" title="class or interface in java.lang">wait</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_org.apache.commons.pool2.impl.GenericKeyedObjectPoolMXBean"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from interface org.apache.commons.pool2.impl.<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericKeyedObjectPoolMXBean</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getBlockWhenExhausted()">getBlockWhenExhausted</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getBorrowedCount()">getBorrowedCount</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getCreatedCount()">getCreatedCount</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getCreationStackTrace()">getCreationStackTrace</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getDestroyedByBorrowValidationCount()">getDestroyedByBorrowValidationCount</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getDestroyedByEvictorCount()">getDestroyedByEvictorCount</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getDestroyedCount()">getDestroyedCount</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getLifo()">getLifo</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getMaxBorrowWaitTimeMillis()">getMaxBorrowWaitTimeMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getMaxTotal()">getMaxTotal</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getMaxWaitMillis()">getMaxWaitMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getMeanActiveTimeMillis()">getMeanActiveTimeMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getMeanBorrowWaitTimeMillis()">getMeanBorrowWaitTimeMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getMeanIdleTimeMillis()">getMeanIdleTimeMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getMinEvictableIdleTimeMillis()">getMinEvictableIdleTimeMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getNumTestsPerEvictionRun()">getNumTestsPerEvictionRun</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getReturnedCount()">getReturnedCount</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getTestOnBorrow()">getTestOnBorrow</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getTestOnCreate()">getTestOnCreate</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getTestOnReturn()">getTestOnReturn</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getTestWhileIdle()">getTestWhileIdle</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getTimeBetweenEvictionRunsMillis()">getTimeBetweenEvictionRunsMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#isClosed()">isClosed</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+
+<A NAME="constructor_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Constructor Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="GenericKeyedObjectPool(org.apache.commons.pool2.KeyedPooledObjectFactory)"><!-- --></A><H3>
+GenericKeyedObjectPool</H3>
+<PRE>
+public <B>GenericKeyedObjectPool</B>(<A HREF="../../../../../org/apache/commons/pool2/KeyedPooledObjectFactory.html" title="interface in org.apache.commons.pool2">KeyedPooledObjectFactory</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>,<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A>&gt;&nbsp;factory)</PRE>
+<DL>
+<DD>Create a new <code>GenericKeyedObjectPool</code> using defaults from
+ <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl"><CODE>GenericKeyedObjectPoolConfig</CODE></A>.
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>factory</CODE> - the factory to be used to create entries</DL>
+</DL>
+<HR>
+
+<A NAME="GenericKeyedObjectPool(org.apache.commons.pool2.KeyedPooledObjectFactory, org.apache.commons.pool2.impl.GenericKeyedObjectPoolConfig)"><!-- --></A><H3>
+GenericKeyedObjectPool</H3>
+<PRE>
+public <B>GenericKeyedObjectPool</B>(<A HREF="../../../../../org/apache/commons/pool2/KeyedPooledObjectFactory.html" title="interface in org.apache.commons.pool2">KeyedPooledObjectFactory</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>,<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A>&gt;&nbsp;factory,
+                              <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl">GenericKeyedObjectPoolConfig</A>&nbsp;config)</PRE>
+<DL>
+<DD>Create a new <code>GenericKeyedObjectPool</code> using a specific
+ configuration.
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>factory</CODE> - the factory to be used to create entries<DD><CODE>config</CODE> - The configuration to use for this pool instance. The
+                  configuration is used by value. Subsequent changes to
+                  the configuration object will not be reflected in the
+                  pool.</DL>
+</DL>
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Method Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="getMaxTotalPerKey()"><!-- --></A><H3>
+getMaxTotalPerKey</H3>
+<PRE>
+public int <B>getMaxTotalPerKey</B>()</PRE>
+<DL>
+<DD>Returns the limit on the number of object instances allocated by the pool
+ (checked out or idle), per key. When the limit is reached, the sub-pool
+ is said to be exhausted. A negative value indicates no limit.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getMaxTotalPerKey()">getMaxTotalPerKey</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericKeyedObjectPoolMXBean</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the limit on the number of active instances per key<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#setMaxTotalPerKey(int)"><CODE>setMaxTotalPerKey(int)</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setMaxTotalPerKey(int)"><!-- --></A><H3>
+setMaxTotalPerKey</H3>
+<PRE>
+public void <B>setMaxTotalPerKey</B>(int&nbsp;maxTotalPerKey)</PRE>
+<DL>
+<DD>Sets the limit on the number of object instances allocated by the pool
+ (checked out or idle), per key. When the limit is reached, the sub-pool
+ is said to be exhausted. A negative value indicates no limit.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>maxTotalPerKey</CODE> - the limit on the number of active instances per key<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#getMaxTotalPerKey()"><CODE>getMaxTotalPerKey()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getMaxIdlePerKey()"><!-- --></A><H3>
+getMaxIdlePerKey</H3>
+<PRE>
+public int <B>getMaxIdlePerKey</B>()</PRE>
+<DL>
+<DD>Returns the cap on the number of "idle" instances per key in the pool.
+ If maxIdlePerKey is set too low on heavily loaded systems it is possible
+ you will see objects being destroyed and almost immediately new objects
+ being created. This is a result of the active threads momentarily
+ returning objects faster than they are requesting them them, causing the
+ number of idle objects to rise above maxIdlePerKey. The best value for
+ maxIdlePerKey for heavily loaded system will vary but the default is a
+ good starting point.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getMaxIdlePerKey()">getMaxIdlePerKey</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericKeyedObjectPoolMXBean</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the maximum number of "idle" instances that can be held in a
+         given keyed sub-pool or a negative value if there is no limit<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#setMaxIdlePerKey(int)"><CODE>setMaxIdlePerKey(int)</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setMaxIdlePerKey(int)"><!-- --></A><H3>
+setMaxIdlePerKey</H3>
+<PRE>
+public void <B>setMaxIdlePerKey</B>(int&nbsp;maxIdlePerKey)</PRE>
+<DL>
+<DD>Sets the cap on the number of "idle" instances per key in the pool.
+ If maxIdlePerKey is set too low on heavily loaded systems it is possible
+ you will see objects being destroyed and almost immediately new objects
+ being created. This is a result of the active threads momentarily
+ returning objects faster than they are requesting them them, causing the
+ number of idle objects to rise above maxIdlePerKey. The best value for
+ maxIdlePerKey for heavily loaded system will vary but the default is a
+ good starting point.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>maxIdlePerKey</CODE> - the maximum number of "idle" instances that can be
+                      held in a given keyed sub-pool. Use a negative value
+                      for no limit<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#getMaxIdlePerKey()"><CODE>getMaxIdlePerKey()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setMinIdlePerKey(int)"><!-- --></A><H3>
+setMinIdlePerKey</H3>
+<PRE>
+public void <B>setMinIdlePerKey</B>(int&nbsp;minIdlePerKey)</PRE>
+<DL>
+<DD>Sets the target for the minimum number of idle objects to maintain in
+ each of the keyed sub-pools. This setting only has an effect if it is
+ positive and <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTimeBetweenEvictionRunsMillis()"><CODE>BaseGenericObjectPool.getTimeBetweenEvictionRunsMillis()</CODE></A> is greater than
+ zero. If this is the case, an attempt is made to ensure that each
+ sub-pool has the required minimum number of instances during idle object
+ eviction runs.
+ <p>
+ If the configured value of minIdlePerKey is greater than the configured
+ value for maxIdlePerKey then the value of maxIdlePerKey will be used
+ instead.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>minIdlePerKey</CODE> - The minimum size of the each keyed pool<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#getMinIdlePerKey()"><CODE>getMinIdlePerKey()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#getMaxIdlePerKey()"><CODE>getMaxIdlePerKey()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setTimeBetweenEvictionRunsMillis(long)"><CODE>BaseGenericObjectPool.setTimeBetweenEvictionRunsMillis(long)</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getMinIdlePerKey()"><!-- --></A><H3>
+getMinIdlePerKey</H3>
+<PRE>
+public int <B>getMinIdlePerKey</B>()</PRE>
+<DL>
+<DD>Returns the target for the minimum number of idle objects to maintain in
+ each of the keyed sub-pools. This setting only has an effect if it is
+ positive and <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTimeBetweenEvictionRunsMillis()"><CODE>BaseGenericObjectPool.getTimeBetweenEvictionRunsMillis()</CODE></A> is greater than
+ zero. If this is the case, an attempt is made to ensure that each
+ sub-pool has the required minimum number of instances during idle object
+ eviction runs.
+ <p>
+ If the configured value of minIdlePerKey is greater than the configured
+ value for maxIdlePerKey then the value of maxIdlePerKey will be used
+ instead.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getMinIdlePerKey()">getMinIdlePerKey</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericKeyedObjectPoolMXBean</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>minimum size of the each keyed pool<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setTimeBetweenEvictionRunsMillis(long)"><CODE>BaseGenericObjectPool.setTimeBetweenEvictionRunsMillis(long)</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setConfig(org.apache.commons.pool2.impl.GenericKeyedObjectPoolConfig)"><!-- --></A><H3>
+setConfig</H3>
+<PRE>
+public void <B>setConfig</B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl">GenericKeyedObjectPoolConfig</A>&nbsp;conf)</PRE>
+<DL>
+<DD>Sets the configuration.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>conf</CODE> - the new configuration to use. This is used by value.<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl"><CODE>GenericKeyedObjectPoolConfig</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getFactory()"><!-- --></A><H3>
+getFactory</H3>
+<PRE>
+public <A HREF="../../../../../org/apache/commons/pool2/KeyedPooledObjectFactory.html" title="interface in org.apache.commons.pool2">KeyedPooledObjectFactory</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>,<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A>&gt; <B>getFactory</B>()</PRE>
+<DL>
+<DD>Obtain a reference to the factory used to create, destroy and validate
+ the objects used by this pool.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the factory</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="borrowObject(java.lang.Object)"><!-- --></A><A NAME="borrowObject(K)"><!-- --></A><H3>
+borrowObject</H3>
+<PRE>
+public <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A> <B>borrowObject</B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&nbsp;key)
+               throws <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></PRE>
+<DL>
+<DD>Equivalent to <code><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#borrowObject(K, long)"><CODE>borrowObject</CODE></A>(key,
+ <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxWaitMillis()"><CODE>BaseGenericObjectPool.getMaxWaitMillis()</CODE></A>)</code>.
+ <p>
+ Obtains an instance from this pool for the specified <code>key</code>.
+ <p>
+ Instances returned from this method will have been either newly created
+ with <A HREF="../../../../../org/apache/commons/pool2/KeyedPooledObjectFactory.html#makeObject(K)"><CODE>makeObject</CODE></A> or will be
+ a previously idle object and have been activated with
+ <A HREF="../../../../../org/apache/commons/pool2/KeyedPooledObjectFactory.html#activateObject(K, org.apache.commons.pool2.PooledObject)"><CODE>activateObject</CODE></A> and then
+ (optionally) validated with
+ <A HREF="../../../../../org/apache/commons/pool2/KeyedPooledObjectFactory.html#validateObject(K, org.apache.commons.pool2.PooledObject)"><CODE>validateObject</CODE></A>.
+ <p>
+ By contract, clients <strong>must</strong> return the borrowed object
+ using <A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html#returnObject(K, V)"><CODE>returnObject</CODE></A>,
+ <A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html#invalidateObject(K, V)"><CODE>invalidateObject</CODE></A>, or a related method as
+ defined in an implementation or sub-interface, using a <code>key</code>
+ that is <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang"><CODE>equivalent</CODE></A> to the one used to borrow the
+ instance in the first place.
+ <p>
+ The behaviour of this method when the pool has been exhausted is not
+ strictly specified (although it may be specified by implementations).
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html#borrowObject(K)">borrowObject</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html" title="interface in org.apache.commons.pool2">KeyedObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>,<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>key</CODE> - the key used to obtain the object
+<DT><B>Returns:</B><DD>an instance from this pool.
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</A></CODE> - after <A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html#close()"><CODE>close</CODE></A> has been called on this pool
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></CODE> - when <A HREF="../../../../../org/apache/commons/pool2/KeyedPooledObjectFactory.html#makeObject(K)"><CODE>makeObject</CODE></A> throws an exception
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/util/NoSuchElementException.html?is-external=true" title="class or interface in java.util">NoSuchElementException</A></CODE> - when the pool is exhausted and cannot or will not return
+              another instance</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="borrowObject(java.lang.Object,long)"><!-- --></A><A NAME="borrowObject(K, long)"><!-- --></A><H3>
+borrowObject</H3>
+<PRE>
+public <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A> <B>borrowObject</B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&nbsp;key,
+                      long&nbsp;borrowMaxWaitMillis)
+               throws <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></PRE>
+<DL>
+<DD>Borrows an object from the sub-pool associated with the given key using
+ the specified waiting time which only applies if
+ <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBlockWhenExhausted()"><CODE>BaseGenericObjectPool.getBlockWhenExhausted()</CODE></A> is true.
+ <p>
+ If there is one or more idle instances available in the sub-pool
+ associated with the given key, then an idle instance will be selected
+ based on the value of <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getLifo()"><CODE>BaseGenericObjectPool.getLifo()</CODE></A>, activated and returned.  If
+ activation fails, or <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnBorrow()"><CODE>testOnBorrow</CODE></A> is set to
+ <code>true</code> and validation fails, the instance is destroyed and the
+ next available instance is examined.  This continues until either a valid
+ instance is returned or there are no more idle instances available.
+ <p>
+ If there are no idle instances available in the sub-pool associated with
+ the given key, behavior depends on the <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#getMaxTotalPerKey()"><CODE>maxTotalPerKey</CODE></A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxTotal()"><CODE>maxTotal</CODE></A>, and (if applicable)
+ <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBlockWhenExhausted()"><CODE>BaseGenericObjectPool.getBlockWhenExhausted()</CODE></A> and the value passed in to the
+ <code>borrowMaxWaitMillis</code> parameter. If the number of instances checked
+ out from the sub-pool under the given key is less than
+ <code>maxTotalPerKey</code> and the total number of instances in
+ circulation (under all keys) is less than <code>maxTotal</code>, a new
+ instance is created, activated and (if applicable) validated and returned
+ to the caller. If validation fails, a <code>NoSuchElementException</code>
+ will be thrown.
+ <p>
+ If the associated sub-pool is exhausted (no available idle instances and
+ no capacity to create new ones), this method will either block
+ (<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBlockWhenExhausted()"><CODE>BaseGenericObjectPool.getBlockWhenExhausted()</CODE></A> is true) or throw a
+ <code>NoSuchElementException</code>
+ (<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBlockWhenExhausted()"><CODE>BaseGenericObjectPool.getBlockWhenExhausted()</CODE></A> is false).
+ The length of time that this method will block when
+ <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBlockWhenExhausted()"><CODE>BaseGenericObjectPool.getBlockWhenExhausted()</CODE></A> is true is determined by the value
+ passed in to the <code>borrowMaxWait</code> parameter.
+ <p>
+ When <code>maxTotal</code> is set to a positive value and this method is
+ invoked when at the limit with no idle instances available under the requested
+ key, an attempt is made to create room by clearing the oldest 15% of the
+ elements from the keyed sub-pools.
+ <p>
+ When the pool is exhausted, multiple calling threads may be
+ simultaneously blocked waiting for instances to become available. A
+ "fairness" algorithm has been implemented to ensure that threads receive
+ available instances in request arrival order.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>key</CODE> - pool key<DD><CODE>borrowMaxWaitMillis</CODE> - The time to wait in milliseconds for an object
+                            to become available
+<DT><B>Returns:</B><DD>object instance from the keyed pool
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/util/NoSuchElementException.html?is-external=true" title="class or interface in java.util">NoSuchElementException</A></CODE> - if a keyed object instance cannot be
+                                returned because the pool is exhausted.
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></CODE> - if a keyed object instance cannot be returned due to an
+                   error</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="returnObject(java.lang.Object,java.lang.Object)"><!-- --></A><A NAME="returnObject(K, T)"><!-- --></A><H3>
+returnObject</H3>
+<PRE>
+public void <B>returnObject</B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&nbsp;key,
+                         <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A>&nbsp;obj)</PRE>
+<DL>
+<DD>Returns an object to a keyed sub-pool.
+ <p>
+ If <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#getMaxIdlePerKey()"><CODE>maxIdle</CODE></A> is set to a positive value and the
+ number of idle instances under the given key has reached this value, the
+ returning instance is destroyed.
+ <p>
+ If <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnReturn()"><CODE>testOnReturn</CODE></A> == true, the returning
+ instance is validated before being returned to the idle instance sub-pool
+ under the given key. In this case, if validation fails, the instance is
+ destroyed.
+ <p>
+ Exceptions encountered destroying objects for any reason are swallowed
+ but notified via a <A HREF="../../../../../org/apache/commons/pool2/SwallowedExceptionListener.html" title="interface in org.apache.commons.pool2"><CODE>SwallowedExceptionListener</CODE></A>.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html#returnObject(K, V)">returnObject</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html" title="interface in org.apache.commons.pool2">KeyedObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>,<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>key</CODE> - pool key<DD><CODE>obj</CODE> - instance to return to the keyed pool
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</A></CODE> - if an object is returned to the pool that
+                               was not borrowed from it or if an object is
+                               returned to the pool multiple times</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="invalidateObject(java.lang.Object,java.lang.Object)"><!-- --></A><A NAME="invalidateObject(K, T)"><!-- --></A><H3>
+invalidateObject</H3>
+<PRE>
+public void <B>invalidateObject</B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&nbsp;key,
+                             <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A>&nbsp;obj)
+                      throws <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></PRE>
+<DL>
+<DD>Invalidates an object from the pool.
+ <p>
+ By contract, <code>obj</code> <strong>must</strong> have been obtained
+ using <A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html#borrowObject(K)"><CODE>borrowObject</CODE></A> or a related method as defined
+ in an implementation or sub-interface using a <code>key</code> that is
+ equivalent to the one used to borrow the <code>Object</code> in the first
+ place.
+ <p>
+ This method should be used when an object that has been borrowed is
+ determined (due to an exception or other problem) to be invalid.
+ <p>
+ Activation of this method decrements the active count associated with
+ the given keyed pool and attempts to destroy <code>obj.</code>
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html#invalidateObject(K, V)">invalidateObject</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html" title="interface in org.apache.commons.pool2">KeyedObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>,<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>key</CODE> - pool key<DD><CODE>obj</CODE> - instance to invalidate
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></CODE> - if an exception occurs destroying the
+                               object
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</A></CODE> - if obj does not belong to the pool
+                               under the given key</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="clear()"><!-- --></A><H3>
+clear</H3>
+<PRE>
+public void <B>clear</B>()</PRE>
+<DL>
+<DD>Clears any objects sitting idle in the pool by removing them from the
+ idle instance sub-pools and then invoking the configured
+ PoolableObjectFactory's
+ <A HREF="../../../../../org/apache/commons/pool2/KeyedPooledObjectFactory.html#destroyObject(K, org.apache.commons.pool2.PooledObject)"><CODE>KeyedPooledObjectFactory.destroyObject(Object, PooledObject)</CODE></A>
+ method on each idle instance.
+ <p>
+ Implementation notes:
+ <ul>
+ <li>This method does not destroy or effect in any way instances that are
+ checked out when it is invoked.</li>
+ <li>Invoking this method does not prevent objects being returned to the
+ idle instance pool, even during its execution. Additional instances may
+ be returned while removed items are being destroyed.</li>
+ <li>Exceptions encountered destroying idle instances are swallowed
+ but notified via a <A HREF="../../../../../org/apache/commons/pool2/SwallowedExceptionListener.html" title="interface in org.apache.commons.pool2"><CODE>SwallowedExceptionListener</CODE></A>.</li>
+ </ul>
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html#clear()">clear</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html" title="interface in org.apache.commons.pool2">KeyedObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>,<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="clear(java.lang.Object)"><!-- --></A><A NAME="clear(K)"><!-- --></A><H3>
+clear</H3>
+<PRE>
+public void <B>clear</B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&nbsp;key)</PRE>
+<DL>
+<DD>Clears the specified sub-pool, removing all pooled instances
+ corresponding to the given <code>key</code>. Exceptions encountered
+ destroying idle instances are swallowed but notified via a
+ <A HREF="../../../../../org/apache/commons/pool2/SwallowedExceptionListener.html" title="interface in org.apache.commons.pool2"><CODE>SwallowedExceptionListener</CODE></A>.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html#clear(K)">clear</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html" title="interface in org.apache.commons.pool2">KeyedObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>,<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>key</CODE> - the key to clear</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNumActive()"><!-- --></A><H3>
+getNumActive</H3>
+<PRE>
+public int <B>getNumActive</B>()</PRE>
+<DL>
+<DD><B>Description copied from interface: <CODE><A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html#getNumActive()">KeyedObjectPool</A></CODE></B></DD>
+<DD>Returns the total number of instances current borrowed from this pool but
+ not yet returned. Returns a negative value if this information is not
+ available.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getNumActive()">getNumActive</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericKeyedObjectPoolMXBean</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&gt;</CODE><DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html#getNumActive()">getNumActive</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html" title="interface in org.apache.commons.pool2">KeyedObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>,<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the total number of instances current borrowed from this pool but
+ not yet returned.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNumIdle()"><!-- --></A><H3>
+getNumIdle</H3>
+<PRE>
+public int <B>getNumIdle</B>()</PRE>
+<DL>
+<DD><B>Description copied from class: <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getNumIdle()">BaseGenericObjectPool</A></CODE></B></DD>
+<DD>The number of instances currently idle in this pool.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getNumIdle()">getNumIdle</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericKeyedObjectPoolMXBean</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&gt;</CODE><DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html#getNumIdle()">getNumIdle</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html" title="interface in org.apache.commons.pool2">KeyedObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>,<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A>&gt;</CODE><DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getNumIdle()">getNumIdle</A></CODE> in class <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html" title="class in org.apache.commons.pool2.impl">BaseGenericObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>count of instances available for checkout from the pool</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNumActive(java.lang.Object)"><!-- --></A><A NAME="getNumActive(K)"><!-- --></A><H3>
+getNumActive</H3>
+<PRE>
+public int <B>getNumActive</B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&nbsp;key)</PRE>
+<DL>
+<DD><B>Description copied from interface: <CODE><A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html#getNumActive(K)">KeyedObjectPool</A></CODE></B></DD>
+<DD>Returns the number of instances currently borrowed from but not yet
+ returned to the pool corresponding to the given <code>key</code>.
+ Returns a negative value if this information is not available.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html#getNumActive(K)">getNumActive</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html" title="interface in org.apache.commons.pool2">KeyedObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>,<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>key</CODE> - the key to query
+<DT><B>Returns:</B><DD>the number of instances currently borrowed from but not yet
+ returned to the pool corresponding to the given <code>key</code>.
+=</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNumIdle(java.lang.Object)"><!-- --></A><A NAME="getNumIdle(K)"><!-- --></A><H3>
+getNumIdle</H3>
+<PRE>
+public int <B>getNumIdle</B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&nbsp;key)</PRE>
+<DL>
+<DD><B>Description copied from interface: <CODE><A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html#getNumIdle(K)">KeyedObjectPool</A></CODE></B></DD>
+<DD>Returns the number of instances corresponding to the given
+ <code>key</code> currently idle in this pool. Returns a negative value if
+ this information is not available.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html#getNumIdle(K)">getNumIdle</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html" title="interface in org.apache.commons.pool2">KeyedObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>,<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>key</CODE> - the key to query
+<DT><B>Returns:</B><DD>the number of instances corresponding to the given
+ <code>key</code> currently idle in this pool.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="close()"><!-- --></A><H3>
+close</H3>
+<PRE>
+public void <B>close</B>()</PRE>
+<DL>
+<DD>Closes the keyed object pool. Once the pool is closed,
+ <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#borrowObject(K)"><CODE>borrowObject(Object)</CODE></A> will fail with IllegalStateException, but
+ <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#returnObject(K, T)"><CODE>returnObject(Object, Object)</CODE></A> and
+ <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#invalidateObject(K, T)"><CODE>invalidateObject(Object, Object)</CODE></A> will continue to work, with
+ returned objects destroyed on return.
+ <p>
+ Destroys idle instances in the pool by invoking <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#clear()"><CODE>clear()</CODE></A>.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html#close()">close</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html" title="interface in org.apache.commons.pool2">KeyedObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>,<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A>&gt;</CODE><DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#close()">close</A></CODE> in class <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html" title="class in org.apache.commons.pool2.impl">BaseGenericObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="clearOldest()"><!-- --></A><H3>
+clearOldest</H3>
+<PRE>
+public void <B>clearOldest</B>()</PRE>
+<DL>
+<DD>Clears oldest 15% of objects in pool.  The method sorts the objects into
+ a TreeMap and then iterates the first 15% for removal.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="evict()"><!-- --></A><H3>
+evict</H3>
+<PRE>
+public void <B>evict</B>()
+           throws <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></PRE>
+<DL>
+<DD><p>Perform <code>numTests</code> idle object eviction tests, evicting
+ examined objects that meet the criteria for eviction. If
+ <code>testWhileIdle</code> is true, examined objects are validated
+ when visited (and removed if invalid); otherwise only objects that
+ have been idle for more than <code>minEvicableIdleTimeMillis</code>
+ are removed.</p>
+ <p>
+ Successive activations of this method examine objects in keyed sub-pools
+ in sequence, cycling through the keys and examining objects in
+ oldest-to-youngest order within the keyed sub-pools.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#evict()">evict</A></CODE> in class <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html" title="class in org.apache.commons.pool2.impl">BaseGenericObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></CODE> - when there is a problem evicting idle objects.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="addObject(java.lang.Object)"><!-- --></A><A NAME="addObject(K)"><!-- --></A><H3>
+addObject</H3>
+<PRE>
+public void <B>addObject</B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&nbsp;key)
+               throws <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></PRE>
+<DL>
+<DD>Create an object using the <A HREF="../../../../../org/apache/commons/pool2/KeyedPooledObjectFactory.html#makeObject(K)"><CODE>factory</CODE></A>, passivate it, and then place it in the idle object pool.
+ <code>addObject</code> is useful for "pre-loading" a pool with idle
+ objects.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html#addObject(K)">addObject</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html" title="interface in org.apache.commons.pool2">KeyedObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>,<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>key</CODE> - the key a new instance should be added to
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></CODE> - when <A HREF="../../../../../org/apache/commons/pool2/KeyedPooledObjectFactory.html#makeObject(K)"><CODE>KeyedPooledObjectFactory.makeObject(K)</CODE></A>
+                   fails.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="preparePool(java.lang.Object)"><!-- --></A><A NAME="preparePool(K)"><!-- --></A><H3>
+preparePool</H3>
+<PRE>
+public void <B>preparePool</B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&nbsp;key)
+                 throws <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></PRE>
+<DL>
+<DD>Registers a key for pool control and ensures that
+ <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#getMinIdlePerKey()"><CODE>getMinIdlePerKey()</CODE></A> idle instances are created.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>key</CODE> - - The key to register for pool control.
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></CODE> - If the associated factory fails to create the necessary
+                   number of idle instances</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNumActivePerKey()"><!-- --></A><H3>
+getNumActivePerKey</H3>
+<PRE>
+public <A HREF="http://docs.oracle.com/javase/6/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</A>&lt;<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>,<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</A>&gt; <B>getNumActivePerKey</B>()</PRE>
+<DL>
+<DD><B>Description copied from interface: <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getNumActivePerKey()">GenericKeyedObjectPoolMXBean</A></CODE></B></DD>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#getNumActivePerKey()"><CODE>getNumActivePerKey()</CODE></A>
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getNumActivePerKey()">getNumActivePerKey</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericKeyedObjectPoolMXBean</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html#getNumActivePerKey()"><CODE>getNumActivePerKey()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNumWaiters()"><!-- --></A><H3>
+getNumWaiters</H3>
+<PRE>
+public int <B>getNumWaiters</B>()</PRE>
+<DL>
+<DD>Return an estimate of the number of threads currently blocked waiting for
+ an object from the pool. This is intended for monitoring only, not for
+ synchronization control.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getNumWaiters()">getNumWaiters</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericKeyedObjectPoolMXBean</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>The estimate of the number of threads currently blocked waiting
+         for an object from the pool</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNumWaitersByKey()"><!-- --></A><H3>
+getNumWaitersByKey</H3>
+<PRE>
+public <A HREF="http://docs.oracle.com/javase/6/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</A>&lt;<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>,<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</A>&gt; <B>getNumWaitersByKey</B>()</PRE>
+<DL>
+<DD>Return an estimate of the number of threads currently blocked waiting for
+ an object from the pool for each key. This is intended for
+ monitoring only, not for synchronization control.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#getNumWaitersByKey()">getNumWaitersByKey</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericKeyedObjectPoolMXBean</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>The estimate of the number of threads currently blocked waiting
+         for an object from the pool for each key</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="listAllObjects()"><!-- --></A><H3>
+listAllObjects</H3>
+<PRE>
+public <A HREF="http://docs.oracle.com/javase/6/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</A>&lt;<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>,<A HREF="http://docs.oracle.com/javase/6/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/DefaultPooledObjectInfo.html" title="class in org.apache.commons.pool2.impl">DefaultPooledObjectInfo</A>&gt;&gt; <B>listAllObjects</B>()</PRE>
+<DL>
+<DD>Provides information on all the objects in the pool, both idle (waiting
+ to be borrowed) and active (currently borrowed).
+ <p>
+ Note: This is named listAllObjects so it is presented as an operation via
+ JMX. That means it won't be invoked unless the explicitly requested
+ whereas all attributes will be automatically requested when viewing the
+ attributes for an object in a tool like JConsole.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html#listAllObjects()">listAllObjects</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericKeyedObjectPoolMXBean</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="type parameter in GenericKeyedObjectPool">K</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>Information grouped by key on all the objects in the pool</DL>
+</DD>
+</DL>
+<!-- ========= END OF CLASS DATA ========= -->
+<HR>
+
+
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_bottom_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/GenericKeyedObjectPool.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../../../../org/apache/commons/pool2/impl/EvictionPolicy.html" title="interface in org.apache.commons.pool2.impl"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../../../../index.html?org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="GenericKeyedObjectPool.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../../../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_org.apache.commons.pool2.impl.BaseGenericObjectPool">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_bottom"></A>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+
+<HR>
+Copyright &#169; 2001&#x2013;2014 <a href="http://www.apache.org/">The Apache Software Foundation</a>. All rights reserved.
+</BODY>
+</HTML>

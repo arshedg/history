@@ -1,0 +1,978 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--NewPage-->
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>
+GenericObjectPoolMXBean (Apache Commons Pool 2.2 API)
+</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="GenericObjectPoolMXBean (Apache Commons Pool 2.2 API)";
+    }
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
+
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<A NAME="navbar_top"><!-- --></A>
+<A HREF="#skip-navbar_top" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_top_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/GenericObjectPoolMXBean.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../../org/apache/commons/pool2/impl/PooledSoftReference.html" title="class in org.apache.commons.pool2.impl"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../../../../index.html?org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="GenericObjectPoolMXBean.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../../../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_top"></A>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+<HR>
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<FONT SIZE="-1">
+org.apache.commons.pool2.impl</FONT>
+<BR>
+Interface GenericObjectPoolMXBean</H2>
+<DL>
+<DT><B>All Known Implementing Classes:</B> <DD><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="class in org.apache.commons.pool2.impl">GenericObjectPool</A></DD>
+</DL>
+<HR>
+<DL>
+<DT><PRE>public interface <B>GenericObjectPoolMXBean</B></DL>
+</PRE>
+
+<P>
+Defines the methods that will be made available via JMX.
+
+ NOTE: This interface exists only to define those attributes and methods that
+       will be made available via JMX. It must not be implemented by clients
+       as it is subject to change between major, minor and patch version
+       releases of commons pool. Clients that implement this interface may
+       not, therefore, be able to upgrade to a new minor or patch release
+       without requiring code changes.
+<P>
+
+<P>
+<DL>
+<DT><B>Since:</B></DT>
+  <DD>2.0</DD>
+<DT><B>Version:</B></DT>
+  <DD>$Revision: $</DD>
+</DL>
+<HR>
+
+<P>
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getBlockWhenExhausted()">getBlockWhenExhausted</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBlockWhenExhausted()"><CODE>BaseGenericObjectPool.getBlockWhenExhausted()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getBorrowedCount()">getBorrowedCount</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBorrowedCount()"><CODE>BaseGenericObjectPool.getBorrowedCount()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getCreatedCount()">getCreatedCount</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getCreatedCount()"><CODE>BaseGenericObjectPool.getCreatedCount()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getCreationStackTrace()">getCreationStackTrace</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getCreationStackTrace()"><CODE>BaseGenericObjectPool.getCreationStackTrace()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getDestroyedByBorrowValidationCount()">getDestroyedByBorrowValidationCount</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getDestroyedByBorrowValidationCount()"><CODE>BaseGenericObjectPool.getDestroyedByBorrowValidationCount()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getDestroyedByEvictorCount()">getDestroyedByEvictorCount</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getDestroyedByEvictorCount()"><CODE>BaseGenericObjectPool.getDestroyedByEvictorCount()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getDestroyedCount()">getDestroyedCount</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getDestroyedCount()"><CODE>BaseGenericObjectPool.getDestroyedCount()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getFactoryType()">getFactoryType</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getFactoryType()"><CODE>GenericObjectPool.getFactoryType()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getLifo()">getLifo</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getLifo()"><CODE>BaseGenericObjectPool.getLifo()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getLogAbandoned()">getLogAbandoned</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getLogAbandoned()"><CODE>GenericObjectPool.getLogAbandoned()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getMaxBorrowWaitTimeMillis()">getMaxBorrowWaitTimeMillis</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxBorrowWaitTimeMillis()"><CODE>BaseGenericObjectPool.getMaxBorrowWaitTimeMillis()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getMaxIdle()">getMaxIdle</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getMaxIdle()"><CODE>GenericObjectPool.getMaxIdle()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getMaxTotal()">getMaxTotal</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxTotal()"><CODE>BaseGenericObjectPool.getMaxTotal()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getMaxWaitMillis()">getMaxWaitMillis</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxWaitMillis()"><CODE>BaseGenericObjectPool.getMaxWaitMillis()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getMeanActiveTimeMillis()">getMeanActiveTimeMillis</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMeanActiveTimeMillis()"><CODE>BaseGenericObjectPool.getMeanActiveTimeMillis()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getMeanBorrowWaitTimeMillis()">getMeanBorrowWaitTimeMillis</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMeanBorrowWaitTimeMillis()"><CODE>BaseGenericObjectPool.getMeanBorrowWaitTimeMillis()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getMeanIdleTimeMillis()">getMeanIdleTimeMillis</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMeanIdleTimeMillis()"><CODE>BaseGenericObjectPool.getMeanIdleTimeMillis()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getMinEvictableIdleTimeMillis()">getMinEvictableIdleTimeMillis</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMinEvictableIdleTimeMillis()"><CODE>BaseGenericObjectPool.getMinEvictableIdleTimeMillis()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getMinIdle()">getMinIdle</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getMinIdle()"><CODE>GenericObjectPool.getMinIdle()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getNumActive()">getNumActive</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getNumActive()"><CODE>GenericObjectPool.getNumActive()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getNumIdle()">getNumIdle</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getNumIdle()"><CODE>GenericObjectPool.getNumIdle()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getNumTestsPerEvictionRun()">getNumTestsPerEvictionRun</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getNumTestsPerEvictionRun()"><CODE>BaseGenericObjectPool.getNumTestsPerEvictionRun()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getNumWaiters()">getNumWaiters</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getNumWaiters()"><CODE>GenericObjectPool.getNumWaiters()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getRemoveAbandonedOnBorrow()">getRemoveAbandonedOnBorrow</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getRemoveAbandonedOnBorrow()"><CODE>GenericObjectPool.getRemoveAbandonedOnBorrow()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getRemoveAbandonedOnMaintenance()">getRemoveAbandonedOnMaintenance</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getRemoveAbandonedOnMaintenance()"><CODE>GenericObjectPool.getRemoveAbandonedOnMaintenance()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getRemoveAbandonedTimeout()">getRemoveAbandonedTimeout</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getRemoveAbandonedTimeout()"><CODE>GenericObjectPool.getRemoveAbandonedTimeout()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getReturnedCount()">getReturnedCount</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getReturnedCount()"><CODE>BaseGenericObjectPool.getReturnedCount()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getTestOnBorrow()">getTestOnBorrow</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnBorrow()"><CODE>BaseGenericObjectPool.getTestOnBorrow()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getTestOnCreate()">getTestOnCreate</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnCreate()"><CODE>BaseGenericObjectPool.getTestOnCreate()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getTestOnReturn()">getTestOnReturn</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnReturn()"><CODE>BaseGenericObjectPool.getTestOnReturn()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getTestWhileIdle()">getTestWhileIdle</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestWhileIdle()"><CODE>BaseGenericObjectPool.getTestWhileIdle()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getTimeBetweenEvictionRunsMillis()">getTimeBetweenEvictionRunsMillis</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTimeBetweenEvictionRunsMillis()"><CODE>BaseGenericObjectPool.getTimeBetweenEvictionRunsMillis()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#isAbandonedConfig()">isAbandonedConfig</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#isAbandonedConfig()"><CODE>GenericObjectPool.isAbandonedConfig()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#isClosed()">isClosed</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#isClosed()"><CODE>BaseGenericObjectPool.isClosed()</CODE></A></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="http://docs.oracle.com/javase/6/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/DefaultPooledObjectInfo.html" title="class in org.apache.commons.pool2.impl">DefaultPooledObjectInfo</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#listAllObjects()">listAllObjects</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#listAllObjects()"><CODE>GenericObjectPool.listAllObjects()</CODE></A></TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Method Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="getBlockWhenExhausted()"><!-- --></A><H3>
+getBlockWhenExhausted</H3>
+<PRE>
+boolean <B>getBlockWhenExhausted</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBlockWhenExhausted()"><CODE>BaseGenericObjectPool.getBlockWhenExhausted()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBlockWhenExhausted()"><CODE>BaseGenericObjectPool.getBlockWhenExhausted()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getLifo()"><!-- --></A><H3>
+getLifo</H3>
+<PRE>
+boolean <B>getLifo</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getLifo()"><CODE>BaseGenericObjectPool.getLifo()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getLifo()"><CODE>BaseGenericObjectPool.getLifo()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getMaxIdle()"><!-- --></A><H3>
+getMaxIdle</H3>
+<PRE>
+int <B>getMaxIdle</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getMaxIdle()"><CODE>GenericObjectPool.getMaxIdle()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getMaxIdle()"><CODE>GenericObjectPool.getMaxIdle()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getMaxTotal()"><!-- --></A><H3>
+getMaxTotal</H3>
+<PRE>
+int <B>getMaxTotal</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxTotal()"><CODE>BaseGenericObjectPool.getMaxTotal()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxTotal()"><CODE>BaseGenericObjectPool.getMaxTotal()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getMaxWaitMillis()"><!-- --></A><H3>
+getMaxWaitMillis</H3>
+<PRE>
+long <B>getMaxWaitMillis</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxWaitMillis()"><CODE>BaseGenericObjectPool.getMaxWaitMillis()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxWaitMillis()"><CODE>BaseGenericObjectPool.getMaxWaitMillis()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getMinEvictableIdleTimeMillis()"><!-- --></A><H3>
+getMinEvictableIdleTimeMillis</H3>
+<PRE>
+long <B>getMinEvictableIdleTimeMillis</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMinEvictableIdleTimeMillis()"><CODE>BaseGenericObjectPool.getMinEvictableIdleTimeMillis()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMinEvictableIdleTimeMillis()"><CODE>BaseGenericObjectPool.getMinEvictableIdleTimeMillis()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getMinIdle()"><!-- --></A><H3>
+getMinIdle</H3>
+<PRE>
+int <B>getMinIdle</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getMinIdle()"><CODE>GenericObjectPool.getMinIdle()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getMinIdle()"><CODE>GenericObjectPool.getMinIdle()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNumActive()"><!-- --></A><H3>
+getNumActive</H3>
+<PRE>
+int <B>getNumActive</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getNumActive()"><CODE>GenericObjectPool.getNumActive()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getNumActive()"><CODE>GenericObjectPool.getNumActive()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNumIdle()"><!-- --></A><H3>
+getNumIdle</H3>
+<PRE>
+int <B>getNumIdle</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getNumIdle()"><CODE>GenericObjectPool.getNumIdle()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getNumIdle()"><CODE>GenericObjectPool.getNumIdle()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNumTestsPerEvictionRun()"><!-- --></A><H3>
+getNumTestsPerEvictionRun</H3>
+<PRE>
+int <B>getNumTestsPerEvictionRun</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getNumTestsPerEvictionRun()"><CODE>BaseGenericObjectPool.getNumTestsPerEvictionRun()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getNumTestsPerEvictionRun()"><CODE>BaseGenericObjectPool.getNumTestsPerEvictionRun()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getTestOnCreate()"><!-- --></A><H3>
+getTestOnCreate</H3>
+<PRE>
+boolean <B>getTestOnCreate</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnCreate()"><CODE>BaseGenericObjectPool.getTestOnCreate()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnCreate()"><CODE>BaseGenericObjectPool.getTestOnCreate()</CODE></A><DT><B>Since:</B></DT>
+  <DD>2.2</DD>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getTestOnBorrow()"><!-- --></A><H3>
+getTestOnBorrow</H3>
+<PRE>
+boolean <B>getTestOnBorrow</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnBorrow()"><CODE>BaseGenericObjectPool.getTestOnBorrow()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnBorrow()"><CODE>BaseGenericObjectPool.getTestOnBorrow()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getTestOnReturn()"><!-- --></A><H3>
+getTestOnReturn</H3>
+<PRE>
+boolean <B>getTestOnReturn</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnReturn()"><CODE>BaseGenericObjectPool.getTestOnReturn()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnReturn()"><CODE>BaseGenericObjectPool.getTestOnReturn()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getTestWhileIdle()"><!-- --></A><H3>
+getTestWhileIdle</H3>
+<PRE>
+boolean <B>getTestWhileIdle</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestWhileIdle()"><CODE>BaseGenericObjectPool.getTestWhileIdle()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestWhileIdle()"><CODE>BaseGenericObjectPool.getTestWhileIdle()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getTimeBetweenEvictionRunsMillis()"><!-- --></A><H3>
+getTimeBetweenEvictionRunsMillis</H3>
+<PRE>
+long <B>getTimeBetweenEvictionRunsMillis</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTimeBetweenEvictionRunsMillis()"><CODE>BaseGenericObjectPool.getTimeBetweenEvictionRunsMillis()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTimeBetweenEvictionRunsMillis()"><CODE>BaseGenericObjectPool.getTimeBetweenEvictionRunsMillis()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="isClosed()"><!-- --></A><H3>
+isClosed</H3>
+<PRE>
+boolean <B>isClosed</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#isClosed()"><CODE>BaseGenericObjectPool.isClosed()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#isClosed()"><CODE>BaseGenericObjectPool.isClosed()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getBorrowedCount()"><!-- --></A><H3>
+getBorrowedCount</H3>
+<PRE>
+long <B>getBorrowedCount</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBorrowedCount()"><CODE>BaseGenericObjectPool.getBorrowedCount()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBorrowedCount()"><CODE>BaseGenericObjectPool.getBorrowedCount()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getReturnedCount()"><!-- --></A><H3>
+getReturnedCount</H3>
+<PRE>
+long <B>getReturnedCount</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getReturnedCount()"><CODE>BaseGenericObjectPool.getReturnedCount()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getReturnedCount()"><CODE>BaseGenericObjectPool.getReturnedCount()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getCreatedCount()"><!-- --></A><H3>
+getCreatedCount</H3>
+<PRE>
+long <B>getCreatedCount</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getCreatedCount()"><CODE>BaseGenericObjectPool.getCreatedCount()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getCreatedCount()"><CODE>BaseGenericObjectPool.getCreatedCount()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getDestroyedCount()"><!-- --></A><H3>
+getDestroyedCount</H3>
+<PRE>
+long <B>getDestroyedCount</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getDestroyedCount()"><CODE>BaseGenericObjectPool.getDestroyedCount()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getDestroyedCount()"><CODE>BaseGenericObjectPool.getDestroyedCount()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getDestroyedByEvictorCount()"><!-- --></A><H3>
+getDestroyedByEvictorCount</H3>
+<PRE>
+long <B>getDestroyedByEvictorCount</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getDestroyedByEvictorCount()"><CODE>BaseGenericObjectPool.getDestroyedByEvictorCount()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getDestroyedByEvictorCount()"><CODE>BaseGenericObjectPool.getDestroyedByEvictorCount()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getDestroyedByBorrowValidationCount()"><!-- --></A><H3>
+getDestroyedByBorrowValidationCount</H3>
+<PRE>
+long <B>getDestroyedByBorrowValidationCount</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getDestroyedByBorrowValidationCount()"><CODE>BaseGenericObjectPool.getDestroyedByBorrowValidationCount()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getDestroyedByBorrowValidationCount()"><CODE>BaseGenericObjectPool.getDestroyedByBorrowValidationCount()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getMeanActiveTimeMillis()"><!-- --></A><H3>
+getMeanActiveTimeMillis</H3>
+<PRE>
+long <B>getMeanActiveTimeMillis</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMeanActiveTimeMillis()"><CODE>BaseGenericObjectPool.getMeanActiveTimeMillis()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMeanActiveTimeMillis()"><CODE>BaseGenericObjectPool.getMeanActiveTimeMillis()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getMeanIdleTimeMillis()"><!-- --></A><H3>
+getMeanIdleTimeMillis</H3>
+<PRE>
+long <B>getMeanIdleTimeMillis</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMeanIdleTimeMillis()"><CODE>BaseGenericObjectPool.getMeanIdleTimeMillis()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMeanIdleTimeMillis()"><CODE>BaseGenericObjectPool.getMeanIdleTimeMillis()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getMeanBorrowWaitTimeMillis()"><!-- --></A><H3>
+getMeanBorrowWaitTimeMillis</H3>
+<PRE>
+long <B>getMeanBorrowWaitTimeMillis</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMeanBorrowWaitTimeMillis()"><CODE>BaseGenericObjectPool.getMeanBorrowWaitTimeMillis()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMeanBorrowWaitTimeMillis()"><CODE>BaseGenericObjectPool.getMeanBorrowWaitTimeMillis()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getMaxBorrowWaitTimeMillis()"><!-- --></A><H3>
+getMaxBorrowWaitTimeMillis</H3>
+<PRE>
+long <B>getMaxBorrowWaitTimeMillis</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxBorrowWaitTimeMillis()"><CODE>BaseGenericObjectPool.getMaxBorrowWaitTimeMillis()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxBorrowWaitTimeMillis()"><CODE>BaseGenericObjectPool.getMaxBorrowWaitTimeMillis()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getCreationStackTrace()"><!-- --></A><H3>
+getCreationStackTrace</H3>
+<PRE>
+<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A> <B>getCreationStackTrace</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getCreationStackTrace()"><CODE>BaseGenericObjectPool.getCreationStackTrace()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getCreationStackTrace()"><CODE>BaseGenericObjectPool.getCreationStackTrace()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNumWaiters()"><!-- --></A><H3>
+getNumWaiters</H3>
+<PRE>
+int <B>getNumWaiters</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getNumWaiters()"><CODE>GenericObjectPool.getNumWaiters()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getNumWaiters()"><CODE>GenericObjectPool.getNumWaiters()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="isAbandonedConfig()"><!-- --></A><H3>
+isAbandonedConfig</H3>
+<PRE>
+boolean <B>isAbandonedConfig</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#isAbandonedConfig()"><CODE>GenericObjectPool.isAbandonedConfig()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#isAbandonedConfig()"><CODE>GenericObjectPool.isAbandonedConfig()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getLogAbandoned()"><!-- --></A><H3>
+getLogAbandoned</H3>
+<PRE>
+boolean <B>getLogAbandoned</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getLogAbandoned()"><CODE>GenericObjectPool.getLogAbandoned()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getLogAbandoned()"><CODE>GenericObjectPool.getLogAbandoned()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getRemoveAbandonedOnBorrow()"><!-- --></A><H3>
+getRemoveAbandonedOnBorrow</H3>
+<PRE>
+boolean <B>getRemoveAbandonedOnBorrow</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getRemoveAbandonedOnBorrow()"><CODE>GenericObjectPool.getRemoveAbandonedOnBorrow()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getRemoveAbandonedOnBorrow()"><CODE>GenericObjectPool.getRemoveAbandonedOnBorrow()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getRemoveAbandonedOnMaintenance()"><!-- --></A><H3>
+getRemoveAbandonedOnMaintenance</H3>
+<PRE>
+boolean <B>getRemoveAbandonedOnMaintenance</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getRemoveAbandonedOnMaintenance()"><CODE>GenericObjectPool.getRemoveAbandonedOnMaintenance()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getRemoveAbandonedOnMaintenance()"><CODE>GenericObjectPool.getRemoveAbandonedOnMaintenance()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getRemoveAbandonedTimeout()"><!-- --></A><H3>
+getRemoveAbandonedTimeout</H3>
+<PRE>
+int <B>getRemoveAbandonedTimeout</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getRemoveAbandonedTimeout()"><CODE>GenericObjectPool.getRemoveAbandonedTimeout()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getRemoveAbandonedTimeout()"><CODE>GenericObjectPool.getRemoveAbandonedTimeout()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getFactoryType()"><!-- --></A><H3>
+getFactoryType</H3>
+<PRE>
+<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A> <B>getFactoryType</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getFactoryType()"><CODE>GenericObjectPool.getFactoryType()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getFactoryType()"><CODE>GenericObjectPool.getFactoryType()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="listAllObjects()"><!-- --></A><H3>
+listAllObjects</H3>
+<PRE>
+<A HREF="http://docs.oracle.com/javase/6/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/DefaultPooledObjectInfo.html" title="class in org.apache.commons.pool2.impl">DefaultPooledObjectInfo</A>&gt; <B>listAllObjects</B>()</PRE>
+<DL>
+<DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#listAllObjects()"><CODE>GenericObjectPool.listAllObjects()</CODE></A>
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>See <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#listAllObjects()"><CODE>GenericObjectPool.listAllObjects()</CODE></A></DL>
+</DD>
+</DL>
+<!-- ========= END OF CLASS DATA ========= -->
+<HR>
+
+
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_bottom_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/GenericObjectPoolMXBean.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../../org/apache/commons/pool2/impl/PooledSoftReference.html" title="class in org.apache.commons.pool2.impl"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../../../../index.html?org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="GenericObjectPoolMXBean.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../../../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_bottom"></A>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+
+<HR>
+Copyright &#169; 2001&#x2013;2014 <a href="http://www.apache.org/">The Apache Software Foundation</a>. All rights reserved.
+</BODY>
+</HTML>

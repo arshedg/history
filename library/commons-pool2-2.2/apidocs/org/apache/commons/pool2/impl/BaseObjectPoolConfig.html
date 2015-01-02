@@ -1,0 +1,1487 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--NewPage-->
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>
+BaseObjectPoolConfig (Apache Commons Pool 2.2 API)
+</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="BaseObjectPoolConfig (Apache Commons Pool 2.2 API)";
+    }
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
+
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<A NAME="navbar_top"><!-- --></A>
+<A HREF="#skip-navbar_top" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_top_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/BaseObjectPoolConfig.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html" title="class in org.apache.commons.pool2.impl"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../../org/apache/commons/pool2/impl/DefaultEvictionPolicy.html" title="class in org.apache.commons.pool2.impl"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../../../../index.html?org/apache/commons/pool2/impl/BaseObjectPoolConfig.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="BaseObjectPoolConfig.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../../../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#field_summary">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;<A HREF="#field_detail">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_top"></A>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+<HR>
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<FONT SIZE="-1">
+org.apache.commons.pool2.impl</FONT>
+<BR>
+Class BaseObjectPoolConfig</H2>
+<PRE>
+<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</A>
+  <IMG SRC="../../../../../resources/inherit.gif" ALT="extended by "><B>org.apache.commons.pool2.impl.BaseObjectPoolConfig</B>
+</PRE>
+<DL>
+<DT><B>All Implemented Interfaces:</B> <DD><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Cloneable.html?is-external=true" title="class or interface in java.lang">Cloneable</A></DD>
+</DL>
+<DL>
+<DT><B>Direct Known Subclasses:</B> <DD><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl">GenericKeyedObjectPoolConfig</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl">GenericObjectPoolConfig</A></DD>
+</DL>
+<HR>
+<DL>
+<DT><PRE>public abstract class <B>BaseObjectPoolConfig</B><DT>extends <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A><DT>implements <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Cloneable.html?is-external=true" title="class or interface in java.lang">Cloneable</A></DL>
+</PRE>
+
+<P>
+Provides the implementation for the common attributes shared by the
+ sub-classes. New instances of this class will be created using the defaults
+ defined by the public constants.
+ <p>
+ This class is not thread-safe.
+<P>
+
+<P>
+<DL>
+<DT><B>Since:</B></DT>
+  <DD>2.0</DD>
+<DT><B>Version:</B></DT>
+  <DD>$Revision: $</DD>
+</DL>
+<HR>
+
+<P>
+<!-- =========== FIELD SUMMARY =========== -->
+
+<A NAME="field_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Field Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#DEFAULT_BLOCK_WHEN_EXHAUSTED">DEFAULT_BLOCK_WHEN_EXHAUSTED</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The default value for the <code>blockWhenExhausted</code> configuration
+ attribute.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#DEFAULT_EVICTION_POLICY_CLASS_NAME">DEFAULT_EVICTION_POLICY_CLASS_NAME</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The default value for the <code>evictionPolicyClassName</code> configuration
+ attribute.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#DEFAULT_JMX_ENABLE">DEFAULT_JMX_ENABLE</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The default value for enabling JMX for pools created with a configuration
+ instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#DEFAULT_JMX_NAME_BASE">DEFAULT_JMX_NAME_BASE</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The default value for the base name to use to name JMX enabled pools
+ created with a configuration instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#DEFAULT_JMX_NAME_PREFIX">DEFAULT_JMX_NAME_PREFIX</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The default value for the prefix used to name JMX enabled pools created
+ with a configuration instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#DEFAULT_LIFO">DEFAULT_LIFO</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The default value for the <code>lifo</code> configuration attribute.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#DEFAULT_MAX_WAIT_MILLIS">DEFAULT_MAX_WAIT_MILLIS</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The default value for the <code>maxWait</code> configuration attribute.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#DEFAULT_MIN_EVICTABLE_IDLE_TIME_MILLIS">DEFAULT_MIN_EVICTABLE_IDLE_TIME_MILLIS</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The default value for the <code>minEvictableIdleTimeMillis</code>
+ configuration attribute.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#DEFAULT_NUM_TESTS_PER_EVICTION_RUN">DEFAULT_NUM_TESTS_PER_EVICTION_RUN</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The default value for the <code>numTestsPerEvictionRun</code> configuration
+ attribute.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#DEFAULT_SOFT_MIN_EVICTABLE_IDLE_TIME_MILLIS">DEFAULT_SOFT_MIN_EVICTABLE_IDLE_TIME_MILLIS</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The default value for the <code>softMinEvictableIdleTimeMillis</code>
+ configuration attribute.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#DEFAULT_TEST_ON_BORROW">DEFAULT_TEST_ON_BORROW</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The default value for the <code>testOnBorrow</code> configuration attribute.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#DEFAULT_TEST_ON_CREATE">DEFAULT_TEST_ON_CREATE</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The default value for the <code>testOnCreate</code> configuration attribute.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#DEFAULT_TEST_ON_RETURN">DEFAULT_TEST_ON_RETURN</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The default value for the <code>testOnReturn</code> configuration attribute.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#DEFAULT_TEST_WHILE_IDLE">DEFAULT_TEST_WHILE_IDLE</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The default value for the <code>testWhileIdle</code> configuration attribute.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#DEFAULT_TIME_BETWEEN_EVICTION_RUNS_MILLIS">DEFAULT_TIME_BETWEEN_EVICTION_RUNS_MILLIS</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The default value for the <code>timeBetweenEvictionRunsMillis</code>
+ configuration attribute.</TD>
+</TR>
+</TABLE>
+&nbsp;
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+
+<A NAME="constructor_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Constructor Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#BaseObjectPoolConfig()">BaseObjectPoolConfig</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+</TABLE>
+&nbsp;
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#getBlockWhenExhausted()">getBlockWhenExhausted</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get the value for the <code>blockWhenExhausted</code> configuration attribute
+ for pools created with this configuration instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#getEvictionPolicyClassName()">getEvictionPolicyClassName</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get the value for the <code>evictionPolicyClassName</code> configuration
+ attribute for pools created with this configuration instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#getJmxEnabled()">getJmxEnabled</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the value of the flag that determines if JMX will be enabled for
+ pools created with this configuration instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#getJmxNameBase()">getJmxNameBase</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the value of the JMX name base that will be used as part of the
+ name assigned to JMX enabled pools created with this configuration
+ instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#getJmxNamePrefix()">getJmxNamePrefix</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gets the value of the JMX name prefix that will be used as part of the
+ name assigned to JMX enabled pools created with this configuration
+ instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#getLifo()">getLifo</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get the value for the <code>lifo</code> configuration attribute for pools
+ created with this configuration instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#getMaxWaitMillis()">getMaxWaitMillis</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get the value for the <code>maxWait</code> configuration attribute for pools
+ created with this configuration instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#getMinEvictableIdleTimeMillis()">getMinEvictableIdleTimeMillis</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get the value for the <code>minEvictableIdleTimeMillis</code> configuration
+ attribute for pools created with this configuration instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#getNumTestsPerEvictionRun()">getNumTestsPerEvictionRun</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get the value for the <code>numTestsPerEvictionRun</code> configuration
+ attribute for pools created with this configuration instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#getSoftMinEvictableIdleTimeMillis()">getSoftMinEvictableIdleTimeMillis</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get the value for the <code>softMinEvictableIdleTimeMillis</code>
+ configuration attribute for pools created with this configuration
+ instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#getTestOnBorrow()">getTestOnBorrow</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get the value for the <code>testOnBorrow</code> configuration attribute for
+ pools created with this configuration instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#getTestOnCreate()">getTestOnCreate</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get the value for the <code>testOnCreate</code> configuration attribute for
+ pools created with this configuration instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#getTestOnReturn()">getTestOnReturn</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get the value for the <code>testOnReturn</code> configuration attribute for
+ pools created with this configuration instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#getTestWhileIdle()">getTestWhileIdle</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get the value for the <code>testWhileIdle</code> configuration attribute for
+ pools created with this configuration instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;long</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#getTimeBetweenEvictionRunsMillis()">getTimeBetweenEvictionRunsMillis</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get the value for the <code>timeBetweenEvictionRunsMillis</code> configuration
+ attribute for pools created with this configuration instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#setBlockWhenExhausted(boolean)">setBlockWhenExhausted</A></B>(boolean&nbsp;blockWhenExhausted)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set the value for the <code>blockWhenExhausted</code> configuration attribute
+ for pools created with this configuration instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#setEvictionPolicyClassName(java.lang.String)">setEvictionPolicyClassName</A></B>(<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;evictionPolicyClassName)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set the value for the <code>evictionPolicyClassName</code> configuration
+ attribute for pools created with this configuration instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#setJmxEnabled(boolean)">setJmxEnabled</A></B>(boolean&nbsp;jmxEnabled)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the value of the flag that determines if JMX will be enabled for
+ pools created with this configuration instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#setJmxNameBase(java.lang.String)">setJmxNameBase</A></B>(<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;jmxNameBase)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the value of the JMX name base that will be used as part of the
+ name assigned to JMX enabled pools created with this configuration
+ instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#setJmxNamePrefix(java.lang.String)">setJmxNamePrefix</A></B>(<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;jmxNamePrefix)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the value of the JMX name prefix that will be used as part of the
+ name assigned to JMX enabled pools created with this configuration
+ instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#setLifo(boolean)">setLifo</A></B>(boolean&nbsp;lifo)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set the value for the <code>lifo</code> configuration attribute for pools
+ created with this configuration instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#setMaxWaitMillis(long)">setMaxWaitMillis</A></B>(long&nbsp;maxWaitMillis)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set the value for the <code>maxWait</code> configuration attribute for pools
+ created with this configuration instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#setMinEvictableIdleTimeMillis(long)">setMinEvictableIdleTimeMillis</A></B>(long&nbsp;minEvictableIdleTimeMillis)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set the value for the <code>minEvictableIdleTimeMillis</code> configuration
+ attribute for pools created with this configuration instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#setNumTestsPerEvictionRun(int)">setNumTestsPerEvictionRun</A></B>(int&nbsp;numTestsPerEvictionRun)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set the value for the <code>numTestsPerEvictionRun</code> configuration
+ attribute for pools created with this configuration instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#setSoftMinEvictableIdleTimeMillis(long)">setSoftMinEvictableIdleTimeMillis</A></B>(long&nbsp;softMinEvictableIdleTimeMillis)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set the value for the <code>softMinEvictableIdleTimeMillis</code>
+ configuration attribute for pools created with this configuration
+ instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#setTestOnBorrow(boolean)">setTestOnBorrow</A></B>(boolean&nbsp;testOnBorrow)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set the value for the <code>testOnBorrow</code> configuration attribute for
+ pools created with this configuration instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#setTestOnCreate(boolean)">setTestOnCreate</A></B>(boolean&nbsp;testOnCreate)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set the value for the <code>testOnCreate</code> configuration attribute for
+ pools created with this configuration instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#setTestOnReturn(boolean)">setTestOnReturn</A></B>(boolean&nbsp;testOnReturn)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set the value for the <code>testOnReturn</code> configuration attribute for
+ pools created with this configuration instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#setTestWhileIdle(boolean)">setTestWhileIdle</A></B>(boolean&nbsp;testWhileIdle)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set the value for the <code>testWhileIdle</code> configuration attribute for
+ pools created with this configuration instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html#setTimeBetweenEvictionRunsMillis(long)">setTimeBetweenEvictionRunsMillis</A></B>(long&nbsp;timeBetweenEvictionRunsMillis)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set the value for the <code>timeBetweenEvictionRunsMillis</code> configuration
+ attribute for pools created with this configuration instance.</TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class java.lang.<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang">toString</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long, int)" title="class or interface in java.lang">wait</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<!-- ============ FIELD DETAIL =========== -->
+
+<A NAME="field_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Field Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="DEFAULT_LIFO"><!-- --></A><H3>
+DEFAULT_LIFO</H3>
+<PRE>
+public static final boolean <B>DEFAULT_LIFO</B></PRE>
+<DL>
+<DD>The default value for the <code>lifo</code> configuration attribute.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getLifo()"><CODE>BaseGenericObjectPool.getLifo()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getLifo()"><CODE>BaseGenericObjectPool.getLifo()</CODE></A>, 
+<A HREF="../../../../../constant-values.html#org.apache.commons.pool2.impl.BaseObjectPoolConfig.DEFAULT_LIFO">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="DEFAULT_MAX_WAIT_MILLIS"><!-- --></A><H3>
+DEFAULT_MAX_WAIT_MILLIS</H3>
+<PRE>
+public static final long <B>DEFAULT_MAX_WAIT_MILLIS</B></PRE>
+<DL>
+<DD>The default value for the <code>maxWait</code> configuration attribute.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxWaitMillis()"><CODE>BaseGenericObjectPool.getMaxWaitMillis()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxWaitMillis()"><CODE>BaseGenericObjectPool.getMaxWaitMillis()</CODE></A>, 
+<A HREF="../../../../../constant-values.html#org.apache.commons.pool2.impl.BaseObjectPoolConfig.DEFAULT_MAX_WAIT_MILLIS">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="DEFAULT_MIN_EVICTABLE_IDLE_TIME_MILLIS"><!-- --></A><H3>
+DEFAULT_MIN_EVICTABLE_IDLE_TIME_MILLIS</H3>
+<PRE>
+public static final long <B>DEFAULT_MIN_EVICTABLE_IDLE_TIME_MILLIS</B></PRE>
+<DL>
+<DD>The default value for the <code>minEvictableIdleTimeMillis</code>
+ configuration attribute.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMinEvictableIdleTimeMillis()"><CODE>BaseGenericObjectPool.getMinEvictableIdleTimeMillis()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMinEvictableIdleTimeMillis()"><CODE>BaseGenericObjectPool.getMinEvictableIdleTimeMillis()</CODE></A>, 
+<A HREF="../../../../../constant-values.html#org.apache.commons.pool2.impl.BaseObjectPoolConfig.DEFAULT_MIN_EVICTABLE_IDLE_TIME_MILLIS">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="DEFAULT_SOFT_MIN_EVICTABLE_IDLE_TIME_MILLIS"><!-- --></A><H3>
+DEFAULT_SOFT_MIN_EVICTABLE_IDLE_TIME_MILLIS</H3>
+<PRE>
+public static final long <B>DEFAULT_SOFT_MIN_EVICTABLE_IDLE_TIME_MILLIS</B></PRE>
+<DL>
+<DD>The default value for the <code>softMinEvictableIdleTimeMillis</code>
+ configuration attribute.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getSoftMinEvictableIdleTimeMillis()"><CODE>BaseGenericObjectPool.getSoftMinEvictableIdleTimeMillis()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getSoftMinEvictableIdleTimeMillis()"><CODE>BaseGenericObjectPool.getSoftMinEvictableIdleTimeMillis()</CODE></A>, 
+<A HREF="../../../../../constant-values.html#org.apache.commons.pool2.impl.BaseObjectPoolConfig.DEFAULT_SOFT_MIN_EVICTABLE_IDLE_TIME_MILLIS">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="DEFAULT_NUM_TESTS_PER_EVICTION_RUN"><!-- --></A><H3>
+DEFAULT_NUM_TESTS_PER_EVICTION_RUN</H3>
+<PRE>
+public static final int <B>DEFAULT_NUM_TESTS_PER_EVICTION_RUN</B></PRE>
+<DL>
+<DD>The default value for the <code>numTestsPerEvictionRun</code> configuration
+ attribute.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getNumTestsPerEvictionRun()"><CODE>BaseGenericObjectPool.getNumTestsPerEvictionRun()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getNumTestsPerEvictionRun()"><CODE>BaseGenericObjectPool.getNumTestsPerEvictionRun()</CODE></A>, 
+<A HREF="../../../../../constant-values.html#org.apache.commons.pool2.impl.BaseObjectPoolConfig.DEFAULT_NUM_TESTS_PER_EVICTION_RUN">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="DEFAULT_TEST_ON_CREATE"><!-- --></A><H3>
+DEFAULT_TEST_ON_CREATE</H3>
+<PRE>
+public static final boolean <B>DEFAULT_TEST_ON_CREATE</B></PRE>
+<DL>
+<DD>The default value for the <code>testOnCreate</code> configuration attribute.
+<P>
+<DL>
+<DT><B>Since:</B></DT>
+  <DD>2.2</DD>
+<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnCreate()"><CODE>BaseGenericObjectPool.getTestOnCreate()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnCreate()"><CODE>BaseGenericObjectPool.getTestOnCreate()</CODE></A>, 
+<A HREF="../../../../../constant-values.html#org.apache.commons.pool2.impl.BaseObjectPoolConfig.DEFAULT_TEST_ON_CREATE">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="DEFAULT_TEST_ON_BORROW"><!-- --></A><H3>
+DEFAULT_TEST_ON_BORROW</H3>
+<PRE>
+public static final boolean <B>DEFAULT_TEST_ON_BORROW</B></PRE>
+<DL>
+<DD>The default value for the <code>testOnBorrow</code> configuration attribute.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnBorrow()"><CODE>BaseGenericObjectPool.getTestOnBorrow()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnBorrow()"><CODE>BaseGenericObjectPool.getTestOnBorrow()</CODE></A>, 
+<A HREF="../../../../../constant-values.html#org.apache.commons.pool2.impl.BaseObjectPoolConfig.DEFAULT_TEST_ON_BORROW">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="DEFAULT_TEST_ON_RETURN"><!-- --></A><H3>
+DEFAULT_TEST_ON_RETURN</H3>
+<PRE>
+public static final boolean <B>DEFAULT_TEST_ON_RETURN</B></PRE>
+<DL>
+<DD>The default value for the <code>testOnReturn</code> configuration attribute.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnReturn()"><CODE>BaseGenericObjectPool.getTestOnReturn()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnReturn()"><CODE>BaseGenericObjectPool.getTestOnReturn()</CODE></A>, 
+<A HREF="../../../../../constant-values.html#org.apache.commons.pool2.impl.BaseObjectPoolConfig.DEFAULT_TEST_ON_RETURN">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="DEFAULT_TEST_WHILE_IDLE"><!-- --></A><H3>
+DEFAULT_TEST_WHILE_IDLE</H3>
+<PRE>
+public static final boolean <B>DEFAULT_TEST_WHILE_IDLE</B></PRE>
+<DL>
+<DD>The default value for the <code>testWhileIdle</code> configuration attribute.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestWhileIdle()"><CODE>BaseGenericObjectPool.getTestWhileIdle()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestWhileIdle()"><CODE>BaseGenericObjectPool.getTestWhileIdle()</CODE></A>, 
+<A HREF="../../../../../constant-values.html#org.apache.commons.pool2.impl.BaseObjectPoolConfig.DEFAULT_TEST_WHILE_IDLE">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="DEFAULT_TIME_BETWEEN_EVICTION_RUNS_MILLIS"><!-- --></A><H3>
+DEFAULT_TIME_BETWEEN_EVICTION_RUNS_MILLIS</H3>
+<PRE>
+public static final long <B>DEFAULT_TIME_BETWEEN_EVICTION_RUNS_MILLIS</B></PRE>
+<DL>
+<DD>The default value for the <code>timeBetweenEvictionRunsMillis</code>
+ configuration attribute.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTimeBetweenEvictionRunsMillis()"><CODE>BaseGenericObjectPool.getTimeBetweenEvictionRunsMillis()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTimeBetweenEvictionRunsMillis()"><CODE>BaseGenericObjectPool.getTimeBetweenEvictionRunsMillis()</CODE></A>, 
+<A HREF="../../../../../constant-values.html#org.apache.commons.pool2.impl.BaseObjectPoolConfig.DEFAULT_TIME_BETWEEN_EVICTION_RUNS_MILLIS">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="DEFAULT_BLOCK_WHEN_EXHAUSTED"><!-- --></A><H3>
+DEFAULT_BLOCK_WHEN_EXHAUSTED</H3>
+<PRE>
+public static final boolean <B>DEFAULT_BLOCK_WHEN_EXHAUSTED</B></PRE>
+<DL>
+<DD>The default value for the <code>blockWhenExhausted</code> configuration
+ attribute.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBlockWhenExhausted()"><CODE>BaseGenericObjectPool.getBlockWhenExhausted()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBlockWhenExhausted()"><CODE>BaseGenericObjectPool.getBlockWhenExhausted()</CODE></A>, 
+<A HREF="../../../../../constant-values.html#org.apache.commons.pool2.impl.BaseObjectPoolConfig.DEFAULT_BLOCK_WHEN_EXHAUSTED">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="DEFAULT_JMX_ENABLE"><!-- --></A><H3>
+DEFAULT_JMX_ENABLE</H3>
+<PRE>
+public static final boolean <B>DEFAULT_JMX_ENABLE</B></PRE>
+<DL>
+<DD>The default value for enabling JMX for pools created with a configuration
+ instance.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../../constant-values.html#org.apache.commons.pool2.impl.BaseObjectPoolConfig.DEFAULT_JMX_ENABLE">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="DEFAULT_JMX_NAME_PREFIX"><!-- --></A><H3>
+DEFAULT_JMX_NAME_PREFIX</H3>
+<PRE>
+public static final <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A> <B>DEFAULT_JMX_NAME_PREFIX</B></PRE>
+<DL>
+<DD>The default value for the prefix used to name JMX enabled pools created
+ with a configuration instance.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getJmxName()"><CODE>BaseGenericObjectPool.getJmxName()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getJmxName()"><CODE>BaseGenericObjectPool.getJmxName()</CODE></A>, 
+<A HREF="../../../../../constant-values.html#org.apache.commons.pool2.impl.BaseObjectPoolConfig.DEFAULT_JMX_NAME_PREFIX">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="DEFAULT_JMX_NAME_BASE"><!-- --></A><H3>
+DEFAULT_JMX_NAME_BASE</H3>
+<PRE>
+public static final <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A> <B>DEFAULT_JMX_NAME_BASE</B></PRE>
+<DL>
+<DD>The default value for the base name to use to name JMX enabled pools
+ created with a configuration instance. The default is <code>null</code>
+ which means the pool will provide the base name to use.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getJmxName()"><CODE>BaseGenericObjectPool.getJmxName()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getJmxName()"><CODE>BaseGenericObjectPool.getJmxName()</CODE></A></DL>
+</DL>
+<HR>
+
+<A NAME="DEFAULT_EVICTION_POLICY_CLASS_NAME"><!-- --></A><H3>
+DEFAULT_EVICTION_POLICY_CLASS_NAME</H3>
+<PRE>
+public static final <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A> <B>DEFAULT_EVICTION_POLICY_CLASS_NAME</B></PRE>
+<DL>
+<DD>The default value for the <code>evictionPolicyClassName</code> configuration
+ attribute.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getEvictionPolicyClassName()"><CODE>BaseGenericObjectPool.getEvictionPolicyClassName()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getEvictionPolicyClassName()"><CODE>BaseGenericObjectPool.getEvictionPolicyClassName()</CODE></A>, 
+<A HREF="../../../../../constant-values.html#org.apache.commons.pool2.impl.BaseObjectPoolConfig.DEFAULT_EVICTION_POLICY_CLASS_NAME">Constant Field Values</A></DL>
+</DL>
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+
+<A NAME="constructor_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Constructor Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="BaseObjectPoolConfig()"><!-- --></A><H3>
+BaseObjectPoolConfig</H3>
+<PRE>
+public <B>BaseObjectPoolConfig</B>()</PRE>
+<DL>
+</DL>
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Method Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="getLifo()"><!-- --></A><H3>
+getLifo</H3>
+<PRE>
+public boolean <B>getLifo</B>()</PRE>
+<DL>
+<DD>Get the value for the <code>lifo</code> configuration attribute for pools
+ created with this configuration instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>The current setting of <code>lifo</code> for this configuration
+          instance<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getLifo()"><CODE>BaseGenericObjectPool.getLifo()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getLifo()"><CODE>BaseGenericObjectPool.getLifo()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setLifo(boolean)"><!-- --></A><H3>
+setLifo</H3>
+<PRE>
+public void <B>setLifo</B>(boolean&nbsp;lifo)</PRE>
+<DL>
+<DD>Set the value for the <code>lifo</code> configuration attribute for pools
+ created with this configuration instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>lifo</CODE> - The new setting of <code>lifo</code>
+        for this configuration instance<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getLifo()"><CODE>BaseGenericObjectPool.getLifo()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getLifo()"><CODE>BaseGenericObjectPool.getLifo()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getMaxWaitMillis()"><!-- --></A><H3>
+getMaxWaitMillis</H3>
+<PRE>
+public long <B>getMaxWaitMillis</B>()</PRE>
+<DL>
+<DD>Get the value for the <code>maxWait</code> configuration attribute for pools
+ created with this configuration instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>The current setting of <code>maxWait</code> for this
+          configuration instance<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxWaitMillis()"><CODE>BaseGenericObjectPool.getMaxWaitMillis()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxWaitMillis()"><CODE>BaseGenericObjectPool.getMaxWaitMillis()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setMaxWaitMillis(long)"><!-- --></A><H3>
+setMaxWaitMillis</H3>
+<PRE>
+public void <B>setMaxWaitMillis</B>(long&nbsp;maxWaitMillis)</PRE>
+<DL>
+<DD>Set the value for the <code>maxWait</code> configuration attribute for pools
+ created with this configuration instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>maxWaitMillis</CODE> - The new setting of <code>maxWaitMillis</code>
+        for this configuration instance<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxWaitMillis()"><CODE>BaseGenericObjectPool.getMaxWaitMillis()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxWaitMillis()"><CODE>BaseGenericObjectPool.getMaxWaitMillis()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getMinEvictableIdleTimeMillis()"><!-- --></A><H3>
+getMinEvictableIdleTimeMillis</H3>
+<PRE>
+public long <B>getMinEvictableIdleTimeMillis</B>()</PRE>
+<DL>
+<DD>Get the value for the <code>minEvictableIdleTimeMillis</code> configuration
+ attribute for pools created with this configuration instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>The current setting of <code>minEvictableIdleTimeMillis</code> for
+          this configuration instance<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMinEvictableIdleTimeMillis()"><CODE>BaseGenericObjectPool.getMinEvictableIdleTimeMillis()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMinEvictableIdleTimeMillis()"><CODE>BaseGenericObjectPool.getMinEvictableIdleTimeMillis()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setMinEvictableIdleTimeMillis(long)"><!-- --></A><H3>
+setMinEvictableIdleTimeMillis</H3>
+<PRE>
+public void <B>setMinEvictableIdleTimeMillis</B>(long&nbsp;minEvictableIdleTimeMillis)</PRE>
+<DL>
+<DD>Set the value for the <code>minEvictableIdleTimeMillis</code> configuration
+ attribute for pools created with this configuration instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>minEvictableIdleTimeMillis</CODE> - The new setting of
+        <code>minEvictableIdleTimeMillis</code> for this configuration instance<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMinEvictableIdleTimeMillis()"><CODE>BaseGenericObjectPool.getMinEvictableIdleTimeMillis()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMinEvictableIdleTimeMillis()"><CODE>BaseGenericObjectPool.getMinEvictableIdleTimeMillis()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getSoftMinEvictableIdleTimeMillis()"><!-- --></A><H3>
+getSoftMinEvictableIdleTimeMillis</H3>
+<PRE>
+public long <B>getSoftMinEvictableIdleTimeMillis</B>()</PRE>
+<DL>
+<DD>Get the value for the <code>softMinEvictableIdleTimeMillis</code>
+ configuration attribute for pools created with this configuration
+ instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>The current setting of <code>softMinEvictableIdleTimeMillis</code>
+          for this configuration instance<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getSoftMinEvictableIdleTimeMillis()"><CODE>BaseGenericObjectPool.getSoftMinEvictableIdleTimeMillis()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getSoftMinEvictableIdleTimeMillis()"><CODE>BaseGenericObjectPool.getSoftMinEvictableIdleTimeMillis()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setSoftMinEvictableIdleTimeMillis(long)"><!-- --></A><H3>
+setSoftMinEvictableIdleTimeMillis</H3>
+<PRE>
+public void <B>setSoftMinEvictableIdleTimeMillis</B>(long&nbsp;softMinEvictableIdleTimeMillis)</PRE>
+<DL>
+<DD>Set the value for the <code>softMinEvictableIdleTimeMillis</code>
+ configuration attribute for pools created with this configuration
+ instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>softMinEvictableIdleTimeMillis</CODE> - The new setting of
+        <code>softMinEvictableIdleTimeMillis</code> for this configuration
+        instance<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getSoftMinEvictableIdleTimeMillis()"><CODE>BaseGenericObjectPool.getSoftMinEvictableIdleTimeMillis()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getSoftMinEvictableIdleTimeMillis()"><CODE>BaseGenericObjectPool.getSoftMinEvictableIdleTimeMillis()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNumTestsPerEvictionRun()"><!-- --></A><H3>
+getNumTestsPerEvictionRun</H3>
+<PRE>
+public int <B>getNumTestsPerEvictionRun</B>()</PRE>
+<DL>
+<DD>Get the value for the <code>numTestsPerEvictionRun</code> configuration
+ attribute for pools created with this configuration instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>The current setting of <code>numTestsPerEvictionRun</code> for this
+          configuration instance<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getNumTestsPerEvictionRun()"><CODE>BaseGenericObjectPool.getNumTestsPerEvictionRun()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getNumTestsPerEvictionRun()"><CODE>BaseGenericObjectPool.getNumTestsPerEvictionRun()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setNumTestsPerEvictionRun(int)"><!-- --></A><H3>
+setNumTestsPerEvictionRun</H3>
+<PRE>
+public void <B>setNumTestsPerEvictionRun</B>(int&nbsp;numTestsPerEvictionRun)</PRE>
+<DL>
+<DD>Set the value for the <code>numTestsPerEvictionRun</code> configuration
+ attribute for pools created with this configuration instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>numTestsPerEvictionRun</CODE> - The new setting of
+        <code>numTestsPerEvictionRun</code> for this configuration instance<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getNumTestsPerEvictionRun()"><CODE>BaseGenericObjectPool.getNumTestsPerEvictionRun()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getNumTestsPerEvictionRun()"><CODE>BaseGenericObjectPool.getNumTestsPerEvictionRun()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getTestOnCreate()"><!-- --></A><H3>
+getTestOnCreate</H3>
+<PRE>
+public boolean <B>getTestOnCreate</B>()</PRE>
+<DL>
+<DD>Get the value for the <code>testOnCreate</code> configuration attribute for
+ pools created with this configuration instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>The current setting of <code>testOnCreate</code> for this
+          configuration instance<DT><B>Since:</B></DT>
+  <DD>2.2</DD>
+<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnCreate()"><CODE>BaseGenericObjectPool.getTestOnCreate()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnCreate()"><CODE>BaseGenericObjectPool.getTestOnCreate()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setTestOnCreate(boolean)"><!-- --></A><H3>
+setTestOnCreate</H3>
+<PRE>
+public void <B>setTestOnCreate</B>(boolean&nbsp;testOnCreate)</PRE>
+<DL>
+<DD>Set the value for the <code>testOnCreate</code> configuration attribute for
+ pools created with this configuration instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>testOnCreate</CODE> - The new setting of <code>testOnCreate</code>
+        for this configuration instance<DT><B>Since:</B></DT>
+  <DD>2.2</DD>
+<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnCreate()"><CODE>BaseGenericObjectPool.getTestOnCreate()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnCreate()"><CODE>BaseGenericObjectPool.getTestOnCreate()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getTestOnBorrow()"><!-- --></A><H3>
+getTestOnBorrow</H3>
+<PRE>
+public boolean <B>getTestOnBorrow</B>()</PRE>
+<DL>
+<DD>Get the value for the <code>testOnBorrow</code> configuration attribute for
+ pools created with this configuration instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>The current setting of <code>testOnBorrow</code> for this
+          configuration instance<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnBorrow()"><CODE>BaseGenericObjectPool.getTestOnBorrow()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnBorrow()"><CODE>BaseGenericObjectPool.getTestOnBorrow()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setTestOnBorrow(boolean)"><!-- --></A><H3>
+setTestOnBorrow</H3>
+<PRE>
+public void <B>setTestOnBorrow</B>(boolean&nbsp;testOnBorrow)</PRE>
+<DL>
+<DD>Set the value for the <code>testOnBorrow</code> configuration attribute for
+ pools created with this configuration instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>testOnBorrow</CODE> - The new setting of <code>testOnBorrow</code>
+        for this configuration instance<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnBorrow()"><CODE>BaseGenericObjectPool.getTestOnBorrow()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnBorrow()"><CODE>BaseGenericObjectPool.getTestOnBorrow()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getTestOnReturn()"><!-- --></A><H3>
+getTestOnReturn</H3>
+<PRE>
+public boolean <B>getTestOnReturn</B>()</PRE>
+<DL>
+<DD>Get the value for the <code>testOnReturn</code> configuration attribute for
+ pools created with this configuration instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>The current setting of <code>testOnReturn</code> for this
+          configuration instance<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnReturn()"><CODE>BaseGenericObjectPool.getTestOnReturn()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnReturn()"><CODE>BaseGenericObjectPool.getTestOnReturn()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setTestOnReturn(boolean)"><!-- --></A><H3>
+setTestOnReturn</H3>
+<PRE>
+public void <B>setTestOnReturn</B>(boolean&nbsp;testOnReturn)</PRE>
+<DL>
+<DD>Set the value for the <code>testOnReturn</code> configuration attribute for
+ pools created with this configuration instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>testOnReturn</CODE> - The new setting of <code>testOnReturn</code>
+        for this configuration instance<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnReturn()"><CODE>BaseGenericObjectPool.getTestOnReturn()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnReturn()"><CODE>BaseGenericObjectPool.getTestOnReturn()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getTestWhileIdle()"><!-- --></A><H3>
+getTestWhileIdle</H3>
+<PRE>
+public boolean <B>getTestWhileIdle</B>()</PRE>
+<DL>
+<DD>Get the value for the <code>testWhileIdle</code> configuration attribute for
+ pools created with this configuration instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>The current setting of <code>testWhileIdle</code> for this
+          configuration instance<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestWhileIdle()"><CODE>BaseGenericObjectPool.getTestWhileIdle()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestWhileIdle()"><CODE>BaseGenericObjectPool.getTestWhileIdle()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setTestWhileIdle(boolean)"><!-- --></A><H3>
+setTestWhileIdle</H3>
+<PRE>
+public void <B>setTestWhileIdle</B>(boolean&nbsp;testWhileIdle)</PRE>
+<DL>
+<DD>Set the value for the <code>testWhileIdle</code> configuration attribute for
+ pools created with this configuration instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>testWhileIdle</CODE> - The new setting of <code>testWhileIdle</code>
+        for this configuration instance<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestWhileIdle()"><CODE>BaseGenericObjectPool.getTestWhileIdle()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestWhileIdle()"><CODE>BaseGenericObjectPool.getTestWhileIdle()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getTimeBetweenEvictionRunsMillis()"><!-- --></A><H3>
+getTimeBetweenEvictionRunsMillis</H3>
+<PRE>
+public long <B>getTimeBetweenEvictionRunsMillis</B>()</PRE>
+<DL>
+<DD>Get the value for the <code>timeBetweenEvictionRunsMillis</code> configuration
+ attribute for pools created with this configuration instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>The current setting of <code>timeBetweenEvictionRunsMillis</code> for
+          this configuration instance<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTimeBetweenEvictionRunsMillis()"><CODE>BaseGenericObjectPool.getTimeBetweenEvictionRunsMillis()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTimeBetweenEvictionRunsMillis()"><CODE>BaseGenericObjectPool.getTimeBetweenEvictionRunsMillis()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setTimeBetweenEvictionRunsMillis(long)"><!-- --></A><H3>
+setTimeBetweenEvictionRunsMillis</H3>
+<PRE>
+public void <B>setTimeBetweenEvictionRunsMillis</B>(long&nbsp;timeBetweenEvictionRunsMillis)</PRE>
+<DL>
+<DD>Set the value for the <code>timeBetweenEvictionRunsMillis</code> configuration
+ attribute for pools created with this configuration instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>timeBetweenEvictionRunsMillis</CODE> - The new setting of
+        <code>timeBetweenEvictionRunsMillis</code> for this configuration
+        instance<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTimeBetweenEvictionRunsMillis()"><CODE>BaseGenericObjectPool.getTimeBetweenEvictionRunsMillis()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTimeBetweenEvictionRunsMillis()"><CODE>BaseGenericObjectPool.getTimeBetweenEvictionRunsMillis()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getEvictionPolicyClassName()"><!-- --></A><H3>
+getEvictionPolicyClassName</H3>
+<PRE>
+public <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A> <B>getEvictionPolicyClassName</B>()</PRE>
+<DL>
+<DD>Get the value for the <code>evictionPolicyClassName</code> configuration
+ attribute for pools created with this configuration instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>The current setting of <code>evictionPolicyClassName</code> for this
+          configuration instance<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getEvictionPolicyClassName()"><CODE>BaseGenericObjectPool.getEvictionPolicyClassName()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getEvictionPolicyClassName()"><CODE>BaseGenericObjectPool.getEvictionPolicyClassName()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setEvictionPolicyClassName(java.lang.String)"><!-- --></A><H3>
+setEvictionPolicyClassName</H3>
+<PRE>
+public void <B>setEvictionPolicyClassName</B>(<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;evictionPolicyClassName)</PRE>
+<DL>
+<DD>Set the value for the <code>evictionPolicyClassName</code> configuration
+ attribute for pools created with this configuration instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>evictionPolicyClassName</CODE> - The new setting of
+        <code>evictionPolicyClassName</code> for this configuration instance<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getEvictionPolicyClassName()"><CODE>BaseGenericObjectPool.getEvictionPolicyClassName()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getEvictionPolicyClassName()"><CODE>BaseGenericObjectPool.getEvictionPolicyClassName()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getBlockWhenExhausted()"><!-- --></A><H3>
+getBlockWhenExhausted</H3>
+<PRE>
+public boolean <B>getBlockWhenExhausted</B>()</PRE>
+<DL>
+<DD>Get the value for the <code>blockWhenExhausted</code> configuration attribute
+ for pools created with this configuration instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>The current setting of <code>blockWhenExhausted</code> for this
+          configuration instance<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBlockWhenExhausted()"><CODE>BaseGenericObjectPool.getBlockWhenExhausted()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBlockWhenExhausted()"><CODE>BaseGenericObjectPool.getBlockWhenExhausted()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setBlockWhenExhausted(boolean)"><!-- --></A><H3>
+setBlockWhenExhausted</H3>
+<PRE>
+public void <B>setBlockWhenExhausted</B>(boolean&nbsp;blockWhenExhausted)</PRE>
+<DL>
+<DD>Set the value for the <code>blockWhenExhausted</code> configuration attribute
+ for pools created with this configuration instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>blockWhenExhausted</CODE> - The new setting of <code>blockWhenExhausted</code>
+        for this configuration instance<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBlockWhenExhausted()"><CODE>BaseGenericObjectPool.getBlockWhenExhausted()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBlockWhenExhausted()"><CODE>BaseGenericObjectPool.getBlockWhenExhausted()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getJmxEnabled()"><!-- --></A><H3>
+getJmxEnabled</H3>
+<PRE>
+public boolean <B>getJmxEnabled</B>()</PRE>
+<DL>
+<DD>Gets the value of the flag that determines if JMX will be enabled for
+ pools created with this configuration instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>The current setting of <code>jmxEnabled</code> for this configuration
+          instance</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setJmxEnabled(boolean)"><!-- --></A><H3>
+setJmxEnabled</H3>
+<PRE>
+public void <B>setJmxEnabled</B>(boolean&nbsp;jmxEnabled)</PRE>
+<DL>
+<DD>Sets the value of the flag that determines if JMX will be enabled for
+ pools created with this configuration instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>jmxEnabled</CODE> - The new setting of <code>jmxEnabled</code>
+        for this configuration instance</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getJmxNameBase()"><!-- --></A><H3>
+getJmxNameBase</H3>
+<PRE>
+public <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A> <B>getJmxNameBase</B>()</PRE>
+<DL>
+<DD>Gets the value of the JMX name base that will be used as part of the
+ name assigned to JMX enabled pools created with this configuration
+ instance. A value of <code>null</code> means that the pool will define
+ the JMX name base.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>The current setting of <code>jmxNameBase</code> for this
+          configuration instance</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setJmxNameBase(java.lang.String)"><!-- --></A><H3>
+setJmxNameBase</H3>
+<PRE>
+public void <B>setJmxNameBase</B>(<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;jmxNameBase)</PRE>
+<DL>
+<DD>Sets the value of the JMX name base that will be used as part of the
+ name assigned to JMX enabled pools created with this configuration
+ instance. A value of <code>null</code> means that the pool will define
+ the JMX name base.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>jmxNameBase</CODE> - The new setting of <code>jmxNameBase</code>
+        for this configuration instance</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getJmxNamePrefix()"><!-- --></A><H3>
+getJmxNamePrefix</H3>
+<PRE>
+public <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A> <B>getJmxNamePrefix</B>()</PRE>
+<DL>
+<DD>Gets the value of the JMX name prefix that will be used as part of the
+ name assigned to JMX enabled pools created with this configuration
+ instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>The current setting of <code>jmxNamePrefix</code> for this
+          configuration instance</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setJmxNamePrefix(java.lang.String)"><!-- --></A><H3>
+setJmxNamePrefix</H3>
+<PRE>
+public void <B>setJmxNamePrefix</B>(<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A>&nbsp;jmxNamePrefix)</PRE>
+<DL>
+<DD>Sets the value of the JMX name prefix that will be used as part of the
+ name assigned to JMX enabled pools created with this configuration
+ instance.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>jmxNamePrefix</CODE> - The new setting of <code>jmxNamePrefix</code>
+        for this configuration instance</DL>
+</DD>
+</DL>
+<!-- ========= END OF CLASS DATA ========= -->
+<HR>
+
+
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_bottom_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/BaseObjectPoolConfig.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html" title="class in org.apache.commons.pool2.impl"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../../org/apache/commons/pool2/impl/DefaultEvictionPolicy.html" title="class in org.apache.commons.pool2.impl"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../../../../index.html?org/apache/commons/pool2/impl/BaseObjectPoolConfig.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="BaseObjectPoolConfig.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../../../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#field_summary">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;<A HREF="#field_detail">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_bottom"></A>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+
+<HR>
+Copyright &#169; 2001&#x2013;2014 <a href="http://www.apache.org/">The Apache Software Foundation</a>. All rights reserved.
+</BODY>
+</HTML>

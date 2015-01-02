@@ -1,0 +1,1212 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--NewPage-->
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>
+GenericObjectPool (Apache Commons Pool 2.2 API)
+</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="GenericObjectPool (Apache Commons Pool 2.2 API)";
+    }
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
+
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<A NAME="navbar_top"><!-- --></A>
+<A HREF="#skip-navbar_top" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_top_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/GenericObjectPool.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../../../../index.html?org/apache/commons/pool2/impl/GenericObjectPool.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="GenericObjectPool.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../../../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_org.apache.commons.pool2.impl.BaseGenericObjectPool">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_top"></A>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+<HR>
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<FONT SIZE="-1">
+org.apache.commons.pool2.impl</FONT>
+<BR>
+Class GenericObjectPool&lt;T&gt;</H2>
+<PRE>
+<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</A>
+  <IMG SRC="../../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html" title="class in org.apache.commons.pool2.impl">org.apache.commons.pool2.impl.BaseGenericObjectPool</A>&lt;T&gt;
+      <IMG SRC="../../../../../resources/inherit.gif" ALT="extended by "><B>org.apache.commons.pool2.impl.GenericObjectPool&lt;T&gt;</B>
+</PRE>
+<DL>
+<DT><DT><B>Type Parameters:</B><DD><CODE>T</CODE> - Type of element pooled in this pool.</DL>
+<DL>
+<DT><B>All Implemented Interfaces:</B> <DD><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericObjectPoolMXBean</A>, <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2">ObjectPool</A>&lt;T&gt;, <A HREF="../../../../../org/apache/commons/pool2/UsageTracking.html" title="interface in org.apache.commons.pool2">UsageTracking</A>&lt;T&gt;</DD>
+</DL>
+<HR>
+<DL>
+<DT><PRE>public class <B>GenericObjectPool&lt;T&gt;</B><DT>extends <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html" title="class in org.apache.commons.pool2.impl">BaseGenericObjectPool</A>&lt;T&gt;<DT>implements <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2">ObjectPool</A>&lt;T&gt;, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericObjectPoolMXBean</A>, <A HREF="../../../../../org/apache/commons/pool2/UsageTracking.html" title="interface in org.apache.commons.pool2">UsageTracking</A>&lt;T&gt;</DL>
+</PRE>
+
+<P>
+A configurable <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2"><CODE>ObjectPool</CODE></A> implementation.
+ <p>
+ When coupled with the appropriate <A HREF="../../../../../org/apache/commons/pool2/PooledObjectFactory.html" title="interface in org.apache.commons.pool2"><CODE>PooledObjectFactory</CODE></A>,
+ <code>GenericObjectPool</code> provides robust pooling functionality for
+ arbitrary objects.</p>
+ <p>
+ Optionally, one may configure the pool to examine and possibly evict objects
+ as they sit idle in the pool and to ensure that a minimum number of idle
+ objects are available. This is performed by an "idle object eviction" thread,
+ which runs asynchronously. Caution should be used when configuring this
+ optional feature. Eviction runs contend with client threads for access to
+ objects in the pool, so if they run too frequently performance issues may
+ result.</p>
+ <p>
+ The pool can also be configured to detect and remove "abandoned" objects,
+ i.e. objects that have been checked out of the pool but neither used nor
+ returned before the configured
+ <A HREF="../../../../../org/apache/commons/pool2/impl/AbandonedConfig.html#getRemoveAbandonedTimeout()"><CODE>removeAbandonedTimeout</CODE></A>.
+ Abandoned object removal can be configured to happen when
+ <code>borrowObject</code> is invoked and the pool is close to starvation, or
+ it can be executed by the idle object evictor, or both. If pooled objects
+ implement the <A HREF="../../../../../org/apache/commons/pool2/TrackedUse.html" title="interface in org.apache.commons.pool2"><CODE>TrackedUse</CODE></A> interface, their last use will be queried
+ using the <code>getLastUsed</code> method on that interface; otherwise
+ abandonment is determined by how long an object has been checked out from
+ the pool.</p>
+ <p>
+ Implementation note: To prevent possible deadlocks, care has been taken to
+ ensure that no call to a factory method will occur within a synchronization
+ block. See POOL-125 and DBCP-44 for more information.</p>
+ <p>
+ This class is intended to be thread-safe.</p>
+<P>
+
+<P>
+<DL>
+<DT><B>Since:</B></DT>
+  <DD>2.0</DD>
+<DT><B>Version:</B></DT>
+  <DD>$Revision: 1569016 $</DD>
+<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="class in org.apache.commons.pool2.impl"><CODE>GenericKeyedObjectPool</CODE></A></DL>
+<HR>
+
+<P>
+<!-- =========== FIELD SUMMARY =========== -->
+
+<A NAME="field_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Field Summary</B></FONT></TH>
+</TR>
+</TABLE>
+&nbsp;<A NAME="fields_inherited_from_class_org.apache.commons.pool2.impl.BaseGenericObjectPool"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Fields inherited from class org.apache.commons.pool2.impl.<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html" title="class in org.apache.commons.pool2.impl">BaseGenericObjectPool</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#MEAN_TIMING_STATS_CACHE_SIZE">MEAN_TIMING_STATS_CACHE_SIZE</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+
+<A NAME="constructor_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Constructor Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#GenericObjectPool(org.apache.commons.pool2.PooledObjectFactory)">GenericObjectPool</A></B>(<A HREF="../../../../../org/apache/commons/pool2/PooledObjectFactory.html" title="interface in org.apache.commons.pool2">PooledObjectFactory</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A>&gt;&nbsp;factory)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create a new <code>GenericObjectPool</code> using defaults from
+ <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl"><CODE>GenericObjectPoolConfig</CODE></A>.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#GenericObjectPool(org.apache.commons.pool2.PooledObjectFactory, org.apache.commons.pool2.impl.GenericObjectPoolConfig)">GenericObjectPool</A></B>(<A HREF="../../../../../org/apache/commons/pool2/PooledObjectFactory.html" title="interface in org.apache.commons.pool2">PooledObjectFactory</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A>&gt;&nbsp;factory,
+                  <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl">GenericObjectPoolConfig</A>&nbsp;config)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create a new <code>GenericObjectPool</code> using a specific
+ configuration.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#GenericObjectPool(org.apache.commons.pool2.PooledObjectFactory, org.apache.commons.pool2.impl.GenericObjectPoolConfig, org.apache.commons.pool2.impl.AbandonedConfig)">GenericObjectPool</A></B>(<A HREF="../../../../../org/apache/commons/pool2/PooledObjectFactory.html" title="interface in org.apache.commons.pool2">PooledObjectFactory</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A>&gt;&nbsp;factory,
+                  <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl">GenericObjectPoolConfig</A>&nbsp;config,
+                  <A HREF="../../../../../org/apache/commons/pool2/impl/AbandonedConfig.html" title="class in org.apache.commons.pool2.impl">AbandonedConfig</A>&nbsp;abandonedConfig)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create a new <code>GenericObjectPool</code> that tracks and destroys
+ objects that are checked out, but never returned to the pool.</TD>
+</TR>
+</TABLE>
+&nbsp;
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#addObject()">addObject</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create an object, and place it into the pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#borrowObject()">borrowObject</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Equivalent to <code><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#borrowObject(long)"><CODE>borrowObject</CODE></A>(<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxWaitMillis()"><CODE>BaseGenericObjectPool.getMaxWaitMillis()</CODE></A>)</code>.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#borrowObject(long)">borrowObject</A></B>(long&nbsp;borrowMaxWaitMillis)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Borrow an object from the pool using the specific waiting time which only
+ applies if <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBlockWhenExhausted()"><CODE>BaseGenericObjectPool.getBlockWhenExhausted()</CODE></A> is true.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#clear()">clear</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clears any objects sitting idle in the pool by removing them from the
+ idle instance pool and then invoking the configured
+ <A HREF="../../../../../org/apache/commons/pool2/PooledObjectFactory.html#destroyObject(org.apache.commons.pool2.PooledObject)"><CODE>PooledObjectFactory.destroyObject(PooledObject)</CODE></A> method on each
+ idle instance.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#close()">close</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Closes the pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#evict()">evict</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Perform <code>numTests</code> idle object eviction tests, evicting
+ examined objects that meet the criteria for eviction.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../../org/apache/commons/pool2/PooledObjectFactory.html" title="interface in org.apache.commons.pool2">PooledObjectFactory</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getFactory()">getFactory</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Obtain a reference to the factory used to create, destroy and validate
+ the objects used by this pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getFactoryType()">getFactoryType</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return the type - including the specific type rather than the generic -
+ of the factory.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getLogAbandoned()">getLogAbandoned</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Will this pool identify and log any abandoned objects?</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getMaxIdle()">getMaxIdle</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the cap on the number of "idle" instances in the pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getMinIdle()">getMinIdle</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the target for the minimum number of idle objects to maintain in
+ the pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getNumActive()">getNumActive</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return the number of instances currently borrowed from this pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getNumIdle()">getNumIdle</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The number of instances currently idle in this pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getNumWaiters()">getNumWaiters</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return an estimate of the number of threads currently blocked waiting for
+ an object from the pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getRemoveAbandonedOnBorrow()">getRemoveAbandonedOnBorrow</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Will a check be made for abandoned objects when an object is borrowed
+ from this pool?</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getRemoveAbandonedOnMaintenance()">getRemoveAbandonedOnMaintenance</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Will a check be made for abandoned objects when the evictor runs?</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getRemoveAbandonedTimeout()">getRemoveAbandonedTimeout</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Obtain the timeout before which an object will be considered to be
+ abandoned by this pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#invalidateObject(T)">invalidateObject</A></B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A>&nbsp;obj)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Invalidates an object from the pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#isAbandonedConfig()">isAbandonedConfig</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Whether or not abandoned object removal is configured for this pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="http://docs.oracle.com/javase/6/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/DefaultPooledObjectInfo.html" title="class in org.apache.commons.pool2.impl">DefaultPooledObjectInfo</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#listAllObjects()">listAllObjects</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Provides information on all the objects in the pool, both idle (waiting
+ to be borrowed) and active (currently borrowed).</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#returnObject(T)">returnObject</A></B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A>&nbsp;obj)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return an instance to the pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#setAbandonedConfig(org.apache.commons.pool2.impl.AbandonedConfig)">setAbandonedConfig</A></B>(<A HREF="../../../../../org/apache/commons/pool2/impl/AbandonedConfig.html" title="class in org.apache.commons.pool2.impl">AbandonedConfig</A>&nbsp;abandonedConfig)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the abandoned object removal configuration.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#setConfig(org.apache.commons.pool2.impl.GenericObjectPoolConfig)">setConfig</A></B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl">GenericObjectPoolConfig</A>&nbsp;conf)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the base pool configuration.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#setMaxIdle(int)">setMaxIdle</A></B>(int&nbsp;maxIdle)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the cap on the number of "idle" instances in the pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#setMinIdle(int)">setMinIdle</A></B>(int&nbsp;minIdle)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the target for the minimum number of idle objects to maintain in
+ the pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#use(T)">use</A></B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A>&nbsp;pooledObject)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This method is called every time a pooled object to enable the pool to
+ better track borrowed objects.</TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_org.apache.commons.pool2.impl.BaseGenericObjectPool"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class org.apache.commons.pool2.impl.<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html" title="class in org.apache.commons.pool2.impl">BaseGenericObjectPool</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBlockWhenExhausted()">getBlockWhenExhausted</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBorrowedCount()">getBorrowedCount</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getCreatedCount()">getCreatedCount</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getCreationStackTrace()">getCreationStackTrace</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getDestroyedByBorrowValidationCount()">getDestroyedByBorrowValidationCount</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getDestroyedByEvictorCount()">getDestroyedByEvictorCount</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getDestroyedCount()">getDestroyedCount</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getEvictionPolicyClassName()">getEvictionPolicyClassName</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getJmxName()">getJmxName</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getLifo()">getLifo</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxBorrowWaitTimeMillis()">getMaxBorrowWaitTimeMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxTotal()">getMaxTotal</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxWaitMillis()">getMaxWaitMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMeanActiveTimeMillis()">getMeanActiveTimeMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMeanBorrowWaitTimeMillis()">getMeanBorrowWaitTimeMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMeanIdleTimeMillis()">getMeanIdleTimeMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMinEvictableIdleTimeMillis()">getMinEvictableIdleTimeMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getNumTestsPerEvictionRun()">getNumTestsPerEvictionRun</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getReturnedCount()">getReturnedCount</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getSoftMinEvictableIdleTimeMillis()">getSoftMinEvictableIdleTimeMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getSwallowedExceptionListener()">getSwallowedExceptionListener</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnBorrow()">getTestOnBorrow</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnCreate()">getTestOnCreate</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnReturn()">getTestOnReturn</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestWhileIdle()">getTestWhileIdle</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTimeBetweenEvictionRunsMillis()">getTimeBetweenEvictionRunsMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#isClosed()">isClosed</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setBlockWhenExhausted(boolean)">setBlockWhenExhausted</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setEvictionPolicyClassName(java.lang.String)">setEvictionPolicyClassName</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setLifo(boolean)">setLifo</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setMaxTotal(int)">setMaxTotal</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setMaxWaitMillis(long)">setMaxWaitMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setMinEvictableIdleTimeMillis(long)">setMinEvictableIdleTimeMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setNumTestsPerEvictionRun(int)">setNumTestsPerEvictionRun</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setSoftMinEvictableIdleTimeMillis(long)">setSoftMinEvictableIdleTimeMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setSwallowedExceptionListener(org.apache.commons.pool2.SwallowedExceptionListener)">setSwallowedExceptionListener</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setTestOnBorrow(boolean)">setTestOnBorrow</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setTestOnCreate(boolean)">setTestOnCreate</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setTestOnReturn(boolean)">setTestOnReturn</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setTestWhileIdle(boolean)">setTestWhileIdle</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setTimeBetweenEvictionRunsMillis(long)">setTimeBetweenEvictionRunsMillis</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class java.lang.<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang">toString</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long, int)" title="class or interface in java.lang">wait</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_org.apache.commons.pool2.impl.GenericObjectPoolMXBean"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from interface org.apache.commons.pool2.impl.<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericObjectPoolMXBean</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getBlockWhenExhausted()">getBlockWhenExhausted</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getBorrowedCount()">getBorrowedCount</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getCreatedCount()">getCreatedCount</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getCreationStackTrace()">getCreationStackTrace</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getDestroyedByBorrowValidationCount()">getDestroyedByBorrowValidationCount</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getDestroyedByEvictorCount()">getDestroyedByEvictorCount</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getDestroyedCount()">getDestroyedCount</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getLifo()">getLifo</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getMaxBorrowWaitTimeMillis()">getMaxBorrowWaitTimeMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getMaxTotal()">getMaxTotal</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getMaxWaitMillis()">getMaxWaitMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getMeanActiveTimeMillis()">getMeanActiveTimeMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getMeanBorrowWaitTimeMillis()">getMeanBorrowWaitTimeMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getMeanIdleTimeMillis()">getMeanIdleTimeMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getMinEvictableIdleTimeMillis()">getMinEvictableIdleTimeMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getNumTestsPerEvictionRun()">getNumTestsPerEvictionRun</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getReturnedCount()">getReturnedCount</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getTestOnBorrow()">getTestOnBorrow</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getTestOnCreate()">getTestOnCreate</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getTestOnReturn()">getTestOnReturn</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getTestWhileIdle()">getTestWhileIdle</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getTimeBetweenEvictionRunsMillis()">getTimeBetweenEvictionRunsMillis</A>, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#isClosed()">isClosed</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+
+<A NAME="constructor_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Constructor Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="GenericObjectPool(org.apache.commons.pool2.PooledObjectFactory)"><!-- --></A><H3>
+GenericObjectPool</H3>
+<PRE>
+public <B>GenericObjectPool</B>(<A HREF="../../../../../org/apache/commons/pool2/PooledObjectFactory.html" title="interface in org.apache.commons.pool2">PooledObjectFactory</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A>&gt;&nbsp;factory)</PRE>
+<DL>
+<DD>Create a new <code>GenericObjectPool</code> using defaults from
+ <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl"><CODE>GenericObjectPoolConfig</CODE></A>.
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>factory</CODE> - The object factory to be used to create object instances
+                used by this pool</DL>
+</DL>
+<HR>
+
+<A NAME="GenericObjectPool(org.apache.commons.pool2.PooledObjectFactory, org.apache.commons.pool2.impl.GenericObjectPoolConfig)"><!-- --></A><H3>
+GenericObjectPool</H3>
+<PRE>
+public <B>GenericObjectPool</B>(<A HREF="../../../../../org/apache/commons/pool2/PooledObjectFactory.html" title="interface in org.apache.commons.pool2">PooledObjectFactory</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A>&gt;&nbsp;factory,
+                         <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl">GenericObjectPoolConfig</A>&nbsp;config)</PRE>
+<DL>
+<DD>Create a new <code>GenericObjectPool</code> using a specific
+ configuration.
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>factory</CODE> - The object factory to be used to create object instances
+                  used by this pool<DD><CODE>config</CODE> - The configuration to use for this pool instance. The
+                  configuration is used by value. Subsequent changes to
+                  the configuration object will not be reflected in the
+                  pool.</DL>
+</DL>
+<HR>
+
+<A NAME="GenericObjectPool(org.apache.commons.pool2.PooledObjectFactory, org.apache.commons.pool2.impl.GenericObjectPoolConfig, org.apache.commons.pool2.impl.AbandonedConfig)"><!-- --></A><H3>
+GenericObjectPool</H3>
+<PRE>
+public <B>GenericObjectPool</B>(<A HREF="../../../../../org/apache/commons/pool2/PooledObjectFactory.html" title="interface in org.apache.commons.pool2">PooledObjectFactory</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A>&gt;&nbsp;factory,
+                         <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl">GenericObjectPoolConfig</A>&nbsp;config,
+                         <A HREF="../../../../../org/apache/commons/pool2/impl/AbandonedConfig.html" title="class in org.apache.commons.pool2.impl">AbandonedConfig</A>&nbsp;abandonedConfig)</PRE>
+<DL>
+<DD>Create a new <code>GenericObjectPool</code> that tracks and destroys
+ objects that are checked out, but never returned to the pool.
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>factory</CODE> - The object factory to be used to create object instances
+                  used by this pool<DD><CODE>config</CODE> - The base pool configuration to use for this pool instance.
+                  The configuration is used by value. Subsequent changes to
+                  the configuration object will not be reflected in the
+                  pool.<DD><CODE>abandonedConfig</CODE> - Configuration for abandoned object identification
+                         and removal.  The configuration is used by value.</DL>
+</DL>
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Method Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="getMaxIdle()"><!-- --></A><H3>
+getMaxIdle</H3>
+<PRE>
+public int <B>getMaxIdle</B>()</PRE>
+<DL>
+<DD>Returns the cap on the number of "idle" instances in the pool. If maxIdle
+ is set too low on heavily loaded systems it is possible you will see
+ objects being destroyed and almost immediately new objects being created.
+ This is a result of the active threads momentarily returning objects
+ faster than they are requesting them them, causing the number of idle
+ objects to rise above maxIdle. The best value for maxIdle for heavily
+ loaded system will vary but the default is a good starting point.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getMaxIdle()">getMaxIdle</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericObjectPoolMXBean</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the maximum number of "idle" instances that can be held in the
+         pool or a negative value if there is no limit<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#setMaxIdle(int)"><CODE>setMaxIdle(int)</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setMaxIdle(int)"><!-- --></A><H3>
+setMaxIdle</H3>
+<PRE>
+public void <B>setMaxIdle</B>(int&nbsp;maxIdle)</PRE>
+<DL>
+<DD>Returns the cap on the number of "idle" instances in the pool. If maxIdle
+ is set too low on heavily loaded systems it is possible you will see
+ objects being destroyed and almost immediately new objects being created.
+ This is a result of the active threads momentarily returning objects
+ faster than they are requesting them them, causing the number of idle
+ objects to rise above maxIdle. The best value for maxIdle for heavily
+ loaded system will vary but the default is a good starting point.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>maxIdle</CODE> - The cap on the number of "idle" instances in the pool. Use a
+            negative value to indicate an unlimited number of idle
+            instances<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getMaxIdle()"><CODE>getMaxIdle()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setMinIdle(int)"><!-- --></A><H3>
+setMinIdle</H3>
+<PRE>
+public void <B>setMinIdle</B>(int&nbsp;minIdle)</PRE>
+<DL>
+<DD>Sets the target for the minimum number of idle objects to maintain in
+ the pool. This setting only has an effect if it is positive and
+ <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTimeBetweenEvictionRunsMillis()"><CODE>BaseGenericObjectPool.getTimeBetweenEvictionRunsMillis()</CODE></A> is greater than zero. If this
+ is the case, an attempt is made to ensure that the pool has the required
+ minimum number of instances during idle object eviction runs.
+ <p>
+ If the configured value of minIdle is greater than the configured value
+ for maxIdle then the value of maxIdle will be used instead.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>minIdle</CODE> - The minimum number of objects.<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getMinIdle()"><CODE>getMinIdle()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getMaxIdle()"><CODE>getMaxIdle()</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTimeBetweenEvictionRunsMillis()"><CODE>BaseGenericObjectPool.getTimeBetweenEvictionRunsMillis()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getMinIdle()"><!-- --></A><H3>
+getMinIdle</H3>
+<PRE>
+public int <B>getMinIdle</B>()</PRE>
+<DL>
+<DD>Returns the target for the minimum number of idle objects to maintain in
+ the pool. This setting only has an effect if it is positive and
+ <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTimeBetweenEvictionRunsMillis()"><CODE>BaseGenericObjectPool.getTimeBetweenEvictionRunsMillis()</CODE></A> is greater than zero. If this
+ is the case, an attempt is made to ensure that the pool has the required
+ minimum number of instances during idle object eviction runs.
+ <p>
+ If the configured value of minIdle is greater than the configured value
+ for maxIdle then the value of maxIdle will be used instead.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getMinIdle()">getMinIdle</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericObjectPoolMXBean</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>The minimum number of objects.<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#setMinIdle(int)"><CODE>setMinIdle(int)</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#setMaxIdle(int)"><CODE>setMaxIdle(int)</CODE></A>, 
+<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#setTimeBetweenEvictionRunsMillis(long)"><CODE>BaseGenericObjectPool.setTimeBetweenEvictionRunsMillis(long)</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="isAbandonedConfig()"><!-- --></A><H3>
+isAbandonedConfig</H3>
+<PRE>
+public boolean <B>isAbandonedConfig</B>()</PRE>
+<DL>
+<DD>Whether or not abandoned object removal is configured for this pool.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#isAbandonedConfig()">isAbandonedConfig</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericObjectPoolMXBean</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>true if this pool is configured to detect and remove
+ abandoned objects</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getLogAbandoned()"><!-- --></A><H3>
+getLogAbandoned</H3>
+<PRE>
+public boolean <B>getLogAbandoned</B>()</PRE>
+<DL>
+<DD>Will this pool identify and log any abandoned objects?
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getLogAbandoned()">getLogAbandoned</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericObjectPoolMXBean</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD><code>true</code> if abandoned object removal is configured for this
+         pool and removal events are to be logged otherwise <code>false</code><DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/AbandonedConfig.html#getLogAbandoned()"><CODE>AbandonedConfig.getLogAbandoned()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getRemoveAbandonedOnBorrow()"><!-- --></A><H3>
+getRemoveAbandonedOnBorrow</H3>
+<PRE>
+public boolean <B>getRemoveAbandonedOnBorrow</B>()</PRE>
+<DL>
+<DD>Will a check be made for abandoned objects when an object is borrowed
+ from this pool?
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getRemoveAbandonedOnBorrow()">getRemoveAbandonedOnBorrow</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericObjectPoolMXBean</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD><code>true</code> if abandoned object removal is configured to be
+         activated by borrowObject otherwise <code>false</code><DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/AbandonedConfig.html#getRemoveAbandonedOnBorrow()"><CODE>AbandonedConfig.getRemoveAbandonedOnBorrow()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getRemoveAbandonedOnMaintenance()"><!-- --></A><H3>
+getRemoveAbandonedOnMaintenance</H3>
+<PRE>
+public boolean <B>getRemoveAbandonedOnMaintenance</B>()</PRE>
+<DL>
+<DD>Will a check be made for abandoned objects when the evictor runs?
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getRemoveAbandonedOnMaintenance()">getRemoveAbandonedOnMaintenance</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericObjectPoolMXBean</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD><code>true</code> if abandoned object removal is configured to be
+         activated when the evictor runs otherwise <code>false</code><DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/AbandonedConfig.html#getRemoveAbandonedOnMaintenance()"><CODE>AbandonedConfig.getRemoveAbandonedOnMaintenance()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getRemoveAbandonedTimeout()"><!-- --></A><H3>
+getRemoveAbandonedTimeout</H3>
+<PRE>
+public int <B>getRemoveAbandonedTimeout</B>()</PRE>
+<DL>
+<DD>Obtain the timeout before which an object will be considered to be
+ abandoned by this pool.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getRemoveAbandonedTimeout()">getRemoveAbandonedTimeout</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericObjectPoolMXBean</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>The abandoned object timeout in seconds if abandoned object
+         removal is configured for this pool; Integer.MAX_VALUE otherwise.<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/AbandonedConfig.html#getRemoveAbandonedTimeout()"><CODE>AbandonedConfig.getRemoveAbandonedTimeout()</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setConfig(org.apache.commons.pool2.impl.GenericObjectPoolConfig)"><!-- --></A><H3>
+setConfig</H3>
+<PRE>
+public void <B>setConfig</B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl">GenericObjectPoolConfig</A>&nbsp;conf)</PRE>
+<DL>
+<DD>Sets the base pool configuration.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>conf</CODE> - the new configuration to use. This is used by value.<DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl"><CODE>GenericObjectPoolConfig</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setAbandonedConfig(org.apache.commons.pool2.impl.AbandonedConfig)"><!-- --></A><H3>
+setAbandonedConfig</H3>
+<PRE>
+public void <B>setAbandonedConfig</B>(<A HREF="../../../../../org/apache/commons/pool2/impl/AbandonedConfig.html" title="class in org.apache.commons.pool2.impl">AbandonedConfig</A>&nbsp;abandonedConfig)
+                        throws <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</A></PRE>
+<DL>
+<DD>Sets the abandoned object removal configuration.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>abandonedConfig</CODE> - the new configuration to use. This is used by value.
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</A></CODE><DT><B>See Also:</B><DD><A HREF="../../../../../org/apache/commons/pool2/impl/AbandonedConfig.html" title="class in org.apache.commons.pool2.impl"><CODE>AbandonedConfig</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getFactory()"><!-- --></A><H3>
+getFactory</H3>
+<PRE>
+public <A HREF="../../../../../org/apache/commons/pool2/PooledObjectFactory.html" title="interface in org.apache.commons.pool2">PooledObjectFactory</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A>&gt; <B>getFactory</B>()</PRE>
+<DL>
+<DD>Obtain a reference to the factory used to create, destroy and validate
+ the objects used by this pool.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the factory</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="borrowObject()"><!-- --></A><H3>
+borrowObject</H3>
+<PRE>
+public <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A> <B>borrowObject</B>()
+               throws <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></PRE>
+<DL>
+<DD>Equivalent to <code><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#borrowObject(long)"><CODE>borrowObject</CODE></A>(<A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxWaitMillis()"><CODE>BaseGenericObjectPool.getMaxWaitMillis()</CODE></A>)</code>.
+ <p>
+ Obtains an instance from this pool.
+ <p>
+ Instances returned from this method will have been either newly created
+ with <A HREF="../../../../../org/apache/commons/pool2/PooledObjectFactory.html#makeObject()"><CODE>PooledObjectFactory.makeObject()</CODE></A> or will be a previously
+ idle object and have been activated with
+ <A HREF="../../../../../org/apache/commons/pool2/PooledObjectFactory.html#activateObject(org.apache.commons.pool2.PooledObject)"><CODE>PooledObjectFactory.activateObject(org.apache.commons.pool2.PooledObject<T>)</CODE></A> and then validated with
+ <A HREF="../../../../../org/apache/commons/pool2/PooledObjectFactory.html#validateObject(org.apache.commons.pool2.PooledObject)"><CODE>PooledObjectFactory.validateObject(org.apache.commons.pool2.PooledObject<T>)</CODE></A>.
+ <p>
+ By contract, clients <strong>must</strong> return the borrowed instance
+ using <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#returnObject(T)"><CODE>ObjectPool.returnObject(T)</CODE></A>, <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#invalidateObject(T)"><CODE>ObjectPool.invalidateObject(T)</CODE></A>, or a related
+ method as defined in an implementation or sub-interface.
+ <p>
+ The behaviour of this method when the pool has been exhausted
+ is not strictly specified (although it may be specified by
+ implementations).
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#borrowObject()">borrowObject</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2">ObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>an instance from this pool.
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</A></CODE> - after <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#close()"><CODE>close</CODE></A> has been called on this pool.
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></CODE> - when <A HREF="../../../../../org/apache/commons/pool2/PooledObjectFactory.html#makeObject()"><CODE>PooledObjectFactory.makeObject()</CODE></A> throws an
+              exception.
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/util/NoSuchElementException.html?is-external=true" title="class or interface in java.util">NoSuchElementException</A></CODE> - when the pool is exhausted and cannot or will not return
+              another instance.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="borrowObject(long)"><!-- --></A><H3>
+borrowObject</H3>
+<PRE>
+public <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A> <B>borrowObject</B>(long&nbsp;borrowMaxWaitMillis)
+               throws <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></PRE>
+<DL>
+<DD>Borrow an object from the pool using the specific waiting time which only
+ applies if <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBlockWhenExhausted()"><CODE>BaseGenericObjectPool.getBlockWhenExhausted()</CODE></A> is true.
+ <p>
+ If there is one or more idle instance available in the pool, then an
+ idle instance will be selected based on the value of <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getLifo()"><CODE>BaseGenericObjectPool.getLifo()</CODE></A>,
+ activated and returned. If activation fails, or <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnBorrow()"><CODE>testOnBorrow</CODE></A> is set to <code>true</code> and validation fails, the
+ instance is destroyed and the next available instance is examined. This
+ continues until either a valid instance is returned or there are no more
+ idle instances available.
+ <p>
+ If there are no idle instances available in the pool, behavior depends on
+ the <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getMaxTotal()"><CODE>maxTotal</CODE></A>, (if applicable)
+ <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBlockWhenExhausted()"><CODE>BaseGenericObjectPool.getBlockWhenExhausted()</CODE></A> and the value passed in to the
+ <code>borrowMaxWaitMillis</code> parameter. If the number of instances
+ checked out from the pool is less than <code>maxTotal,</code> a new
+ instance is created, activated and (if applicable) validated and returned
+ to the caller. If validation fails, a <code>NoSuchElementException</code>
+ is thrown.
+ <p>
+ If the pool is exhausted (no available idle instances and no capacity to
+ create new ones), this method will either block (if
+ <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBlockWhenExhausted()"><CODE>BaseGenericObjectPool.getBlockWhenExhausted()</CODE></A> is true) or throw a
+ <code>NoSuchElementException</code> (if
+ <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBlockWhenExhausted()"><CODE>BaseGenericObjectPool.getBlockWhenExhausted()</CODE></A> is false). The length of time that this
+ method will block when <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getBlockWhenExhausted()"><CODE>BaseGenericObjectPool.getBlockWhenExhausted()</CODE></A> is true is
+ determined by the value passed in to the <code>borrowMaxWaitMillis</code>
+ parameter.
+ <p>
+ When the pool is exhausted, multiple calling threads may be
+ simultaneously blocked waiting for instances to become available. A
+ "fairness" algorithm has been implemented to ensure that threads receive
+ available instances in request arrival order.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>borrowMaxWaitMillis</CODE> - The time to wait in milliseconds for an object
+                            to become available
+<DT><B>Returns:</B><DD>object instance from the pool
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/util/NoSuchElementException.html?is-external=true" title="class or interface in java.util">NoSuchElementException</A></CODE> - if an instance cannot be returned
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></CODE> - if an object instance cannot be returned due to an
+                   error</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="returnObject(java.lang.Object)"><!-- --></A><A NAME="returnObject(T)"><!-- --></A><H3>
+returnObject</H3>
+<PRE>
+public void <B>returnObject</B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A>&nbsp;obj)</PRE>
+<DL>
+<DD>Return an instance to the pool. By contract, <code>obj</code>
+ <strong>must</strong> have been obtained using <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#borrowObject()"><CODE>ObjectPool.borrowObject()</CODE></A> or
+ a related method as defined in an implementation or sub-interface.
+ <p>
+ If <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#getMaxIdle()"><CODE>maxIdle</CODE></A> is set to a positive value and the
+ number of idle instances has reached this value, the returning instance
+ is destroyed.
+ <p>
+ If <A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getTestOnReturn()"><CODE>testOnReturn</CODE></A> == true, the returning
+ instance is validated before being returned to the idle instance pool. In
+ this case, if validation fails, the instance is destroyed.
+ <p>
+ Exceptions encountered destroying objects for any reason are swallowed
+ but notified via a <A HREF="../../../../../org/apache/commons/pool2/SwallowedExceptionListener.html" title="interface in org.apache.commons.pool2"><CODE>SwallowedExceptionListener</CODE></A>.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#returnObject(T)">returnObject</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2">ObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>obj</CODE> - a <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#borrowObject()"><CODE>borrowed</CODE></A> instance to be returned.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="invalidateObject(java.lang.Object)"><!-- --></A><A NAME="invalidateObject(T)"><!-- --></A><H3>
+invalidateObject</H3>
+<PRE>
+public void <B>invalidateObject</B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A>&nbsp;obj)
+                      throws <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></PRE>
+<DL>
+<DD>Invalidates an object from the pool.
+ <p>
+ By contract, <code>obj</code> <strong>must</strong> have been obtained
+ using <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#borrowObject()"><CODE>ObjectPool.borrowObject()</CODE></A> or a related method as defined in an
+ implementation or sub-interface.
+ <p>
+ This method should be used when an object that has been borrowed is
+ determined (due to an exception or other problem) to be invalid.
+ <p>
+ Activation of this method decrements the active count and attempts to
+ destroy the instance.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#invalidateObject(T)">invalidateObject</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2">ObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>obj</CODE> - a <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#borrowObject()"><CODE>borrowed</CODE></A> instance to be disposed.
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></CODE> - if an exception occurs destroying the
+                               object
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</A></CODE> - if obj does not belong to this pool</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="clear()"><!-- --></A><H3>
+clear</H3>
+<PRE>
+public void <B>clear</B>()</PRE>
+<DL>
+<DD>Clears any objects sitting idle in the pool by removing them from the
+ idle instance pool and then invoking the configured
+ <A HREF="../../../../../org/apache/commons/pool2/PooledObjectFactory.html#destroyObject(org.apache.commons.pool2.PooledObject)"><CODE>PooledObjectFactory.destroyObject(PooledObject)</CODE></A> method on each
+ idle instance.
+ <p>
+ Implementation notes:
+ <ul>
+ <li>This method does not destroy or effect in any way instances that are
+ checked out of the pool when it is invoked.</li>
+ <li>Invoking this method does not prevent objects being returned to the
+ idle instance pool, even during its execution. Additional instances may
+ be returned while removed items are being destroyed.</li>
+ <li>Exceptions encountered destroying idle instances are swallowed
+ but notified via a <A HREF="../../../../../org/apache/commons/pool2/SwallowedExceptionListener.html" title="interface in org.apache.commons.pool2"><CODE>SwallowedExceptionListener</CODE></A>.</li>
+ </ul>
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#clear()">clear</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2">ObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNumActive()"><!-- --></A><H3>
+getNumActive</H3>
+<PRE>
+public int <B>getNumActive</B>()</PRE>
+<DL>
+<DD><B>Description copied from interface: <CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#getNumActive()">ObjectPool</A></CODE></B></DD>
+<DD>Return the number of instances currently borrowed from this pool. Returns
+ a negative value if this information is not available.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getNumActive()">getNumActive</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericObjectPoolMXBean</A></CODE><DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#getNumActive()">getNumActive</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2">ObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the number of instances currently borrowed from this pool.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNumIdle()"><!-- --></A><H3>
+getNumIdle</H3>
+<PRE>
+public int <B>getNumIdle</B>()</PRE>
+<DL>
+<DD><B>Description copied from class: <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getNumIdle()">BaseGenericObjectPool</A></CODE></B></DD>
+<DD>The number of instances currently idle in this pool.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getNumIdle()">getNumIdle</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericObjectPoolMXBean</A></CODE><DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#getNumIdle()">getNumIdle</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2">ObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A>&gt;</CODE><DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#getNumIdle()">getNumIdle</A></CODE> in class <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html" title="class in org.apache.commons.pool2.impl">BaseGenericObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>count of instances available for checkout from the pool</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="close()"><!-- --></A><H3>
+close</H3>
+<PRE>
+public void <B>close</B>()</PRE>
+<DL>
+<DD>Closes the pool. Once the pool is closed, <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#borrowObject()"><CODE>borrowObject()</CODE></A> will
+ fail with IllegalStateException, but <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#returnObject(T)"><CODE>returnObject(Object)</CODE></A> and
+ <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#invalidateObject(T)"><CODE>invalidateObject(Object)</CODE></A> will continue to work, with returned
+ objects destroyed on return.
+ <p>
+ Destroys idle instances in the pool by invoking <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html#clear()"><CODE>clear()</CODE></A>.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#close()">close</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2">ObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A>&gt;</CODE><DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#close()">close</A></CODE> in class <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html" title="class in org.apache.commons.pool2.impl">BaseGenericObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="evict()"><!-- --></A><H3>
+evict</H3>
+<PRE>
+public void <B>evict</B>()
+           throws <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></PRE>
+<DL>
+<DD><p>Perform <code>numTests</code> idle object eviction tests, evicting
+ examined objects that meet the criteria for eviction. If
+ <code>testWhileIdle</code> is true, examined objects are validated
+ when visited (and removed if invalid); otherwise only objects that
+ have been idle for more than <code>minEvicableIdleTimeMillis</code>
+ are removed.</p>
+ <p>
+ Successive activations of this method examine objects in sequence,
+ cycling through objects in oldest-to-youngest order.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html#evict()">evict</A></CODE> in class <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html" title="class in org.apache.commons.pool2.impl">BaseGenericObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></CODE> - when there is a problem evicting idle objects.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="addObject()"><!-- --></A><H3>
+addObject</H3>
+<PRE>
+public void <B>addObject</B>()
+               throws <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></PRE>
+<DL>
+<DD>Create an object, and place it into the pool. addObject() is useful for
+ "pre-loading" a pool with idle objects.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#addObject()">addObject</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2">ObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></CODE> - when <A HREF="../../../../../org/apache/commons/pool2/PooledObjectFactory.html#makeObject()"><CODE>PooledObjectFactory.makeObject()</CODE></A> fails.
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</A></CODE> - after <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#close()"><CODE>ObjectPool.close()</CODE></A> has been called on this pool.
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/UnsupportedOperationException.html?is-external=true" title="class or interface in java.lang">UnsupportedOperationException</A></CODE> - when this pool cannot add new idle objects.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="use(java.lang.Object)"><!-- --></A><A NAME="use(T)"><!-- --></A><H3>
+use</H3>
+<PRE>
+public void <B>use</B>(<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A>&nbsp;pooledObject)</PRE>
+<DL>
+<DD><B>Description copied from interface: <CODE><A HREF="../../../../../org/apache/commons/pool2/UsageTracking.html#use(T)">UsageTracking</A></CODE></B></DD>
+<DD>This method is called every time a pooled object to enable the pool to
+ better track borrowed objects.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/UsageTracking.html#use(T)">use</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/UsageTracking.html" title="interface in org.apache.commons.pool2">UsageTracking</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="type parameter in GenericObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>pooledObject</CODE> - The object that is being used</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNumWaiters()"><!-- --></A><H3>
+getNumWaiters</H3>
+<PRE>
+public int <B>getNumWaiters</B>()</PRE>
+<DL>
+<DD>Return an estimate of the number of threads currently blocked waiting for
+ an object from the pool. This is intended for monitoring only, not for
+ synchronization control.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getNumWaiters()">getNumWaiters</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericObjectPoolMXBean</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>The estimate of the number of threads currently blocked waiting
+         for an object from the pool</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getFactoryType()"><!-- --></A><H3>
+getFactoryType</H3>
+<PRE>
+public <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</A> <B>getFactoryType</B>()</PRE>
+<DL>
+<DD>Return the type - including the specific type rather than the generic -
+ of the factory.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#getFactoryType()">getFactoryType</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericObjectPoolMXBean</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>A string representation of the factory type</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="listAllObjects()"><!-- --></A><H3>
+listAllObjects</H3>
+<PRE>
+public <A HREF="http://docs.oracle.com/javase/6/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/impl/DefaultPooledObjectInfo.html" title="class in org.apache.commons.pool2.impl">DefaultPooledObjectInfo</A>&gt; <B>listAllObjects</B>()</PRE>
+<DL>
+<DD>Provides information on all the objects in the pool, both idle (waiting
+ to be borrowed) and active (currently borrowed).
+ <p>
+ Note: This is named listAllObjects so it is presented as an operation via
+ JMX. That means it won't be invoked unless the explicitly requested
+ whereas all attributes will be automatically requested when viewing the
+ attributes for an object in a tool like JConsole.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html#listAllObjects()">listAllObjects</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericObjectPoolMXBean</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>Information grouped on all the objects in the pool</DL>
+</DD>
+</DL>
+<!-- ========= END OF CLASS DATA ========= -->
+<HR>
+
+
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_bottom_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/GenericObjectPool.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../../../../index.html?org/apache/commons/pool2/impl/GenericObjectPool.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="GenericObjectPool.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../../../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_org.apache.commons.pool2.impl.BaseGenericObjectPool">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_bottom"></A>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+
+<HR>
+Copyright &#169; 2001&#x2013;2014 <a href="http://www.apache.org/">The Apache Software Foundation</a>. All rights reserved.
+</BODY>
+</HTML>

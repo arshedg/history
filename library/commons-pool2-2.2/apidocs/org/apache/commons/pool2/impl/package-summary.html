@@ -1,0 +1,272 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--NewPage-->
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>
+org.apache.commons.pool2.impl (Apache Commons Pool 2.2 API)
+</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="org.apache.commons.pool2.impl (Apache Commons Pool 2.2 API)";
+    }
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
+
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<A NAME="navbar_top"><!-- --></A>
+<A HREF="#skip-navbar_top" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_top_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Package</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <FONT CLASS="NavBarFont1">Class</FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-use.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../../../../org/apache/commons/pool2/package-summary.html"><B>PREV PACKAGE</B></A>&nbsp;
+&nbsp;<A HREF="../../../../../org/apache/commons/pool2/proxy/package-summary.html"><B>NEXT PACKAGE</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../../../../index.html?org/apache/commons/pool2/impl/package-summary.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="package-summary.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../../../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_top"></A>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+<HR>
+<H2>
+Package org.apache.commons.pool2.impl
+</H2>
+
+         Object pooling API implementations.
+<P>
+<B>See:</B>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="#package_description"><B>Description</B></A>
+<P>
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Interface Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../../../../org/apache/commons/pool2/impl/DefaultPooledObjectInfoMBean.html" title="interface in org.apache.commons.pool2.impl">DefaultPooledObjectInfoMBean</A></B></TD>
+<TD>The interface that defines the information about pooled objects that will be
+ exposed via JMX.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../../../../org/apache/commons/pool2/impl/EvictionPolicy.html" title="interface in org.apache.commons.pool2.impl">EvictionPolicy&lt;T&gt;</A></B></TD>
+<TD>To provide a custom eviction policy (i.e.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericKeyedObjectPoolMXBean&lt;K&gt;</A></B></TD>
+<TD>Defines the methods that will be made available via JMX.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolMXBean.html" title="interface in org.apache.commons.pool2.impl">GenericObjectPoolMXBean</A></B></TD>
+<TD>Defines the methods that will be made available via JMX.</TD>
+</TR>
+</TABLE>
+&nbsp;
+
+<P>
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Class Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../../../../org/apache/commons/pool2/impl/AbandonedConfig.html" title="class in org.apache.commons.pool2.impl">AbandonedConfig</A></B></TD>
+<TD>Configuration settings for abandoned object removal.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseGenericObjectPool.html" title="class in org.apache.commons.pool2.impl">BaseGenericObjectPool&lt;T&gt;</A></B></TD>
+<TD>Base class that provides common functionality for <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="class in org.apache.commons.pool2.impl"><CODE>GenericObjectPool</CODE></A>
+ and <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="class in org.apache.commons.pool2.impl"><CODE>GenericKeyedObjectPool</CODE></A>.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../../../../org/apache/commons/pool2/impl/BaseObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl">BaseObjectPoolConfig</A></B></TD>
+<TD>Provides the implementation for the common attributes shared by the
+ sub-classes.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../../../../org/apache/commons/pool2/impl/DefaultEvictionPolicy.html" title="class in org.apache.commons.pool2.impl">DefaultEvictionPolicy&lt;T&gt;</A></B></TD>
+<TD>Provides the default implementation of <A HREF="../../../../../org/apache/commons/pool2/impl/EvictionPolicy.html" title="interface in org.apache.commons.pool2.impl"><CODE>EvictionPolicy</CODE></A> used by the
+ pools.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../../../../org/apache/commons/pool2/impl/DefaultPooledObject.html" title="class in org.apache.commons.pool2.impl">DefaultPooledObject&lt;T&gt;</A></B></TD>
+<TD>This wrapper is used to track the additional information, such as state, for
+ the pooled objects.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../../../../org/apache/commons/pool2/impl/DefaultPooledObjectInfo.html" title="class in org.apache.commons.pool2.impl">DefaultPooledObjectInfo</A></B></TD>
+<TD>Implementation of object that is used to provide information on pooled
+ objects via JMX.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../../../../org/apache/commons/pool2/impl/EvictionConfig.html" title="class in org.apache.commons.pool2.impl">EvictionConfig</A></B></TD>
+<TD>This class is used by pool implementations to pass configuration information
+ to <A HREF="../../../../../org/apache/commons/pool2/impl/EvictionPolicy.html" title="interface in org.apache.commons.pool2.impl"><CODE>EvictionPolicy</CODE></A> instances.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="class in org.apache.commons.pool2.impl">GenericKeyedObjectPool&lt;K,T&gt;</A></B></TD>
+<TD>A configurable <code>KeyedObjectPool</code> implementation.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl">GenericKeyedObjectPoolConfig</A></B></TD>
+<TD>A simple "struct" encapsulating the configuration for a
+ <A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="class in org.apache.commons.pool2.impl"><CODE>GenericKeyedObjectPool</CODE></A>.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="class in org.apache.commons.pool2.impl">GenericObjectPool&lt;T&gt;</A></B></TD>
+<TD>A configurable <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2"><CODE>ObjectPool</CODE></A> implementation.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPoolConfig.html" title="class in org.apache.commons.pool2.impl">GenericObjectPoolConfig</A></B></TD>
+<TD>A simple "struct" encapsulating the configuration for a
+ <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="class in org.apache.commons.pool2.impl"><CODE>GenericObjectPool</CODE></A>.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../../../../org/apache/commons/pool2/impl/PooledSoftReference.html" title="class in org.apache.commons.pool2.impl">PooledSoftReference&lt;T&gt;</A></B></TD>
+<TD>Extension of <A HREF="../../../../../org/apache/commons/pool2/impl/DefaultPooledObject.html" title="class in org.apache.commons.pool2.impl"><CODE>DefaultPooledObject</CODE></A> to wrap pooled soft references.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../../../../org/apache/commons/pool2/impl/SoftReferenceObjectPool.html" title="class in org.apache.commons.pool2.impl">SoftReferenceObjectPool&lt;T&gt;</A></B></TD>
+<TD>A <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/ref/SoftReference.html?is-external=true" title="class or interface in java.lang.ref"><CODE>SoftReference</CODE></A> based <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2"><CODE>ObjectPool</CODE></A>.</TD>
+</TR>
+</TABLE>
+&nbsp;
+
+<P>
+<A NAME="package_description"><!-- --></A><H2>
+Package org.apache.commons.pool2.impl Description
+</H2>
+
+<P>
+<p>
+         Object pooling API implementations.
+      </p>
+      <p>
+         <A HREF="../../../../../org/apache/commons/pool2/impl/GenericObjectPool.html" title="class in org.apache.commons.pool2.impl"><CODE>GenericObjectPool</CODE></A>
+         (<A HREF="../../../../../org/apache/commons/pool2/impl/GenericKeyedObjectPool.html" title="class in org.apache.commons.pool2.impl"><CODE>GenericKeyedObjectPool</CODE></A>)
+         provides a more robust (but also more complicated)
+         implementation of <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2"><CODE>ObjectPool</CODE></A>
+         (<A HREF="../../../../../org/apache/commons/pool2/KeyedObjectPool.html" title="interface in org.apache.commons.pool2"><CODE>KeyedObjectPool</CODE></A>).
+      </p>
+      <p>
+         <A HREF="../../../../../org/apache/commons/pool2/impl/SoftReferenceObjectPool.html" title="class in org.apache.commons.pool2.impl"><CODE>SoftReferenceObjectPool</CODE></A>
+         provides a <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/ref/SoftReference.html?is-external=true" title="class or interface in java.lang.ref"><CODE>SoftReference</CODE></A> based
+         <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2"><CODE>ObjectPool</CODE></A>.
+      </p>
+      <p>
+         See also the <A HREF="../../../../../org/apache/commons/pool2/package-summary.html"><CODE>org.apache.commons.pool2</CODE></A> package.
+      </p>
+<P>
+
+<P>
+<DL>
+</DL>
+<HR>
+
+
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_bottom_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Package</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <FONT CLASS="NavBarFont1">Class</FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-use.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../../../../org/apache/commons/pool2/package-summary.html"><B>PREV PACKAGE</B></A>&nbsp;
+&nbsp;<A HREF="../../../../../org/apache/commons/pool2/proxy/package-summary.html"><B>NEXT PACKAGE</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../../../../index.html?org/apache/commons/pool2/impl/package-summary.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="package-summary.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../../../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_bottom"></A>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+
+<HR>
+Copyright &#169; 2001&#x2013;2014 <a href="http://www.apache.org/">The Apache Software Foundation</a>. All rights reserved.
+</BODY>
+</HTML>

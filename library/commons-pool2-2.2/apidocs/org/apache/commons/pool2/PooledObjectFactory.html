@@ -1,0 +1,379 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--NewPage-->
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>
+PooledObjectFactory (Apache Commons Pool 2.2 API)
+</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="PooledObjectFactory (Apache Commons Pool 2.2 API)";
+    }
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
+
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<A NAME="navbar_top"><!-- --></A>
+<A HREF="#skip-navbar_top" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_top_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/PooledObjectFactory.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../../../org/apache/commons/pool2/PooledObject.html" title="interface in org.apache.commons.pool2"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../org/apache/commons/pool2/PooledObjectState.html" title="enum in org.apache.commons.pool2"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../../../index.html?org/apache/commons/pool2/PooledObjectFactory.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="PooledObjectFactory.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_top"></A>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+<HR>
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<FONT SIZE="-1">
+org.apache.commons.pool2</FONT>
+<BR>
+Interface PooledObjectFactory&lt;T&gt;</H2>
+<DL>
+<DT><DT><B>Type Parameters:</B><DD><CODE>T</CODE> - Type of element managed in this factory.</DL>
+<DL>
+<DT><B>All Known Implementing Classes:</B> <DD><A HREF="../../../../org/apache/commons/pool2/BasePooledObjectFactory.html" title="class in org.apache.commons.pool2">BasePooledObjectFactory</A></DD>
+</DL>
+<HR>
+<DL>
+<DT><PRE>public interface <B>PooledObjectFactory&lt;T&gt;</B></DL>
+</PRE>
+
+<P>
+An interface defining life-cycle methods for instances to be served by an
+ <A HREF="../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2"><CODE>ObjectPool</CODE></A>.
+ <p>
+ By contract, when an <A HREF="../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2"><CODE>ObjectPool</CODE></A> delegates to a
+ <A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html" title="interface in org.apache.commons.pool2"><CODE>PooledObjectFactory</CODE></A>,
+ <ol>
+  <li>
+   <A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html#makeObject()"><CODE>makeObject()</CODE></A> is called whenever a new instance is needed.
+  </li>
+  <li>
+   <A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html#activateObject(org.apache.commons.pool2.PooledObject)"><CODE>activateObject(org.apache.commons.pool2.PooledObject<T>)</CODE></A> is invoked on every instance that has been
+   <A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html#passivateObject(org.apache.commons.pool2.PooledObject)"><CODE>passivated</CODE></A> before it is
+   <A HREF="../../../../org/apache/commons/pool2/ObjectPool.html#borrowObject()"><CODE>borrowed</CODE></A> from the pool.
+  </li>
+  <li>
+   <A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html#validateObject(org.apache.commons.pool2.PooledObject)"><CODE>validateObject(org.apache.commons.pool2.PooledObject<T>)</CODE></A> may be invoked on <A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html#activateObject(org.apache.commons.pool2.PooledObject)"><CODE>activated</CODE></A>
+   instances to make sure they can be <A HREF="../../../../org/apache/commons/pool2/ObjectPool.html#borrowObject()"><CODE>borrowed</CODE></A>
+   from the pool. <A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html#validateObject(org.apache.commons.pool2.PooledObject)"><CODE>validateObject(org.apache.commons.pool2.PooledObject<T>)</CODE></A> may also be used to
+   test an instance being <A HREF="../../../../org/apache/commons/pool2/ObjectPool.html#returnObject(T)"><CODE>returned</CODE></A> to the pool
+   before it is <A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html#passivateObject(org.apache.commons.pool2.PooledObject)"><CODE>passivated</CODE></A>. It will only be invoked
+   on an activated instance.
+  </li>
+  <li>
+   <A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html#passivateObject(org.apache.commons.pool2.PooledObject)"><CODE>passivateObject(org.apache.commons.pool2.PooledObject<T>)</CODE></A> is invoked on every instance when it is returned
+   to the pool.
+  </li>
+  <li>
+   <A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html#destroyObject(org.apache.commons.pool2.PooledObject)"><CODE>destroyObject(org.apache.commons.pool2.PooledObject<T>)</CODE></A> is invoked on every instance when it is being
+   "dropped" from the pool (whether due to the response from
+   <A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html#validateObject(org.apache.commons.pool2.PooledObject)"><CODE>validateObject(org.apache.commons.pool2.PooledObject<T>)</CODE></A>, or for reasons specific to the pool
+   implementation.) There is no guarantee that the instance being destroyed
+   will be considered active, passive or in a generally consistent state.
+  </li>
+ </ol>
+ <A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html" title="interface in org.apache.commons.pool2"><CODE>PooledObjectFactory</CODE></A> must be thread-safe. The only promise
+ an <A HREF="../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2"><CODE>ObjectPool</CODE></A> makes is that the same instance of an object will not
+ be passed to more than one method of a <code>PoolableObjectFactory</code>
+ at a time.
+ <p>
+ While clients of a <A HREF="../../../../org/apache/commons/pool2/KeyedObjectPool.html" title="interface in org.apache.commons.pool2"><CODE>KeyedObjectPool</CODE></A> borrow and return instances of
+ the underlying value type <code>V</code>, the factory methods act on instances of
+ <A HREF="../../../../org/apache/commons/pool2/PooledObject.html" title="interface in org.apache.commons.pool2"><CODE>PooledObject&lt;V&gt;</CODE></A>.  These are the object wrappers that
+ pools use to track and maintain state information about the objects that
+ they manage.
+<P>
+
+<P>
+<DL>
+<DT><B>Since:</B></DT>
+  <DD>2.0</DD>
+<DT><B>Version:</B></DT>
+  <DD>$Revision: 1333925 $</DD>
+<DT><B>See Also:</B><DD><A HREF="../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2"><CODE>ObjectPool</CODE></A></DL>
+<HR>
+
+<P>
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html#activateObject(org.apache.commons.pool2.PooledObject)">activateObject</A></B>(<A HREF="../../../../org/apache/commons/pool2/PooledObject.html" title="interface in org.apache.commons.pool2">PooledObject</A>&lt;<A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html" title="type parameter in PooledObjectFactory">T</A>&gt;&nbsp;p)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reinitialize an instance to be returned by the pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html#destroyObject(org.apache.commons.pool2.PooledObject)">destroyObject</A></B>(<A HREF="../../../../org/apache/commons/pool2/PooledObject.html" title="interface in org.apache.commons.pool2">PooledObject</A>&lt;<A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html" title="type parameter in PooledObjectFactory">T</A>&gt;&nbsp;p)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Destroys an instance no longer needed by the pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../org/apache/commons/pool2/PooledObject.html" title="interface in org.apache.commons.pool2">PooledObject</A>&lt;<A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html" title="type parameter in PooledObjectFactory">T</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html#makeObject()">makeObject</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create an instance that can be served by the pool and wrap it in a
+ <A HREF="../../../../org/apache/commons/pool2/PooledObject.html" title="interface in org.apache.commons.pool2"><CODE>PooledObject</CODE></A> to be managed by the pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html#passivateObject(org.apache.commons.pool2.PooledObject)">passivateObject</A></B>(<A HREF="../../../../org/apache/commons/pool2/PooledObject.html" title="interface in org.apache.commons.pool2">PooledObject</A>&lt;<A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html" title="type parameter in PooledObjectFactory">T</A>&gt;&nbsp;p)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Uninitialize an instance to be returned to the idle object pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html#validateObject(org.apache.commons.pool2.PooledObject)">validateObject</A></B>(<A HREF="../../../../org/apache/commons/pool2/PooledObject.html" title="interface in org.apache.commons.pool2">PooledObject</A>&lt;<A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html" title="type parameter in PooledObjectFactory">T</A>&gt;&nbsp;p)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ensures that the instance is safe to be returned by the pool.</TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Method Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="makeObject()"><!-- --></A><H3>
+makeObject</H3>
+<PRE>
+<A HREF="../../../../org/apache/commons/pool2/PooledObject.html" title="interface in org.apache.commons.pool2">PooledObject</A>&lt;<A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html" title="type parameter in PooledObjectFactory">T</A>&gt; <B>makeObject</B>()
+                           throws <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></PRE>
+<DL>
+<DD>Create an instance that can be served by the pool and wrap it in a
+ <A HREF="../../../../org/apache/commons/pool2/PooledObject.html" title="interface in org.apache.commons.pool2"><CODE>PooledObject</CODE></A> to be managed by the pool.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>a <code>PooledObject</code> wrapping an instance that can be served by the pool
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></CODE> - if there is a problem creating a new instance,
+    this will be propagated to the code requesting an object.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="destroyObject(org.apache.commons.pool2.PooledObject)"><!-- --></A><H3>
+destroyObject</H3>
+<PRE>
+void <B>destroyObject</B>(<A HREF="../../../../org/apache/commons/pool2/PooledObject.html" title="interface in org.apache.commons.pool2">PooledObject</A>&lt;<A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html" title="type parameter in PooledObjectFactory">T</A>&gt;&nbsp;p)
+                   throws <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></PRE>
+<DL>
+<DD>Destroys an instance no longer needed by the pool.
+ <p>
+ It is important for implementations of this method to be aware that there
+ is no guarantee about what state <code>obj</code> will be in and the
+ implementation should be prepared to handle unexpected errors.
+ <p>
+ Also, an implementation must take in to consideration that instances lost
+ to the garbage collector may never be destroyed.
+ </p>
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>p</CODE> - a <code>PooledObject</code> wrapping the instance to be destroyed
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></CODE> - should be avoided as it may be swallowed by
+    the pool implementation.<DT><B>See Also:</B><DD><A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html#validateObject(org.apache.commons.pool2.PooledObject)"><CODE>validateObject(org.apache.commons.pool2.PooledObject<T>)</CODE></A>, 
+<A HREF="../../../../org/apache/commons/pool2/ObjectPool.html#invalidateObject(T)"><CODE>ObjectPool.invalidateObject(T)</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="validateObject(org.apache.commons.pool2.PooledObject)"><!-- --></A><H3>
+validateObject</H3>
+<PRE>
+boolean <B>validateObject</B>(<A HREF="../../../../org/apache/commons/pool2/PooledObject.html" title="interface in org.apache.commons.pool2">PooledObject</A>&lt;<A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html" title="type parameter in PooledObjectFactory">T</A>&gt;&nbsp;p)</PRE>
+<DL>
+<DD>Ensures that the instance is safe to be returned by the pool.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>p</CODE> - a <code>PooledObject</code> wrapping the instance to be validated
+<DT><B>Returns:</B><DD><code>false</code> if <code>obj</code> is not valid and should
+         be dropped from the pool, <code>true</code> otherwise.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="activateObject(org.apache.commons.pool2.PooledObject)"><!-- --></A><H3>
+activateObject</H3>
+<PRE>
+void <B>activateObject</B>(<A HREF="../../../../org/apache/commons/pool2/PooledObject.html" title="interface in org.apache.commons.pool2">PooledObject</A>&lt;<A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html" title="type parameter in PooledObjectFactory">T</A>&gt;&nbsp;p)
+                    throws <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></PRE>
+<DL>
+<DD>Reinitialize an instance to be returned by the pool.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>p</CODE> - a <code>PooledObject</code> wrapping the instance to be activated
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></CODE> - if there is a problem activating <code>obj</code>,
+    this exception may be swallowed by the pool.<DT><B>See Also:</B><DD><A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html#destroyObject(org.apache.commons.pool2.PooledObject)"><CODE>destroyObject(org.apache.commons.pool2.PooledObject<T>)</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="passivateObject(org.apache.commons.pool2.PooledObject)"><!-- --></A><H3>
+passivateObject</H3>
+<PRE>
+void <B>passivateObject</B>(<A HREF="../../../../org/apache/commons/pool2/PooledObject.html" title="interface in org.apache.commons.pool2">PooledObject</A>&lt;<A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html" title="type parameter in PooledObjectFactory">T</A>&gt;&nbsp;p)
+                     throws <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></PRE>
+<DL>
+<DD>Uninitialize an instance to be returned to the idle object pool.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>p</CODE> - a <code>PooledObject</code> wrapping the instance to be passivated
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></CODE> - if there is a problem passivating <code>obj</code>,
+    this exception may be swallowed by the pool.<DT><B>See Also:</B><DD><A HREF="../../../../org/apache/commons/pool2/PooledObjectFactory.html#destroyObject(org.apache.commons.pool2.PooledObject)"><CODE>destroyObject(org.apache.commons.pool2.PooledObject<T>)</CODE></A></DL>
+</DD>
+</DL>
+<!-- ========= END OF CLASS DATA ========= -->
+<HR>
+
+
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_bottom_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/PooledObjectFactory.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../../../org/apache/commons/pool2/PooledObject.html" title="interface in org.apache.commons.pool2"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../org/apache/commons/pool2/PooledObjectState.html" title="enum in org.apache.commons.pool2"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../../../index.html?org/apache/commons/pool2/PooledObjectFactory.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="PooledObjectFactory.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_bottom"></A>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+
+<HR>
+Copyright &#169; 2001&#x2013;2014 <a href="http://www.apache.org/">The Apache Software Foundation</a>. All rights reserved.
+</BODY>
+</HTML>

@@ -1,0 +1,529 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--NewPage-->
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>
+ProxiedObjectPool (Apache Commons Pool 2.2 API)
+</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="ProxiedObjectPool (Apache Commons Pool 2.2 API)";
+    }
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
+
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<A NAME="navbar_top"><!-- --></A>
+<A HREF="#skip-navbar_top" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_top_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/ProxiedObjectPool.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedKeyedObjectPool.html" title="class in org.apache.commons.pool2.proxy"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;NEXT CLASS</FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../../../../index.html?org/apache/commons/pool2/proxy/ProxiedObjectPool.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="ProxiedObjectPool.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../../../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_top"></A>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+<HR>
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<FONT SIZE="-1">
+org.apache.commons.pool2.proxy</FONT>
+<BR>
+Class ProxiedObjectPool&lt;T&gt;</H2>
+<PRE>
+<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</A>
+  <IMG SRC="../../../../../resources/inherit.gif" ALT="extended by "><B>org.apache.commons.pool2.proxy.ProxiedObjectPool&lt;T&gt;</B>
+</PRE>
+<DL>
+<DT><DT><B>Type Parameters:</B><DD><CODE>T</CODE> - type of the pooled object</DL>
+<DL>
+<DT><B>All Implemented Interfaces:</B> <DD><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2">ObjectPool</A>&lt;T&gt;</DD>
+</DL>
+<HR>
+<DL>
+<DT><PRE>public class <B>ProxiedObjectPool&lt;T&gt;</B><DT>extends <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A><DT>implements <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2">ObjectPool</A>&lt;T&gt;</DL>
+</PRE>
+
+<P>
+Create a new object pool where the pooled objects are wrapped in proxies
+ allowing better control of pooled objects and in particular the prevention
+ of the continued use of an object by a client after that client returns the
+ object to the pool.
+<P>
+
+<P>
+<DL>
+<DT><B>Since:</B></DT>
+  <DD>2.0</DD>
+</DL>
+<HR>
+
+<P>
+
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+
+<A NAME="constructor_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Constructor Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html#ProxiedObjectPool(org.apache.commons.pool2.ObjectPool, org.apache.commons.pool2.proxy.ProxySource)">ProxiedObjectPool</A></B>(<A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2">ObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html" title="type parameter in ProxiedObjectPool">T</A>&gt;&nbsp;pool,
+                  org.apache.commons.pool2.proxy.ProxySource&lt;<A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html" title="type parameter in ProxiedObjectPool">T</A>&gt;&nbsp;proxySource)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create a new proxied object pool.</TD>
+</TR>
+</TABLE>
+&nbsp;
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html#addObject()">addObject</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create an object using the <A HREF="../../../../../org/apache/commons/pool2/PooledObjectFactory.html" title="interface in org.apache.commons.pool2"><CODE>factory</CODE></A> or other
+ implementation dependent mechanism, passivate it, and then place it in
+ the idle object pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html" title="type parameter in ProxiedObjectPool">T</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html#borrowObject()">borrowObject</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Obtains an instance from this pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html#clear()">clear</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clears any objects sitting idle in the pool, releasing any associated
+ resources (optional operation).</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html#close()">close</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Close this pool, and free any resources associated with it.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html#getNumActive()">getNumActive</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return the number of instances currently borrowed from this pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html#getNumIdle()">getNumIdle</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return the number of instances currently idle in this pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html#invalidateObject(T)">invalidateObject</A></B>(<A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html" title="type parameter in ProxiedObjectPool">T</A>&nbsp;proxy)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Invalidates an object from the pool.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html#returnObject(T)">returnObject</A></B>(<A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html" title="type parameter in ProxiedObjectPool">T</A>&nbsp;proxy)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return an instance to the pool.</TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class java.lang.<A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang">toString</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</A>, <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long, int)" title="class or interface in java.lang">wait</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+
+<A NAME="constructor_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Constructor Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="ProxiedObjectPool(org.apache.commons.pool2.ObjectPool, org.apache.commons.pool2.proxy.ProxySource)"><!-- --></A><H3>
+ProxiedObjectPool</H3>
+<PRE>
+public <B>ProxiedObjectPool</B>(<A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2">ObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html" title="type parameter in ProxiedObjectPool">T</A>&gt;&nbsp;pool,
+                         org.apache.commons.pool2.proxy.ProxySource&lt;<A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html" title="type parameter in ProxiedObjectPool">T</A>&gt;&nbsp;proxySource)</PRE>
+<DL>
+<DD>Create a new proxied object pool.
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>pool</CODE> - The object pool to wrap<DD><CODE>proxySource</CODE> - The source of the proxy objects</DL>
+</DL>
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Method Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="borrowObject()"><!-- --></A><H3>
+borrowObject</H3>
+<PRE>
+public <A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html" title="type parameter in ProxiedObjectPool">T</A> <B>borrowObject</B>()
+               throws <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A>,
+                      <A HREF="http://docs.oracle.com/javase/6/docs/api/java/util/NoSuchElementException.html?is-external=true" title="class or interface in java.util">NoSuchElementException</A>,
+                      <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</A></PRE>
+<DL>
+<DD><B>Description copied from interface: <CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#borrowObject()">ObjectPool</A></CODE></B></DD>
+<DD>Obtains an instance from this pool.
+ <p>
+ Instances returned from this method will have been either newly created
+ with <A HREF="../../../../../org/apache/commons/pool2/PooledObjectFactory.html#makeObject()"><CODE>PooledObjectFactory.makeObject()</CODE></A> or will be a previously
+ idle object and have been activated with
+ <A HREF="../../../../../org/apache/commons/pool2/PooledObjectFactory.html#activateObject(org.apache.commons.pool2.PooledObject)"><CODE>PooledObjectFactory.activateObject(org.apache.commons.pool2.PooledObject<T>)</CODE></A> and then validated with
+ <A HREF="../../../../../org/apache/commons/pool2/PooledObjectFactory.html#validateObject(org.apache.commons.pool2.PooledObject)"><CODE>PooledObjectFactory.validateObject(org.apache.commons.pool2.PooledObject<T>)</CODE></A>.
+ <p>
+ By contract, clients <strong>must</strong> return the borrowed instance
+ using <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#returnObject(T)"><CODE>ObjectPool.returnObject(T)</CODE></A>, <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#invalidateObject(T)"><CODE>ObjectPool.invalidateObject(T)</CODE></A>, or a related
+ method as defined in an implementation or sub-interface.
+ <p>
+ The behaviour of this method when the pool has been exhausted
+ is not strictly specified (although it may be specified by
+ implementations).
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#borrowObject()">borrowObject</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2">ObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html" title="type parameter in ProxiedObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>an instance from this pool.
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</A></CODE> - after <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#close()"><CODE>close</CODE></A> has been called on this pool.
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></CODE> - when <A HREF="../../../../../org/apache/commons/pool2/PooledObjectFactory.html#makeObject()"><CODE>PooledObjectFactory.makeObject()</CODE></A> throws an
+              exception.
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/util/NoSuchElementException.html?is-external=true" title="class or interface in java.util">NoSuchElementException</A></CODE> - when the pool is exhausted and cannot or will not return
+              another instance.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="returnObject(java.lang.Object)"><!-- --></A><A NAME="returnObject(T)"><!-- --></A><H3>
+returnObject</H3>
+<PRE>
+public void <B>returnObject</B>(<A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html" title="type parameter in ProxiedObjectPool">T</A>&nbsp;proxy)
+                  throws <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></PRE>
+<DL>
+<DD><B>Description copied from interface: <CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#returnObject(T)">ObjectPool</A></CODE></B></DD>
+<DD>Return an instance to the pool. By contract, <code>obj</code>
+ <strong>must</strong> have been obtained using <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#borrowObject()"><CODE>ObjectPool.borrowObject()</CODE></A> or
+ a related method as defined in an implementation or sub-interface.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#returnObject(T)">returnObject</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2">ObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html" title="type parameter in ProxiedObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>proxy</CODE> - a <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#borrowObject()"><CODE>borrowed</CODE></A> instance to be returned.
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</A></CODE> - if an attempt is made to return an object to the pool that
+              is in any state other than allocated (i.e. borrowed).
+              Attempting to return an object more than once or attempting
+              to return an object that was never borrowed from the pool
+              will trigger this exception.
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></CODE> - if an instance cannot be returned to the pool</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="invalidateObject(java.lang.Object)"><!-- --></A><A NAME="invalidateObject(T)"><!-- --></A><H3>
+invalidateObject</H3>
+<PRE>
+public void <B>invalidateObject</B>(<A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html" title="type parameter in ProxiedObjectPool">T</A>&nbsp;proxy)
+                      throws <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></PRE>
+<DL>
+<DD><B>Description copied from interface: <CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#invalidateObject(T)">ObjectPool</A></CODE></B></DD>
+<DD>Invalidates an object from the pool.
+ <p>
+ By contract, <code>obj</code> <strong>must</strong> have been obtained
+ using <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#borrowObject()"><CODE>ObjectPool.borrowObject()</CODE></A> or a related method as defined in an
+ implementation or sub-interface.
+ <p>
+ This method should be used when an object that has been borrowed is
+ determined (due to an exception or other problem) to be invalid.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#invalidateObject(T)">invalidateObject</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2">ObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html" title="type parameter in ProxiedObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>proxy</CODE> - a <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#borrowObject()"><CODE>borrowed</CODE></A> instance to be disposed.
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></CODE> - if the instance cannot be invalidated</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="addObject()"><!-- --></A><H3>
+addObject</H3>
+<PRE>
+public void <B>addObject</B>()
+               throws <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A>,
+                      <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</A>,
+                      <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/UnsupportedOperationException.html?is-external=true" title="class or interface in java.lang">UnsupportedOperationException</A></PRE>
+<DL>
+<DD><B>Description copied from interface: <CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#addObject()">ObjectPool</A></CODE></B></DD>
+<DD>Create an object using the <A HREF="../../../../../org/apache/commons/pool2/PooledObjectFactory.html" title="interface in org.apache.commons.pool2"><CODE>factory</CODE></A> or other
+ implementation dependent mechanism, passivate it, and then place it in
+ the idle object pool. <code>addObject</code> is useful for "pre-loading"
+ a pool with idle objects. (Optional operation).
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#addObject()">addObject</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2">ObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html" title="type parameter in ProxiedObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></CODE> - when <A HREF="../../../../../org/apache/commons/pool2/PooledObjectFactory.html#makeObject()"><CODE>PooledObjectFactory.makeObject()</CODE></A> fails.
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</A></CODE> - after <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#close()"><CODE>ObjectPool.close()</CODE></A> has been called on this pool.
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/UnsupportedOperationException.html?is-external=true" title="class or interface in java.lang">UnsupportedOperationException</A></CODE> - when this pool cannot add new idle objects.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNumIdle()"><!-- --></A><H3>
+getNumIdle</H3>
+<PRE>
+public int <B>getNumIdle</B>()</PRE>
+<DL>
+<DD><B>Description copied from interface: <CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#getNumIdle()">ObjectPool</A></CODE></B></DD>
+<DD>Return the number of instances currently idle in this pool. This may be
+ considered an approximation of the number of objects that can be
+ <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#borrowObject()"><CODE>borrowed</CODE></A> without creating any new instances.
+ Returns a negative value if this information is not available.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#getNumIdle()">getNumIdle</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2">ObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html" title="type parameter in ProxiedObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the number of instances currently idle in this pool.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getNumActive()"><!-- --></A><H3>
+getNumActive</H3>
+<PRE>
+public int <B>getNumActive</B>()</PRE>
+<DL>
+<DD><B>Description copied from interface: <CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#getNumActive()">ObjectPool</A></CODE></B></DD>
+<DD>Return the number of instances currently borrowed from this pool. Returns
+ a negative value if this information is not available.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#getNumActive()">getNumActive</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2">ObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html" title="type parameter in ProxiedObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the number of instances currently borrowed from this pool.</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="clear()"><!-- --></A><H3>
+clear</H3>
+<PRE>
+public void <B>clear</B>()
+           throws <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A>,
+                  <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/UnsupportedOperationException.html?is-external=true" title="class or interface in java.lang">UnsupportedOperationException</A></PRE>
+<DL>
+<DD><B>Description copied from interface: <CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#clear()">ObjectPool</A></CODE></B></DD>
+<DD>Clears any objects sitting idle in the pool, releasing any associated
+ resources (optional operation). Idle objects cleared must be
+ <A HREF="../../../../../org/apache/commons/pool2/PooledObjectFactory.html#destroyObject(org.apache.commons.pool2.PooledObject)"><CODE>PooledObjectFactory.destroyObject(PooledObject)</CODE></A>.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#clear()">clear</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2">ObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html" title="type parameter in ProxiedObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Throws:</B>
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/UnsupportedOperationException.html?is-external=true" title="class or interface in java.lang">UnsupportedOperationException</A></CODE> - if this implementation does not support the operation
+<DD><CODE><A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</A></CODE> - if the pool cannot be cleared</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="close()"><!-- --></A><H3>
+close</H3>
+<PRE>
+public void <B>close</B>()</PRE>
+<DL>
+<DD><B>Description copied from interface: <CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#close()">ObjectPool</A></CODE></B></DD>
+<DD>Close this pool, and free any resources associated with it.
+ <p>
+ Calling <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#addObject()"><CODE>ObjectPool.addObject()</CODE></A> or <A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#borrowObject()"><CODE>ObjectPool.borrowObject()</CODE></A> after invoking this
+ method on a pool will cause them to throw an <A HREF="http://docs.oracle.com/javase/6/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang"><CODE>IllegalStateException</CODE></A>.
+ <p>
+ Implementations should silently fail if not all resources can be freed.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html#close()">close</A></CODE> in interface <CODE><A HREF="../../../../../org/apache/commons/pool2/ObjectPool.html" title="interface in org.apache.commons.pool2">ObjectPool</A>&lt;<A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedObjectPool.html" title="type parameter in ProxiedObjectPool">T</A>&gt;</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<!-- ========= END OF CLASS DATA ========= -->
+<HR>
+
+
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_bottom_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/ProxiedObjectPool.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../../../../org/apache/commons/pool2/proxy/ProxiedKeyedObjectPool.html" title="class in org.apache.commons.pool2.proxy"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;NEXT CLASS</FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../../../../index.html?org/apache/commons/pool2/proxy/ProxiedObjectPool.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="ProxiedObjectPool.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../../../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_bottom"></A>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+
+<HR>
+Copyright &#169; 2001&#x2013;2014 <a href="http://www.apache.org/">The Apache Software Foundation</a>. All rights reserved.
+</BODY>
+</HTML>
