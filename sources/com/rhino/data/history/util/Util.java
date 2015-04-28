@@ -8,6 +8,7 @@ package com.rhino.data.history.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,7 +41,13 @@ public class Util {
         }
     }
     
-    
+    public static String addDate(Date date,int noOfDays){
+        Calendar c = Calendar.getInstance();
+        c.setTime(date); 
+        c.add(Calendar.DATE, noOfDays); // Adding 5 days
+        return getDate(c.getTime());
+
+    }
     /*
     a<b
     */
@@ -54,6 +61,14 @@ public class Util {
     public static float findPercentageChange(float a,float b){
        float per = a/b;
        return per*100-100;
+    }
+    public static float findTargetPrice(float price,float expectedPecentageGain){
+        return price + price*(expectedPecentageGain/100);
+        
+    }
+    public static float findTargetStopLoss(float price,float expectedPecentageloss){
+        return price - price*(expectedPecentageloss/100);
+        
     }
     public static void print(String string){
         System.out.println(string);
