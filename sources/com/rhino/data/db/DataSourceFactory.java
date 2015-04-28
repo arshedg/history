@@ -14,6 +14,7 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sql.DataSource;
+import org.apache.commons.dbcp2.BasicDataSource;
 
 /**
  *
@@ -31,18 +32,20 @@ public class DataSourceFactory {
         }
         Properties props = new Properties();
         FileInputStream fis = null;
-        MysqlDataSource mysqlDS = new MysqlDataSource();
+        
+        BasicDataSource dataSource = new BasicDataSource();
         try {
             fis = new FileInputStream("mysql.properties");
             props.load(fis);
-            mysqlDS.setURL(props.getProperty("MYSQL_DB_URL"));
-            mysqlDS.setUser(props.getProperty("MYSQL_DB_USERNAME"));
-            mysqlDS.setPassword(props.getProperty("MYSQL_DB_PASSWORD"));
+            dataSource.setDriverClassName(props.getProperty("MYSQL_DB_DRIVER_CLASS"));
+            dataSource.setUrl(props.getProperty("MYSQL_DB_URL"));
+            dataSource.setUsername(props.getProperty("MYSQL_DB_USERNAME"));
+            dataSource.setPassword(props.getProperty("MYSQL_DB_PASSWORD"));
            
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return source = mysqlDS;
+        return source = dataSource;
     }
     public static Connection getConnection(){
         try {

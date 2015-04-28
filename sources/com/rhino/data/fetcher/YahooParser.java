@@ -16,6 +16,7 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Iterator;
 import java.util.Locale;
+import java.util.Scanner;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -32,11 +33,11 @@ public class YahooParser {
     public YahooParser(String equity){
         this.equity = equity;
         tickerOperation = new TickerDao();
-        url = url="http://in.finance.yahoo.com/q/hp?s="+equity+".NS&z=66&y=";
+        url="http://in.finance.yahoo.com/q/hp?s="+equity+".NS&z=66&y=";
     }
-    void process() throws IOException, ParseException, SQLException{
+     void process() throws IOException, ParseException, SQLException{
          for(int i =0;i<10000;i=i+66){
-            Document doc =Jsoup.connect(url+i).get();
+            Document doc =getDocument(url+i);
             Element table = doc.select("table[class=yfnc_datamodoutline1]").first();
             if(table==null){
                 return;
@@ -51,6 +52,25 @@ public class YahooParser {
             }
         }
     }
+     private Document getDocument(String uri){
+         for(int i=0;i<5;i++){
+             //retry 5 times
+             try{
+                return Jsoup.connect(uri).get();
+             }
+             catch(Exception e){
+                 
+             }
+         }
+         System.out.println("NOT ABLE TO CONNECT TO URI "+uri+"\n Press 1 to retry");
+         String command = new Scanner(System.in).next();
+         if("1".equals(command)){
+             return getDocument(uri);
+         }else{
+             return null;
+         }
+         
+     }
      Ticker processRow(Iterator<Element> ite ) throws ParseException{
         Ticker details = new Ticker();
         Element element = ite.next();

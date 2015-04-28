@@ -54,7 +54,7 @@ public class Highrise {
         $$ Prediction:-> Tomorow price will decrease
         */
         
-        Equity eq = Equity.loadEquity("WIPRO", "2002-04-12", "2014-12-12");
+        Equity eq = Equity.loadEquity("DELTACORP", "2002-04-12", "2014-12-12");
         Ticker prevs = eq.getNextTicker();
         boolean check3Activated=false;
         boolean sell = false;

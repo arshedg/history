@@ -6,10 +6,13 @@
 
 package com.rhino.data;
 
+import com.rhino.Listener.TickerChangeListener;
 import com.rhino.data.db.TickerDao;
 import com.rhino.data.history.util.Util;
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,9 +26,24 @@ public class Equity {
     private Group group;
     private List<Ticker> list;
     private int pointer;
-    
+    List<TickerChangeListener> liseteners = new ArrayList<>();
     private Equity(){
         
+    }
+    boolean isCallingListener = false;
+    List<TickerChangeListener> toDelete = new ArrayList<>();
+    public void addListener(TickerChangeListener listener){
+        isCallingListener=true;
+        liseteners.add(listener);
+        isCallingListener=false;
+        deleteListeners();
+    }
+    public void removeListener(TickerChangeListener listener){
+        if(isCallingListener){
+            toDelete.add(listener);
+        }else{
+            liseteners.remove(listener);
+        }
     }
     public static Equity loadEquity(String id,String fromDate,String toDate){
         try {
@@ -57,24 +75,26 @@ public class Equity {
     This will set the equity date to that date
     */
     public void setDate(Date date){
-        
+      
     }
     public boolean hasNext(){
-        return pointer<list.size();
+        return pointer+2<=list.size();
     }
     public Ticker getNextTicker(){
         if(!hasNext()){
             return null;
         }
-        Ticker ticker =list.get(pointer++);
+        Ticker ticker =list.get(++pointer);
         while(ticker.getOpenPrice()==ticker.getClosePrice()&&ticker.getVolume()==0){
             if(hasNext()){
-                ticker = list.get(pointer++);
+                ticker = list.get(++pointer);
             }
             else{
                 return null;
             }
         }
+        
+        invokeListners();
         return ticker;
     }
     public Ticker getTicker(){
@@ -84,10 +104,10 @@ public class Equity {
         if(!hasNext()){
             return null;
         }
-        Ticker ticker =list.get(ptr++);
+        Ticker ticker =list.get(++ptr);
         while(ticker.getOpenPrice()==ticker.getClosePrice()&&ticker.getVolume()==0){
             if(hasNext()){
-                ticker = list.get(ptr++);
+                ticker = list.get(++ptr);
             }
             else{
                 return null;
@@ -144,6 +164,30 @@ public class Equity {
         }
         return lowTicker;
     }
+    /*
+    ROC = [(Close - Close n periods ago) / (Close n periods ago)] * 100
+    */
+    public  float rateOfChange(int noOfDaysAgo){
+        int ptr = pointer;
+        int count=0;
+        Ticker currentTicker = getTicker();
+        float currentClosePrice = currentTicker.getClosePrice();
+        Ticker tickerAfterNDays = null;
+        while(count<noOfDaysAgo){
+            if(ptr==0){
+                //reached the begining
+                break;
+            }
+            tickerAfterNDays = list.get(ptr--);
+            if(isInvalidTicker(tickerAfterNDays)){
+            }else{
+                count++;
+            }
+        }
+        float closeNPeriodsAgo = tickerAfterNDays.getClosePrice();
+        return 100*((currentClosePrice-closeNPeriodsAgo)/closeNPeriodsAgo);
+        
+    }
     private boolean isInvalidTicker(Ticker ticker){
         return ticker.getOpenPrice()==ticker.getClosePrice()&&ticker.getVolume()==0;
     }
@@ -182,5 +226,15 @@ public class Equity {
 
     public void setGroup(Group group) {
         this.group = group;
+    }
+
+    private void invokeListners() {
+        for(TickerChangeListener listener: liseteners){
+            listener.execute(this);
+        }
+    }
+
+    private void deleteListeners() {
+       liseteners.removeAll(toDelete);
     }
 }

@@ -21,13 +21,13 @@ public class YahooParserTest {
     @Test
     public void testProcess() throws Exception {
 
-        add("DELTACORP","DISHMAN","ESCORTS","HINDOILEXP");
+        add("RUSHIL");
     }
     
     private void add(String... names) throws Exception{
        for(String name:names){
            YahooParser parser = new YahooParser(name);
-        parser.process();
+           parser.process();
        }
     }
 
