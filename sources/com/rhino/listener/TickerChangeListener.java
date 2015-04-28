@@ -7,6 +7,7 @@
 package com.rhino.listener;
 
 import com.rhino.data.Equity;
+import com.rhino.data.Ticker;
 
 
 
@@ -18,6 +19,6 @@ import com.rhino.data.Equity;
  */
 public interface TickerChangeListener {
     
-    void handleTickerChange(Equity equity);
+    void handleTickerChange(Equity equity,Ticker ticker);
     
 }

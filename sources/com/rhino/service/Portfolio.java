@@ -41,7 +41,7 @@ public class Portfolio implements TickerChangeListener{
     }
 
     @Override
-    public void handleTickerChange(Equity equity) {
+    public void handleTickerChange(Equity equity,Ticker ticker) {
         canOpenPosition(equity);
         if(watch.get(equity)==POSITION_TAKEN){
             canClosePosition(equity);
