@@ -7,6 +7,7 @@
 package com.rhino.data;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  *
@@ -110,6 +111,21 @@ public class Ticker {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + Float.floatToIntBits(this.openPrice);
+        hash = 47 * hash + Float.floatToIntBits(this.closePrice);
+        hash = 47 * hash + Float.floatToIntBits(this.highPrice);
+        hash = 47 * hash + Float.floatToIntBits(this.lowPrice);
+        hash = 47 * hash + Float.floatToIntBits(this.adjustedClose);
+        hash = 47 * hash + this.volume;
+        hash = 47 * hash + Objects.hashCode(this.date);
+        hash = 47 * hash + (this.dividend ? 1 : 0);
+        hash = 47 * hash + this.pointer;
+        return hash;
     }
     
     

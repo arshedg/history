@@ -4,19 +4,12 @@
  * and open the template in the editor.
  */
 
-package com.history.data;
+package com.rhino.strategy;
 
 /**
  *
  * @author agulshan
  */
-public class Equity {
-    private String id;
-       public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-       this.id=id;
-    }
+public enum StrategyType{
+    LONG,SHORT
 }
