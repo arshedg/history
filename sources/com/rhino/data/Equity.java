@@ -62,7 +62,7 @@ public class Equity {
         return list;
     }
     public int getPointer(){
-        return pointer-1;
+        return pointer;
     }
     public void resetToBegining(){
         pointer=0;
@@ -77,22 +77,23 @@ public class Equity {
     public void setDate(Date date){
       
     }
+    
+    public Ticker getTickerBeforeNDays(int days){
+       return list.get(pointer-days);
+    }
+    
+    public Ticker getTickerAfterNDays(int days){
+       return list.get(pointer+days);
+    }
+    
     public boolean hasNext(){
-        return pointer+2<=list.size();
+        return pointer+1<list.size();
     }
     public Ticker getNextTicker(){
         if(!hasNext()){
             return null;
         }
-        Ticker ticker =list.get(++pointer);
-        while(ticker.getOpenPrice()==ticker.getClosePrice()&&ticker.getVolume()==0){
-            if(hasNext()){
-                ticker = list.get(++pointer);
-            }
-            else{
-                return null;
-            }
-        }
+        Ticker ticker = list.get(++pointer);
         
         invokeListners();
         return ticker;
@@ -100,35 +101,13 @@ public class Equity {
     public Ticker getTicker(){
         return list.get(pointer);
     }
-    public Ticker getNextTicker(int ptr){
-        if(!hasNext()){
-            return null;
-        }
-        Ticker ticker =list.get(++ptr);
-        while(ticker.getOpenPrice()==ticker.getClosePrice()&&ticker.getVolume()==0){
-            if(hasNext()){
-                ticker = list.get(++ptr);
-            }
-            else{
-                return null;
-            }
-        }
-        ticker.setPointer(ptr);
-        return ticker;
-    }
 
     public Ticker getHighPrice(int days,boolean highest){
         int ptr = pointer;
         int count=0;
          Ticker highTicker = getTicker();
         while(count<days){
-            if(ptr==0){
-                break;
-            }
             Ticker ticker = list.get(ptr--);
-            if(isInvalidTicker(ticker)){
-                continue;
-            }
             if(highest&&(ticker.getHighPrice()>highTicker.getHighPrice())){
                 highTicker = ticker;
             }
@@ -147,13 +126,7 @@ public class Equity {
         int count=0;
          Ticker lowTicker = getTicker();
         while(count<days){
-            if(ptr==0){
-                break;
-            }
             Ticker ticker = list.get(ptr--);
-            if(isInvalidTicker(ticker)){
-                continue;
-            }
             if(lowest&&(ticker.getLowPrice()<lowTicker.getLowPrice())){
                 lowTicker = ticker;
             }
@@ -174,36 +147,24 @@ public class Equity {
         float currentClosePrice = currentTicker.getClosePrice();
         Ticker tickerAfterNDays = null;
         while(count<noOfDaysAgo){
-            if(ptr==0){
-                //reached the begining
-                break;
-            }
             tickerAfterNDays = list.get(ptr--);
-            if(isInvalidTicker(tickerAfterNDays)){
-            }else{
-                count++;
-            }
+            count++;
         }
         float closeNPeriodsAgo = tickerAfterNDays.getClosePrice();
         return 100*((currentClosePrice-closeNPeriodsAgo)/closeNPeriodsAgo);
         
     }
+    public float rateOfChangeOfVolume(int days){
+        int prevsPtr = pointer-days;
+        float volumeOfNthDay = list.get(prevsPtr).getVolume();
+        float currentVolume = this.getTicker().getVolume();
+        return 100*((currentVolume-volumeOfNthDay)/volumeOfNthDay);
+    }
     private boolean isInvalidTicker(Ticker ticker){
         return ticker.getOpenPrice()==ticker.getClosePrice()&&ticker.getVolume()==0;
     }
     
-    public Ticker getTickerAfter(int days){
-        int ptr = this.getPointer();
-        Ticker tick=null;
-        for(int i=0;i<days;i++){
-            tick = this.getNextTicker(ptr);
-            if(tick==null){
-                return null;
-            }
-            ptr = tick.getPointer();
-        }
-        return tick;
-    }
+
     public String getId() {
         return id;
     }

@@ -21,7 +21,7 @@ public class YahooParserTest {
     @Test
     public void testProcess() throws Exception {
 
-        add("RUSHIL");
+        add("HDFC","CENTRALBK","PUNJLLOYD");
     }
     
     private void add(String... names) throws Exception{

@@ -57,7 +57,9 @@ public class TickerDao {
         Object[] params = new Object[]{equity,ticker.getOpenPrice(),ticker.getClosePrice(),ticker.getHighPrice(),
                             ticker.getLowPrice(),ticker.getAdjustedClose(),ticker.getVolume(),date};
         QueryRunner run = new QueryRunner( DataSourceFactory.getDataSource() );
-        return run.update(sql, params);
+        int updates= run.update(sql, params);
+        run.update("delete from ticker where volume=0");
+        return updates;
     }
     
     public int deleteTicker(String equity) throws SQLException{

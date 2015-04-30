@@ -19,7 +19,7 @@ public class ROC {
     public void rateOfChangeIndicator(){
         //http://docs.rizm.io/rate-of-change
         
-        Equity equity = Equity.loadEquity("RUSHIL", "2014-04-12", "2015-12-12");
+        Equity equity = Equity.loadEquity("WIPRO", "2007-07-05", "2009-10-01");
         int rocPeriod = 12;
         moveCursor(equity, rocPeriod);
         Portfolio pf = new Portfolio();
@@ -28,7 +28,7 @@ public class ROC {
         while(equity.getNextTicker()!=null){
             if(size<=equity.getPointer()+1) break;
             float rate = equity.rateOfChange(rocPeriod);
-            if(rate>-2.7){
+            if(rate>-2.7&&rate<0){
                 pf.add(equity);
             }
         }

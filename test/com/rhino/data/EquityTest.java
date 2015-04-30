@@ -22,7 +22,7 @@ public class EquityTest {
         Assert.assertEquals(true,eq.hasNext());
         Ticker tick = eq.getNextTicker();
         Util.print("date "+tick.getDate());
-        Util.print("date "+eq.getTickerAfter(5).getDate());
+        Util.print("date "+eq.getTickerAfterNDays(5).getDate());
     }
     @Test
     public void highPrice(){

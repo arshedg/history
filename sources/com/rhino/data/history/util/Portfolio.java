@@ -28,7 +28,7 @@ public class Portfolio implements TickerChangeListener{
     float percentageGain=0f;
     public static float grossProfit=0f;
     public void add(Equity equity){
-       // if(map.containsKey(equity)) return;
+        if(map.containsKey(equity)) return;
         equities.add(equity);
         equity.addListener(this);
         map.put(equity,equity.getPointer());

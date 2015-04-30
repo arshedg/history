@@ -16,8 +16,10 @@ import com.rhino.data.Ticker;
 public interface Strategy {
     
      boolean canEnter(Equity equity);
-     
-     boolean canExit(Equity equity);
+     /*
+     pointer 
+     */
+     boolean canExit(Equity equity,int entryPointer);
     /*
     it defines from what point of the start date the stragtegy should run
     if the strategy needs previous day value to compute the strategy, then least data requirments will be one 1.

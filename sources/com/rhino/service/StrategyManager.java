@@ -30,6 +30,8 @@ public class StrategyManager {
     }
     
     public void run(){
+        moveDays(portfolio.getStrategy().leastDataRequired());
+        addStocksToPortfolio();
         List<Equity> toDelete = null;
         while(!equities.isEmpty()){
             toDelete = runEquities();
@@ -39,7 +41,19 @@ public class StrategyManager {
         }
         portfolio.status();
     }
-    
+    private void moveDays(int days){
+        List<Equity> toDelete = new ArrayList<>();
+        for(int i=0;i<days;i++){
+            for(Equity eq:equities){
+                if(!eq.hasNext()){
+                    toDelete.add(eq);
+                }
+                Ticker next = eq.getNextTicker();
+                portfolio.handleTickerChange(eq,next);
+            }
+        }
+        equities.removeAll(toDelete);
+    }
     private List<Equity> runEquities(){
         List<Equity> toDelete = new ArrayList<>();
         for(Equity eq:equities){
@@ -50,6 +64,12 @@ public class StrategyManager {
             portfolio.handleTickerChange(eq,next);
         }
         return toDelete;
+    }
+
+    private void addStocksToPortfolio() {
+        for(Equity eq:equities){
+            portfolio.addToWatch(eq);
+        }
     }
             
 }
