@@ -6,10 +6,11 @@
 
 package com.rhino.data.fetcher;
 
-import com.rhino.data.db.TickerDao;
+import com.rhino.data.db.EquityDao;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.text.ParseException;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -21,7 +22,7 @@ public class YahooParserTest {
     @Test
     public void testProcess() throws Exception {
 
-        add("HDFC","CENTRALBK","PUNJLLOYD");
+        add("INFY","TCS");
     }
     
     private void add(String... names) throws Exception{
@@ -29,6 +30,14 @@ public class YahooParserTest {
            YahooParser parser = new YahooParser(name);
            parser.process();
        }
+    }
+    
+   // @Test
+    public void updateAll() throws SQLException, IOException, ParseException{
+        for(String name:new EquityDao().getAllEquity()){
+            YahooParser parser = new YahooParser(name);
+            parser.process();
+        }
     }
 
   

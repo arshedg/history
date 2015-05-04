@@ -8,12 +8,15 @@ package com.rhino.data.fetcher;
 
 
 import com.rhino.data.Ticker;
+import com.rhino.data.db.EquityDao;
 import com.rhino.data.db.TickerDao;
 import com.rhino.data.history.util.Util;
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Scanner;
@@ -30,28 +33,19 @@ public class YahooParser {
     String equity;
     String url;
     TickerDao tickerOperation;
+    String todayUrl;
     public YahooParser(String equity){
         this.equity = equity;
         tickerOperation = new TickerDao();
         url="http://in.finance.yahoo.com/q/hp?s="+equity+".NS&z=66&y=";
+        todayUrl = "https://in.finance.yahoo.com/q?s="+equity+".NS&ql=1";
     }
      void process() throws IOException, ParseException, SQLException{
-         for(int i =0;i<10000;i=i+66){
-            Document doc =getDocument(url+i);
-            Element table = doc.select("table[class=yfnc_datamodoutline1]").first();
-            if(table==null){
-                return;
-            }
-            Iterator<Element> ite = table.select("td[class=yfnc_tabledata1]").iterator();
-            while(ite.hasNext()){
-                Ticker ticker = processRow(ite);
-                if(ticker!=null){
-                    tickerOperation.insertTicker(equity, ticker);
-                    System.out.println("processes data date :"+ticker.getDate()+"  name:"+equity);
-                }
-            }
-        }
+         Date lastUpdatedDate = new EquityDao().getLastTickerDetails(equity);
+         doUpdation(lastUpdatedDate);
+         updateLatestValue(lastUpdatedDate);
     }
+
      private Document getDocument(String uri){
          for(int i=0;i<5;i++){
              //retry 5 times
@@ -98,5 +92,58 @@ public class YahooParser {
         element = ite.next();
         details.setAdjustedClose(nf.parse(element.text()).floatValue());
         return details;
+    }
+
+    private void doUpdation(Date lastUpdatedDate) throws ParseException, SQLException {
+          for(int i =0;i<10000;i=i+66){
+            Document doc =getDocument(url+i);
+            Element table = doc.select("table[class=yfnc_datamodoutline1]").first();
+            if(table==null){
+                return;
+            }
+            Iterator<Element> ite = table.select("td[class=yfnc_tabledata1]").iterator();
+            while(ite.hasNext()){
+                Ticker ticker = processRow(ite);
+                if(isAlreadyProcessed(ticker,lastUpdatedDate)){
+                    return;
+                }
+                if(ticker!=null){
+                    tickerOperation.insertTicker(equity, ticker);
+                    System.out.println("processes data date :"+ticker.getDate()+"  name:"+equity);
+                }
+            }
+        }
+    }
+    private boolean isAlreadyProcessed(Ticker ticker,Date lastUpdatedDate){
+        if(ticker==null||lastUpdatedDate==null){
+            return false;//no need to handle this
+        }
+        return ticker.getDate()==null?false:ticker.getDate().before(lastUpdatedDate);
+    }
+
+    private void updateLatestValue(Date lastUpdated) throws ParseException, SQLException {
+       Document doc = getDocument(todayUrl);
+       String marketTime = doc.getElementById("yfs_market_time").text().split("-")[0];
+       String closePrice = doc.getElementById("yfs_l84_"+equity.toLowerCase()+".ns").text();
+       String open = doc.getElementsByClass("yfnc_tabledata1").get(1).text();
+       String volume = doc.getElementById("yfs_v53_"+equity.toLowerCase()+".ns").text();
+       String low = doc.getElementById("yfs_g53_"+equity.toLowerCase()+".ns").text();
+       String high =  doc.getElementById("yfs_h53_"+equity.toLowerCase()+".ns").text();
+       LocalDate ld1 = LocalDate.now();
+       LocalDate ld2 = LocalDate.parse(Util.getDate(Util.getDateFromMarketTime(marketTime)));
+       if(ld1.isEqual(ld2)){
+           return;
+       }
+       Ticker data = new Ticker();
+       NumberFormat nf = NumberFormat.getInstance(Locale.ENGLISH);
+       data.setClosePrice(nf.parse(closePrice).floatValue());
+       data.setOpenPrice(nf.parse(open).floatValue());
+       data.setVolume(nf.parse(volume).intValue());
+       data.setHighPrice(nf.parse(high).floatValue());
+       data.setLowPrice(nf.parse(low).floatValue());
+       data.setDate(Util.getDateFromMarketTime(marketTime));
+       tickerOperation.insertTicker(equity, data);
+     
+       
     }
 }

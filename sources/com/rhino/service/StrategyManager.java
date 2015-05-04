@@ -24,7 +24,9 @@ public class StrategyManager {
             equities.add(equity);
         }
     }
-    
+    public void addStock(List<Equity> stocks){
+        equities.addAll(stocks);
+    }
     public void setPortfolio(Portfolio portfolio){
         this.portfolio = portfolio;
     }

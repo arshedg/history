@@ -20,7 +20,8 @@ import java.util.logging.Logger;
 public class Util {
     private static final String format ="yyyy-MM-dd";
     private static final String YAHOO_FORMAT ="dd MMM, yyyy";
-     private static final String YAHOO_FORMAT_ALTERNATIVE ="dd-MMM-yyyy";
+    private static final String YAHOO_FORMAT_ALTERNATIVE ="dd-MMM-yyyy";
+    private static final String MARKET_TIME_FORMATTER ="EEE, dd MMM, yyyy hh:mma";
     public static Date getDate(String date) throws ParseException{
         SimpleDateFormat formatter = new SimpleDateFormat(format);
         return formatter.parse(date);
@@ -30,7 +31,11 @@ public class Util {
          SimpleDateFormat formatter = new SimpleDateFormat(format);
         return formatter.format(date);
     }
-    
+    public static Date getDateFromMarketTime(String date) throws ParseException{
+        String filteredDate = date.replaceAll("-", "").trim();
+        SimpleDateFormat formatter = new SimpleDateFormat(MARKET_TIME_FORMATTER);
+        return formatter.parse(filteredDate);
+    }
     public static Date getYahooDate(String date) throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat(YAHOO_FORMAT);
         try {

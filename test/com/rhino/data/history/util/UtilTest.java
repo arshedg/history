@@ -6,6 +6,10 @@
 
 package com.rhino.data.history.util;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import junit.framework.Assert;
 import org.junit.Before;
@@ -27,6 +31,25 @@ public class UtilTest {
     @Test
     public void percentage(){
         Util.print(""+Util.findPercentage( 2145400f,4199200f));
+    }
+    @Test
+    public void getDateFromMarketTime() throws ParseException{
+        String marketDate="Mon,  4 May, 2015 6:27PM - ";
+        System.out.println(Util.getDateFromMarketTime(marketDate));
+        
+    }
+    
+    @Test
+    public void areOnSameDay() throws ParseException{
+        String s1="Mon,  4 May, 2015 6:27PM";
+        Date d1=Util.getDateFromMarketTime(s1);
+        String s12="Mon,  4 May, 2015 6:27PM";
+        Date d2=Util.getDateFromMarketTime(s1);
+        LocalDate ld1 = LocalDate.now();
+        LocalDate ld2 = LocalDate.parse(Util.getDate(d1));
+        LocalDate.parse(Util.getDate(Util.getDateFromMarketTime(s1)));
+        System.out.println("hi "+ld1.isEqual(ld2));
+                
     }
     
 }

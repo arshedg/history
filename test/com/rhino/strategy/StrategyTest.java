@@ -7,9 +7,12 @@ package com.rhino.strategy;
 
 import com.rhino.data.Equity;
 import com.rhino.data.Ticker;
-import com.rhino.data.history.util.Util;
+import com.rhino.data.db.EquityDao;
 import com.rhino.service.Portfolio;
 import com.rhino.service.StrategyManager;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Test;
 
 /**
@@ -18,15 +21,25 @@ import org.junit.Test;
  */
 public class StrategyTest {
 
+    
+    private List<Equity> getAll() throws SQLException{
+        String from = "2015-04-15";
+        String to="2015-05-10";
+        List<Equity> loaded = new ArrayList<>();
+        for(String name:new EquityDao().getAllEquity()){
+            loaded.add(Equity.loadEquity(name, from, to));
+        }
+        return loaded;
+    }
     @Test
-    public void runStrategy() {
+    public void runStrategy() throws SQLException {
         Strategy strategy = new ROCStrategy();
         StrategyManager manager = new StrategyManager();
         Portfolio pf = new Portfolio();
         pf.setStrategy(strategy);
-        String from = "2002-03-05";
-        String to="2015-03-01";
-        manager.addStock(Equity.loadEquity("INFY", from, to));
+        String from = "2015-04-15";
+        String to="2015-05-10";
+        manager.addStock(getAll());
         manager.setPortfolio(pf);
         manager.run();
     }

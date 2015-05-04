@@ -27,6 +27,7 @@ public class Portfolio implements TickerChangeListener{
     boolean isLong;
     float percentageGain=0f;
     public static float grossProfit=0f;
+    
     public void add(Equity equity){
         if(map.containsKey(equity)) return;
         equities.add(equity);

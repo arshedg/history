@@ -51,6 +51,7 @@ public class Portfolio implements TickerChangeListener{
         if(watch.get(equity)==POSITION_TAKEN){
             canClosePosition(equity);
         }
+        
     }
     
     
