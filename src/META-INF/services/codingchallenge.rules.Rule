@@ -1,0 +1,4 @@
+codingchallenge.rules.KillForUnderPopulationRule
+codingchallenge.rules.KillIfOverCrowdedRule
+codingchallenge.rules.LeaveHimAloneRule
+codingchallenge.rules.SumThreeReproduction
