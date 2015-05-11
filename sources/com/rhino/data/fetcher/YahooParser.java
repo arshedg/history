@@ -38,7 +38,7 @@ public class YahooParser {
         this.equity = equity;
         tickerOperation = new TickerDao();
         url="http://in.finance.yahoo.com/q/hp?s="+equity+".NS&z=66&y=";
-        todayUrl = "https://in.finance.yahoo.com/q?s="+equity+".NS&ql=1";
+        todayUrl = "https://in.finance.yahoo.com/q?s="+equity+".bo&ql=1";
     }
      void process() throws IOException, ParseException, SQLException{
          Date lastUpdatedDate = new EquityDao().getLastTickerDetails(equity);
@@ -118,21 +118,24 @@ public class YahooParser {
         if(ticker==null||lastUpdatedDate==null){
             return false;//no need to handle this
         }
-        return ticker.getDate()==null?false:ticker.getDate().before(lastUpdatedDate);
+        return ticker.getDate()==null?false:ticker.getDate().before(lastUpdatedDate)
+                ||ticker.getDate().equals(lastUpdatedDate);
     }
 
     private void updateLatestValue(Date lastUpdated) throws ParseException, SQLException {
        Document doc = getDocument(todayUrl);
        String marketTime = doc.getElementById("yfs_market_time").text().split("-")[0];
-       String closePrice = doc.getElementById("yfs_l84_"+equity.toLowerCase()+".ns").text();
+       String closePrice = doc.getElementById("yfs_l84_"+equity.toLowerCase()+".bo").text();
        String open = doc.getElementsByClass("yfnc_tabledata1").get(1).text();
-       String volume = doc.getElementById("yfs_v53_"+equity.toLowerCase()+".ns").text();
-       String low = doc.getElementById("yfs_g53_"+equity.toLowerCase()+".ns").text();
-       String high =  doc.getElementById("yfs_h53_"+equity.toLowerCase()+".ns").text();
-       LocalDate ld1 = LocalDate.now();
-       LocalDate ld2 = LocalDate.parse(Util.getDate(Util.getDateFromMarketTime(marketTime)));
-       if(ld1.isEqual(ld2)){
-           return;
+       String volume = doc.getElementById("yfs_v53_"+equity.toLowerCase()+".bo").text();
+       String low = doc.getElementById("yfs_g53_"+equity.toLowerCase()+".bo").text();
+       String high =  doc.getElementById("yfs_h53_"+equity.toLowerCase()+".bo").text();
+       if(lastUpdated!=null){
+            LocalDate ld1 = LocalDate.parse(Util.getDate(lastUpdated));
+            LocalDate ld2 = LocalDate.parse(Util.getDate(Util.getDateFromMarketTime(marketTime)));
+            if(ld1.isEqual(ld2)){
+                return;
+            }
        }
        Ticker data = new Ticker();
        NumberFormat nf = NumberFormat.getInstance(Locale.ENGLISH);
@@ -143,7 +146,7 @@ public class YahooParser {
        data.setLowPrice(nf.parse(low).floatValue());
        data.setDate(Util.getDateFromMarketTime(marketTime));
        tickerOperation.insertTicker(equity, data);
-     
+        System.out.println("Latest value updated for "+equity+" last date:"+marketTime);
        
     }
 }

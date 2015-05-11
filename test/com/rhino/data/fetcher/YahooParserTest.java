@@ -19,10 +19,10 @@ import org.junit.Test;
 public class YahooParserTest {
     
     
-    @Test
+    //@Test
     public void testProcess() throws Exception {
 
-        add("INFY","TCS");
+        add("GRASIM","BANKBARODA","NMDC","HINDUNILVR","NTPC","GRASIM","POWERGRID");
     }
     
     private void add(String... names) throws Exception{
@@ -32,7 +32,7 @@ public class YahooParserTest {
        }
     }
     
-   // @Test
+   @Test
     public void updateAll() throws SQLException, IOException, ParseException{
         for(String name:new EquityDao().getAllEquity()){
             YahooParser parser = new YahooParser(name);

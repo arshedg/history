@@ -37,5 +37,6 @@ public interface Strategy {
     /*
     Strategy should handle which price is under observation for example openPrice, closePrice etc..
     */
-    float getPrice(Ticker ticker);
+    float getOpenPrice(Equity equity,int entryPointer);
+    float getClosePrice(Equity equity,int entryPointer);
 }

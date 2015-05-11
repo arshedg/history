@@ -27,13 +27,16 @@ public class Portfolio implements TickerChangeListener{
     private static final Boolean POSITION_TAKEN =true;
     private static final Boolean NO_POSITION =false;
     Map<Equity,Boolean> watch = new HashMap<>();
-    Map<Equity,Integer> entryDetails = new HashMap<>();
+    Map<String,Integer> entryDetails = new HashMap<>();
     List<Equity> openPositions = new ArrayList<>();
     private Strategy strategy;
     private  float gain=0f;
     private int totalEntry,totalExit,profitExit,lostExit;
     private float maxGain=Float.MIN_VALUE;
     private float maxLoss = Float.MAX_VALUE;
+    private float gainTrade=0;
+    private float lossTrade=0;
+    private float tradeDuration;
     
     public void addToWatch(Equity equity){
         //todo add equity ticker listener
@@ -47,10 +50,11 @@ public class Portfolio implements TickerChangeListener{
     }
     @Override
     public void handleTickerChange(Equity equity,Ticker ticker) {
-        canOpenPosition(equity);
+        
         if(watch.get(equity)==POSITION_TAKEN){
             canClosePosition(equity);
         }
+        canOpenPosition(equity);
         
     }
     
@@ -59,12 +63,12 @@ public class Portfolio implements TickerChangeListener{
         if(watch.get(equity)==NO_POSITION&&strategy.canEnter(equity)){
             totalEntry++;
             watch.put(equity, POSITION_TAKEN);
-            entryDetails.put(equity, equity.getPointer());
+            entryDetails.put(equity.getId(), equity.getPointer());
         }
     }
     
     private void canClosePosition(Equity equity) {
-        if(strategy.canExit(equity,entryDetails.get(equity))){
+        if(strategy.canExit(equity,entryDetails.get(equity.getId()))){
             watch.put(equity, NO_POSITION);
             totalExit++;
             computeProfit(equity);
@@ -77,11 +81,24 @@ public class Portfolio implements TickerChangeListener{
         System.out.println("MAXIMUM PROFIT TRADE :"+maxGain);
         System.out.println("MAXIMUM LOST TRADE :"+maxLoss);
         System.out.println("TOTAL LOSS TRADE :"+lostExit);
+        System.out.println("AVERAGE HOLD DURATION :"+tradeDuration/totalExit);
+        System.out.println("AVERAGE GAIN FROM WON TRADE:"+gainTrade/profitExit);
+        System.out.println("AVERAGE loss FROM lost TRADE:"+lossTrade/lostExit);
         System.out.println("GROSS PROFIT IN PERCENTAGE :"+gain);
-        System.out.print("PROFIT RATIO: "+100*((float)profitExit/(float)(profitExit+lostExit)));
+        System.out.println("PROFIT RATIO: "+100*((float)profitExit/(float)(profitExit+lostExit)));
+        stocksHolding();
+    }
+    private void stocksHolding(){
+        System.out.println("**********HOLDINGS****************");
+        for(Equity eq:watch.keySet()){
+            if(watch.get(eq).equals(POSITION_TAKEN)){
+                Ticker bought = eq.getList().get(entryDetails.get(eq.getId()));
+                System.out.println("HOLDS stock "+eq.getName()+" from "+bought.getDate()+" ");
+            }
+        }
     }
     private void computeProfit(Equity equity) {
-        int pointer = entryDetails.get(equity);
+        int pointer = entryDetails.get(equity.getId());
         Ticker entryTicker = equity.getList().get(pointer);
         Ticker currentTicker = equity.getTicker();
         if(strategy.getStrategyType()== StrategyType.LONG){
@@ -89,12 +106,13 @@ public class Portfolio implements TickerChangeListener{
         }else{
             computeProfitFromShort(equity,entryTicker,currentTicker);
         }
+        tradeDuration +=equity.getPointer()-pointer;
     }
 
     private void computeProfiteFromLong(Equity equity, Ticker entryTicker, Ticker exitTicker) {
-        float boughtPrice = strategy.getPrice(entryTicker);
-        float sellPrice = strategy.getPrice(exitTicker);
-        Util.print("Bought "+equity.getId()+" at price "+boughtPrice+" on "+entryTicker.getDate()+"\nSold at price "+exitTicker.getClosePrice()+ " on "+exitTicker.getDate());
+        float boughtPrice = strategy.getOpenPrice(equity,entryDetails.get(equity.getId()));
+        float sellPrice = strategy.getClosePrice(equity,entryDetails.get(equity.getId()));
+        Util.print("Bought "+equity.getId()+" at price "+boughtPrice+" on "+entryTicker.getDate()+"\nSold at price "+sellPrice+ " on "+exitTicker.getDate());
         float change=Util.findPercentageChange(sellPrice ,boughtPrice);
         System.out.println("Profit/Loss from "+equity.getName()+" "+change);
         gain = gain+change;
@@ -105,8 +123,10 @@ public class Portfolio implements TickerChangeListener{
             maxLoss = change;
         }
         if(change>0.5){
+            gainTrade+=change;
             profitExit++;
         }else{
+            lossTrade+=change;
             lostExit++;
         }
         

@@ -163,8 +163,22 @@ public class Equity {
     private boolean isInvalidTicker(Ticker ticker){
         return ticker.getOpenPrice()==ticker.getClosePrice()&&ticker.getVolume()==0;
     }
-    
-
+    public float simpleMovingAverage(int days){
+        int startDay = 1+(pointer-days);
+        float sum=0f;
+        for(int i=startDay;i<=pointer;i++){
+            sum+=list.get(i).getClosePrice();
+        }
+        return sum/days;
+    }
+    public float simpleAverageVolume(int days){
+        int startDay = 1+(pointer-days);
+        float sum=0f;
+        for(int i=startDay;i<=pointer;i++){
+            sum+=list.get(i).getVolume();
+        }
+        return sum/days;
+    }
     public String getId() {
         return id;
     }

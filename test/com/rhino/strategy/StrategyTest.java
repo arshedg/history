@@ -8,6 +8,7 @@ package com.rhino.strategy;
 import com.rhino.data.Equity;
 import com.rhino.data.Ticker;
 import com.rhino.data.db.EquityDao;
+import com.rhino.data.history.util.Util;
 import com.rhino.service.Portfolio;
 import com.rhino.service.StrategyManager;
 import java.sql.SQLException;
@@ -23,8 +24,8 @@ public class StrategyTest {
 
     
     private List<Equity> getAll() throws SQLException{
-        String from = "2015-04-15";
-        String to="2015-05-10";
+        String from = "2012-04-15";
+        String to="2013-05-10";
         List<Equity> loaded = new ArrayList<>();
         for(String name:new EquityDao().getAllEquity()){
             loaded.add(Equity.loadEquity(name, from, to));
@@ -37,8 +38,6 @@ public class StrategyTest {
         StrategyManager manager = new StrategyManager();
         Portfolio pf = new Portfolio();
         pf.setStrategy(strategy);
-        String from = "2015-04-15";
-        String to="2015-05-10";
         manager.addStock(getAll());
         manager.setPortfolio(pf);
         manager.run();
@@ -51,6 +50,9 @@ class ROCStrategy implements Strategy {
     public boolean canEnter(Equity equity) {
         float rc = equity.rateOfChange(12);
         boolean rcAchieved = rc > -2.7 && rc < 0;
+        if(rcAchieved){
+            System.out.println("Name "+equity.getName()+" date"+equity.getTicker().getDate()+" price:"+equity.getTicker().getClosePrice());
+        }
         return rcAchieved;
 
     }
@@ -58,8 +60,8 @@ class ROCStrategy implements Strategy {
     @Override
     public boolean canExit(Equity equity,int pointer) {
         boolean exitPoint = equity.rateOfChange(12) > 3.2;
- 
-        return exitPoint;
+        int holdPeriod = equity.getPointer()-pointer;
+        return exitPoint||holdPeriod>1;
     }
 
     @Override
@@ -78,8 +80,12 @@ class ROCStrategy implements Strategy {
     }
 
     @Override
-    public float getPrice(Ticker ticker) {
-        return ticker.getClosePrice();
+    public float getOpenPrice(Equity equity,int pointer) {
+        return equity.getList().get(pointer).getClosePrice();
+    }
+    @Override
+    public float getClosePrice(Equity ticker,int pointer) {
+        return ticker.getTicker().getClosePrice();
     }
 
 }
