@@ -51,11 +51,11 @@ public class TickerDao {
         ResultSetHandler rsh = new BeanListHandler(Ticker.class);
         return (List<Ticker>)run.query(sql, rsh,params); 
     }
-    public int insertTicker(String equity,Ticker ticker) throws SQLException{
-        String sql="insert into ticker (equity,openPrice,closePrice,highPrice,lowPrice,adjustedClose,volume,date) values(?,?,?,?,?,?,?,?)";
+    public int insertTicker(String equity,Ticker ticker,String grade) throws SQLException{
+        String sql="insert into ticker (equity,openPrice,closePrice,highPrice,lowPrice,adjustedClose,volume,date,grade) values(?,?,?,?,?,?,?,?,?)";
         String date = Util.getDate(ticker.getDate());
         Object[] params = new Object[]{equity,ticker.getOpenPrice(),ticker.getClosePrice(),ticker.getHighPrice(),
-                            ticker.getLowPrice(),ticker.getAdjustedClose(),ticker.getVolume(),date};
+                            ticker.getLowPrice(),ticker.getAdjustedClose(),ticker.getVolume(),date,grade};
         QueryRunner run = new QueryRunner( DataSourceFactory.getDataSource() );
         int updates= run.update(sql, params);
         run.update("delete from ticker where volume=0");

@@ -43,7 +43,7 @@ public class TickerDaoTest {
         Ticker tick = new Ticker();
         tick.setLowPrice(100);
         tick.setDate(Calendar.getInstance().getTime());
-        dao.insertTicker("infy", tick);
+        dao.insertTicker("infy", tick,"gr");
         Ticker ticker = dao.getTicker("infy",Calendar.getInstance().getTime() );
         Assert.assertNotNull(ticker);
         dao.deleteTicker("infy");

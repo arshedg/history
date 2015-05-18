@@ -26,7 +26,12 @@ public class EquityDao {
         ResultSetHandler rsh = new ColumnListHandler();
        return (List<String>) run.query(sql, rsh);
     }
-    
+    public List<String> getAllEquity(String grade) throws SQLException{
+        String sql = "select distinct equity from ticker where grade='"+grade+"'";
+         QueryRunner run = new QueryRunner( DataSourceFactory.getDataSource() );
+        ResultSetHandler rsh = new ColumnListHandler();
+       return (List<String>) run.query(sql, rsh);
+    }
     public Date getLastTickerDetails(String equity) throws SQLException{
         String sql = " select cast(max(date) as date) from ticker  where equity='"+equity+"'";
         QueryRunner run = new QueryRunner(DataSourceFactory.getDataSource());

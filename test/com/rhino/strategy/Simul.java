@@ -14,6 +14,7 @@ import com.rhino.service.StrategyManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import org.junit.Test;
 
 /**
@@ -24,11 +25,23 @@ public class Simul implements Strategy{
 
     private static final float TARGET=2.5f;
     private List<Equity> getAll() throws SQLException{
-        String from = "2014-01-15";
-        String to="2015-05-1";
+        String from = "2009-04-1";
+        String to="2015-05-25";
         List<Equity> loaded = new ArrayList<>();
-        for(String name:new EquityDao().getAllEquity()){
+        for(String name:new EquityDao().getAllEquity("A2")){
             loaded.add(Equity.loadEquity(name, from, to));
+        }
+        return loaded;
+    }
+    private List<Equity> getProbable(){
+        String from = "2015-04-7";
+        String to="2015-05-18";
+        List<Equity> loaded = new ArrayList<>();
+        Scanner scan = new Scanner(ClassLoader.getSystemResourceAsStream("probable"));
+        while(scan.hasNext()){
+            String data=scan.next().trim();
+            if(data.length()==1) continue;
+            loaded.add(Equity.loadEquity(data, from, to));
         }
         return loaded;
     }
@@ -39,7 +52,7 @@ public class Simul implements Strategy{
         Portfolio pf = new Portfolio();
         pf.setStrategy(strategy);
         manager.addStock(getAll());
-        //manager.addStock(Equity.loadEquity("TATASTEEL", "2015-04-017", "2015-05-17"));
+        //manager.addStock(Equity.loadEquity("INFY", "2014-04-1", "2015-05-17"));
         manager.setPortfolio(pf);
         manager.run();
     }
@@ -56,6 +69,7 @@ public class Simul implements Strategy{
         float currentVolume = equity.getTicker().getVolume();
         float volDecline = Util.findPercentageChange(volumeAvg,currentVolume);
         boolean canEnter =  change>-.5&&change<1.5&&volDecline>500; 
+       // System.out.println("Date:"+equity.getTicker().getDate()+" sma:"+last9+" current price"+currentPrice+" percentage chage:"+change+" voulume average:"+volumeAvg+" current vol:"+currentVolume+"vol decline"+volDecline);
         if(canEnter){
            // System.out.println("Bought "+equity.getId()+" on"+equity.getTicker().getDate()+" at price:"+equity.getTicker().getClosePrice());
         }

@@ -53,7 +53,7 @@ public class Equity {
             TickerDao dao = new TickerDao();
             equity.list = dao.getTickers(id, Util.getDate(fromDate), Util.getDate(toDate));
             return equity;
-        } catch (ParseException | SQLException ex) {
+       } catch (ParseException | SQLException ex) {
             throw new RuntimeException(ex);
         }
     }

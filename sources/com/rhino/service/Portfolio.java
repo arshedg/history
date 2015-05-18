@@ -21,6 +21,10 @@ import java.util.Map;
  *
  * @author agulshan
  */
+class Result{
+    int profit=0;
+    int loss=0;
+}
 public class Portfolio implements TickerChangeListener{
     
     //todo use enums for position status
@@ -37,7 +41,7 @@ public class Portfolio implements TickerChangeListener{
     private float gainTrade=0;
     private float lossTrade=0;
     private float tradeDuration;
-    
+    private Map<Equity,Result> result = new HashMap<>();
     public void addToWatch(Equity equity){
         //todo add equity ticker listener
         watch.put(equity,NO_POSITION);
@@ -87,6 +91,7 @@ public class Portfolio implements TickerChangeListener{
         System.out.println("GROSS PROFIT IN PERCENTAGE :"+gain);
         System.out.println("PROFIT RATIO: "+100*((float)profitExit/(float)(profitExit+lostExit)));
         stocksHolding();
+        printResult();
     }
     private void stocksHolding(){
         System.out.println("**********HOLDINGS****************");
@@ -123,9 +128,11 @@ public class Portfolio implements TickerChangeListener{
             maxLoss = change;
         }
         if(change>0.5){
+            addToProfit(equity,true);
             gainTrade+=change;
             profitExit++;
         }else{
+            addToProfit(equity,false);
             lossTrade+=change;
             lostExit++;
         }
@@ -134,6 +141,30 @@ public class Portfolio implements TickerChangeListener{
 
     private void computeProfitFromShort(Equity equity, Ticker entryTicker, Ticker currentTicker) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void addToProfit(Equity equity, boolean isProfit) {
+       Result res = result.get(equity);
+       if(res==null){
+           res = new Result();
+           result.put(equity, res);
+       }
+       if(isProfit){
+           res.profit++;
+       }else{
+           res.loss++;
+       }
+    }
+
+    private void printResult() {
+        System.out.println("\n\tSTATISTICS\n");
+        System.out.println("NAME\t\tProfit\t\tLoss");
+        result.entrySet().stream().forEach((item) -> {
+            String name = item.getKey().getName();
+            int pCount = item.getValue().profit;
+            int lCount = item.getValue().loss;
+            System.out.println(name+"\t\t\t"+pCount+"\t\t"+lCount);
+        });
     }
     
     
