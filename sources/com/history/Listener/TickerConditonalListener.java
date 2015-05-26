@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.rhino.Listener;
-
-import com.rhino.data.Equity;
+package com.history.Listener;
 
 /**
  *
  * @author arshed
  */
- public interface TickerChangeListener {
-     public void execute(Equity equity);
-  }
+public interface TickerConditonalListener {
+    
+}
