@@ -6,7 +6,7 @@
 
 package com.rhino.data;
 
-import com.history.Listener.TickerChangeListener;
+import com.history.listener.TickerChangeListener;
 import com.rhino.data.db.TickerDao;
 import com.rhino.data.history.util.Util;
 import com.sun.javafx.scene.control.skin.VirtualFlow;
