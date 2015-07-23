@@ -23,28 +23,17 @@ import org.junit.Test;
  */
 public class Simul implements Strategy{
 
-    private static final float TARGET=2.5f;
+    private static final float TARGET=  .8f;
     private List<Equity> getAll() throws SQLException{
-        String from = "2009-04-1";
-        String to="2015-05-25";
+        String from = "2009-07-30";
+        String to="2015-07-30";
         List<Equity> loaded = new ArrayList<>();
-        for(String name:new EquityDao().getAllEquity("A2")){
+        for(String name:new EquityDao().getAllEquity("FUTURE")){
             loaded.add(Equity.loadEquity(name, from, to));
         }
         return loaded;
     }
-    private List<Equity> getProbable(){
-        String from = "2015-04-7";
-        String to="2015-05-18";
-        List<Equity> loaded = new ArrayList<>();
-        Scanner scan = new Scanner(ClassLoader.getSystemResourceAsStream("probable"));
-        while(scan.hasNext()){
-            String data=scan.next().trim();
-            if(data.length()==1) continue;
-            loaded.add(Equity.loadEquity(data, from, to));
-        }
-        return loaded;
-    }
+
     @Test
     public void runStrategy() throws SQLException {
         Strategy strategy = new Simul();
@@ -68,7 +57,7 @@ public class Simul implements Strategy{
         float volumeAvg = equity.simpleAverageVolume(9);
         float currentVolume = equity.getTicker().getVolume();
         float volDecline = Util.findPercentageChange(volumeAvg,currentVolume);
-        boolean canEnter =  change>-.5&&change<1.5&&volDecline>500; 
+        boolean canEnter =  change>-1.5&&change<2&&volDecline>100; 
        // System.out.println("Date:"+equity.getTicker().getDate()+" sma:"+last9+" current price"+currentPrice+" percentage chage:"+change+" voulume average:"+volumeAvg+" current vol:"+currentVolume+"vol decline"+volDecline);
         if(canEnter){
            // System.out.println("Bought "+equity.getId()+" on"+equity.getTicker().getDate()+" at price:"+equity.getTicker().getClosePrice());
@@ -86,7 +75,7 @@ public class Simul implements Strategy{
             return true;
         }
         int holdPeriod = equity.getPointer() - entryPointer;
-        if(holdPeriod>5) return true;
+        if(holdPeriod>=1) return true;
         return false;
     }
 
