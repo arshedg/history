@@ -22,15 +22,21 @@ public class EquityDao {
     
     public List<String> getAllEquity() throws SQLException{
         String sql = "select distinct equity from ticker";
-         QueryRunner run = new QueryRunner( DataSourceFactory.getDataSource() );
+        QueryRunner run = new QueryRunner( DataSourceFactory.getDataSource() );
         ResultSetHandler rsh = new ColumnListHandler();
        return (List<String>) run.query(sql, rsh);
     }
     public List<String> getAllEquity(String grade) throws SQLException{
         String sql = "select distinct equity from ticker where grade='"+grade+"'";
-         QueryRunner run = new QueryRunner( DataSourceFactory.getDataSource() );
+        QueryRunner run = new QueryRunner( DataSourceFactory.getDataSource() );
         ResultSetHandler rsh = new ColumnListHandler();
        return (List<String>) run.query(sql, rsh);
+    }
+    public void changeGroup(String equity,String group) throws SQLException{
+        String sql ="update ticker set grade ='"+group+"' where equity='"+equity+"'";
+                QueryRunner run = new QueryRunner( DataSourceFactory.getDataSource() );
+        run.update(sql);
+        
     }
     public Date getLastTickerDetails(String equity) throws SQLException{
         String sql = " select cast(max(date) as date) from ticker  where equity='"+equity+"'";

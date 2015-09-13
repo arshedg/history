@@ -6,6 +6,7 @@
 
 package com.rhino.data;
 
+import com.rhino.data.history.util.Util;
 import java.util.Date;
 import java.util.Objects;
 

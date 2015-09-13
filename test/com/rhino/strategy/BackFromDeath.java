@@ -24,10 +24,10 @@ public class BackFromDeath implements Strategy {
 
    
        private List<Equity> getAll() throws SQLException{
-        String from = "2014-05-5";
-        String to="2015-05-25";
+        String from = "2010-01-5";
+        String to="2015-12-25";
         List<Equity> loaded = new ArrayList<>();
-        for(String name:new EquityDao().getAllEquity()){
+        for(String name:new EquityDao().getAllEquity("A2")){
             loaded.add(Equity.loadEquity(name, from, to));
         }
         return loaded;
@@ -56,7 +56,7 @@ public class BackFromDeath implements Strategy {
             float newProfit = Util.findPercentageChange(currentClose, day2);
             if(newProfit<2&&newProfit>-.5){
                 float pV = equity.getTickerBeforeNDays(1).getVolume();
-                
+               // return true;
                 return 100<Util.findPercentageChange(equity.getTicker().getVolume(), pV);
             }    
         }
@@ -68,11 +68,11 @@ public class BackFromDeath implements Strategy {
     public boolean canExit(Equity equity, int entryPointer) {
         int holdDays = equity.getPointer()-entryPointer;
         if(holdDays<1) return false;
-        if(holdDays>=3) return true;
+        if(holdDays>=2) return true;
          Ticker boughtDayTicker = equity.getList().get(entryPointer);
          return doesPriceExceedsTarget(equity.getTicker(), boughtDayTicker);
     }
-
+ static final float TARGET=3f;
     @Override
     public int leastDataRequired() {
         return 4;
@@ -102,7 +102,7 @@ public class BackFromDeath implements Strategy {
          }
           return equity.getTicker().getClosePrice(); 
     }
-    static final int TARGET=3;
+   
     
     private boolean doesPriceExceedsTarget(Ticker currentDay,Ticker boughtDay){
         float currentMax = currentDay.getHighPrice();

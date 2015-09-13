@@ -64,6 +64,9 @@ public class Util {
     a should be greated than b
     */
     public static float findPercentageChange(float a,float b){
+       if(a<b){
+           return ((b/a)*100-100)*-1;
+       }
        float per = a/b;
        return per*100-100;
     }

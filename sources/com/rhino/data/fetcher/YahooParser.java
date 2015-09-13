@@ -35,13 +35,15 @@ public class YahooParser {
     TickerDao tickerOperation;
     String todayUrl;
     public String grade="NA";
+    private String exchange;
+    
     public YahooParser(String equity){
         this.equity = equity;
         tickerOperation = new TickerDao();
         url="http://in.finance.yahoo.com/q/hp?s="+equity+".NS&z=66&y=";
         todayUrl = "https://in.finance.yahoo.com/q?s="+equity+".ns&ql=1";
     }
-     void process() throws IOException, ParseException, SQLException{
+    public void process() throws IOException, ParseException, SQLException{
          Date lastUpdatedDate = new EquityDao().getLastTickerDetails(equity);
          doUpdation(lastUpdatedDate);
          updateLatestValue(lastUpdatedDate);
@@ -75,7 +77,8 @@ public class YahooParser {
         if(element.text().indexOf("Close price adjusted for divid")>=0){
             return null;
         }
-        NumberFormat nf = NumberFormat.getInstance(Locale.ENGLISH);   
+        NumberFormat nf = NumberFormat.getInstance(Locale.ENGLISH);  
+         System.out.println("Processing for date "+element.text());
         details.setDate(Util.getYahooDate(element.text()));
         element = ite.next();
         if(element.text().indexOf("Dividend")>=0){
@@ -99,7 +102,7 @@ public class YahooParser {
     }
 
     private void doUpdation(Date lastUpdatedDate) throws ParseException, SQLException {
-          for(int i =0;i<10000;i=i+66){
+          for(int i =0;i<5;i=i+66){
             Document doc =getDocument(url+i);
             Element table = doc.select("table[class=yfnc_datamodoutline1]").first();
             if(table==null){
@@ -115,7 +118,7 @@ public class YahooParser {
                     return;
                 }
                 if(ticker!=null){
-                    tickerOperation.insertTicker(equity, ticker,grade);
+                    tickerOperation.insertTicker(equity, ticker,grade,exchange);
                    // System.out.println("processes data date :"+ticker.getDate()+"  name:"+equity);
                 }
             }
@@ -163,8 +166,23 @@ public class YahooParser {
        data.setHighPrice(nf.parse(high).floatValue());
        data.setLowPrice(nf.parse(low).floatValue());
        data.setDate(Util.getDateFromMarketTime(marketTime));
-       tickerOperation.insertTicker(equity, data,grade);
+       tickerOperation.insertTicker(equity, data,grade,exchange);
         System.out.println("Latest value updated for "+equity+" last date:"+marketTime);
        
     }
+
+    /**
+     * @return the exchange
+     */
+    public String getExchange() {
+        return exchange;
+    }
+
+    /**
+     * @param exchange the exchange to set
+     */
+    public void setExchange(String exchange) {
+        this.exchange = exchange;
+    }
+    
 }

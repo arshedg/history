@@ -6,6 +6,7 @@
 
 package com.rhino.data.fetcher;
 
+import com.rhino.data.Equity;
 import com.rhino.data.Ticker;
 import com.rhino.data.db.EquityDao;
 import com.rhino.data.db.TickerDao;
@@ -15,6 +16,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -35,6 +37,30 @@ public class YahooParserTest {
         add("ASIANPAINT");
     }
     @Test
+    public void updateGroup() throws Exception{
+        //FileInputStream file = new FileInputStream("stocks");
+        Scanner scan = new Scanner(ClassLoader.getSystemResourceAsStream("stocks"));
+        TickerDao ticker = new TickerDao();
+        List<String> list = new ArrayList<>();
+        while(scan.hasNext()){
+            String name = scan.next().trim();
+            if(name.equals("")){
+                continue;
+            }
+            list.add(name);
+//            String from = "2015-04-7";
+//            String to="2015-05-18";
+//            System.out.println("Name: "+name);
+//            Equity eq = Equity.loadEquity(name,from, to);
+//            System.out.println("count "+eq.getList().size());
+//            if(eq.getList().size()==0){
+//                add(name);
+//            }
+           // new EquityDao().changeGroup(name, "FUTURE");
+        }
+        add(list.toArray(new String[0]));
+    }
+   // @Test
     public void readFromFile() throws FileNotFoundException, IOException, ParseException, SQLException{
        // FileInputStream file = new FileInputStream("stocks");
         Scanner scan = new Scanner(ClassLoader.getSystemResourceAsStream("stocks"));
@@ -44,7 +70,7 @@ public class YahooParserTest {
             if(name.equals("")){
                 continue;
             }
-            System.out.println("Name: "+name);
+       //     System.out.println("Name: "+name);
             List<Ticker> tick = ticker.getTickers(name);
             if(tick!=null&&tick.size()>10){
                 System.err.println("Skipping "+name+" as it is already processed");
@@ -75,11 +101,13 @@ public class YahooParserTest {
     private void add(String... names) throws Exception{
        for(String name:names){
            YahooParser parser = new YahooParser(name);
+           parser.setExchange("NSE");
+           parser.grade="FUTURE";
            parser.process();
        }
     }
     
- //  @Test
+ // @Test
     public void updateAll() throws SQLException, IOException, ParseException{
         for(String name:new EquityDao().getAllEquity()){
             YahooParser parser = new YahooParser(name);

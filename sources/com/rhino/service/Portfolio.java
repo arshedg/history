@@ -54,7 +54,9 @@ public class Portfolio implements TickerChangeListener{
     }
     @Override
     public void handleTickerChange(Equity equity,Ticker ticker) {
-        
+        if(ticker==null){
+            return;
+        }
         if(watch.get(equity)==POSITION_TAKEN){
             canClosePosition(equity);
         }
@@ -91,14 +93,15 @@ public class Portfolio implements TickerChangeListener{
         System.out.println("GROSS PROFIT IN PERCENTAGE :"+gain);
         System.out.println("PROFIT RATIO: "+100*((float)profitExit/(float)(profitExit+lostExit)));
         stocksHolding();
-        printResult();
+//        printResult();
     }
     private void stocksHolding(){
         System.out.println("**********HOLDINGS****************");
         for(Equity eq:watch.keySet()){
             if(watch.get(eq).equals(POSITION_TAKEN)){
                 Ticker bought = eq.getList().get(entryDetails.get(eq.getId()));
-                System.out.println("HOLDS stock "+eq.getName()+" from "+bought.getDate()+" ");
+                System.out.println("HOLDS stock "+eq.getName()+" from "+bought.getDate()+" current price:"+bought.getClosePrice());
+                System.out.println("Target:"+Util.findTargetPrice(bought.getClosePrice(), .8f));
             }
         }
     }
@@ -106,6 +109,7 @@ public class Portfolio implements TickerChangeListener{
         int pointer = entryDetails.get(equity.getId());
         Ticker entryTicker = equity.getList().get(pointer);
         Ticker currentTicker = equity.getTicker();
+        if(entryTicker.getDate().equals(currentTicker.getDate())) return; //same date comparison
         if(strategy.getStrategyType()== StrategyType.LONG){
             computeProfiteFromLong(equity,entryTicker,currentTicker);
         }else{
@@ -127,7 +131,7 @@ public class Portfolio implements TickerChangeListener{
         if(change<maxLoss){
             maxLoss = change;
         }
-        if(change>0.5){
+        if(change>.1){
             addToProfit(equity,true);
             gainTrade+=change;
             profitExit++;
@@ -139,8 +143,28 @@ public class Portfolio implements TickerChangeListener{
         
     }
 
-    private void computeProfitFromShort(Equity equity, Ticker entryTicker, Ticker currentTicker) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void computeProfitFromShort(Equity equity, Ticker entryTicker, Ticker exitTicker) {
+        float soldPrice = strategy.getOpenPrice(equity,entryDetails.get(equity.getId()));
+        float buybackprice = strategy.getClosePrice(equity,entryDetails.get(equity.getId()));
+        Util.print("Sold "+equity.getId()+" at price "+soldPrice+" on "+entryTicker.getDate()+" bought back at price "+buybackprice+ " on "+exitTicker.getDate());
+        float change=Util.findPercentageChange(soldPrice,buybackprice);
+        System.out.println("Profit/Loss from "+equity.getName()+" "+change);
+        gain = gain+change;
+        if(change>maxGain){
+            maxGain = change;
+        }
+        if(change<maxLoss){
+            maxLoss = change;
+        }
+        if(change>0.5){
+            addToProfit(equity,true);
+            gainTrade+=change;
+            profitExit++;
+        }else{
+            addToProfit(equity,false);
+            lossTrade+=change;
+            lostExit++;
+        }
     }
 
     private void addToProfit(Equity equity, boolean isProfit) {
