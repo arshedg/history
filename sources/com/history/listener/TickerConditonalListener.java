@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.rhino.Listener.strategy;
-
-import com.rhino.data.Equity;
+package com.history.listener;
 
 /**
  *
  * @author arshed
  */
-public interface ExitStrategy {
-    boolean canExit(Equity equity);
+public interface TickerConditonalListener {
+    
 }

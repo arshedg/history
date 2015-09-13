@@ -6,8 +6,8 @@
 
 package com.rhino.data.history.util;
 
-import com.rhino.Listener.TickerChangeListener;
-import com.rhino.Listener.strategy.ExitStrategy;
+import com.history.listener.TickerChangeListener;
+import com.rhino.listener.strategy.ExitStrategy;
 import com.rhino.data.Equity;
 import com.rhino.data.Ticker;
 import java.util.ArrayList;

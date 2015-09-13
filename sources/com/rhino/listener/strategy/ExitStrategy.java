@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.rhino.Listener;
+package com.rhino.listener.strategy;
 
 import com.rhino.data.Equity;
 
@@ -11,6 +11,6 @@ import com.rhino.data.Equity;
  *
  * @author arshed
  */
- public interface TickerChangeListener {
-     public void execute(Equity equity);
-  }
+public interface ExitStrategy {
+    boolean canExit(Equity equity);
+}

@@ -5,7 +5,7 @@
  */
 package com.rhino.strategy;
 
-import com.rhino.Listener.strategy.ExitStrategy;
+import com.rhino.listener.strategy.ExitStrategy;
 import com.rhino.data.Equity;
 import com.rhino.data.history.util.Portfolio;
 import org.junit.Test;
