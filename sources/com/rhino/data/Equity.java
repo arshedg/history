@@ -101,7 +101,7 @@ public class Equity {
     public Ticker getTicker(){
         return list.get(pointer);
     }
-
+    
     public Ticker getHighPrice(int days,boolean highest){
         int ptr = pointer;
         int count=0;
