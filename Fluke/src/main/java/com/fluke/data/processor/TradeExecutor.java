@@ -35,16 +35,26 @@ public class TradeExecutor implements TickerListener{
             return;
         }
         List<Trade> fulfilled = new ArrayList<>();
+        boolean isSquareOff=false;
         for(Trade trade:trades){
             boolean isExecuted=false;
+             String key=trade.equity+":"+trade.strategy;
+            OpenPosition position = openPositions.get(key);
+            if(position!=null){
+                isSquareOff = true;
+            }
             if(trade.isLong){
                isExecuted = handleBuy(eq,trade);
             }else{
                isExecuted =  handleSell(eq,trade);
             }
             if(isExecuted){
+                tradeMap.remove(id);
                 callListener(trade);
                 fulfilled.add(trade);
+            }
+            if(isExecuted&&isSquareOff){
+                openPositions.remove(key);
             }
         }
         trades.removeAll(fulfilled);
@@ -75,13 +85,12 @@ public class TradeExecutor implements TickerListener{
     private boolean handleBuy(Ticker ticker,Trade trade) {
         float price;
         if(trade.isAtMarketPrice){
-           price=ticker.getHighPrice();
+           price=ticker.getClosePrice();
        }else if(trade.openPrice>ticker.getLowPrice()){
            price=trade.openPrice;
        }else{
            return false;
        }
-       System.out.println("Bought "+trade.equity+" at price "+price+" time:"+ticker.getDate());
        String key=trade.equity+":"+trade.strategy;
        OpenPosition position = openPositions.get(key);
        if(position==null){
@@ -89,10 +98,11 @@ public class TradeExecutor implements TickerListener{
            position = new OpenPosition();
            position.price = price;
            position.trade = trade;
+           position.ticker = ticker;
            openPositions.put(key, position);
        }
        else{
-            derivePerfomance(position, price, trade);
+            derivePerfomance(position, price, trade,ticker);
        }
        return true;
     }
@@ -107,28 +117,35 @@ public class TradeExecutor implements TickerListener{
     private boolean handleSell(Ticker ticker,Trade trade) {
         float price;
         if(trade.isAtMarketPrice){
-           price=ticker.getLowPrice();
+           price=ticker.getClosePrice();
        }else if(trade.openPrice<ticker.getHighPrice()){
            price=trade.openPrice;
        }else{
            return false;
        }
-       System.out.println("Sold "+trade.equity+" at price "+price+" time:"+ticker.getDate());
        String key=trade.equity+":"+trade.strategy;
        OpenPosition position = openPositions.get(key);
        if(position==null){
            position = new OpenPosition();
            position.price = price;
            position.trade = trade;
+           position.ticker = ticker;
            openPositions.put(key, position);
        }else{
-            derivePerfomance(position, price, trade);
+            derivePerfomance(position, price, trade,ticker);
        }
        return true;
     }
 
-    private void derivePerfomance(OpenPosition position, float price, Trade trade) {
-       
+    private void derivePerfomance(OpenPosition position, float price, Trade trade,Ticker exitTicker) {
+       if(trade.isLong){
+           //last rrade buy= short sell
+           System.out.println("Sold "+trade.equity+" at price "+position.price+" time:"+position.ticker.getDate());
+           System.out.println("Bought "+trade.equity+" at price "+price+" time:"+exitTicker.getDate());
+       }else{
+           System.out.println("Bought "+trade.equity+" at price "+position.price+" time:"+position.ticker.getDate());
+           System.out.println("Sold "+trade.equity+" at price "+price+" time:"+exitTicker.getDate());
+       }
         Perfomance pf = perfomance.get(trade.strategy);
         if(pf==null){
             pf = new Perfomance();
@@ -143,6 +160,7 @@ public class TradeExecutor implements TickerListener{
                 pf.lossCount++;
             }
             pf.percentageGain+=change;
+            System.out.println("Percentage gain:"+change);
         }else{
              float soldPrice = position.price;
             float change = Util.findPercentageChange(soldPrice, price);
@@ -152,7 +170,9 @@ public class TradeExecutor implements TickerListener{
                 pf.lossCount++;
             }
             pf.percentageGain+=change;
+            System.out.println("Percentage gain:"+change);
         }
+       
     }
 
     private void callListener(Trade trade) {
@@ -205,4 +225,5 @@ class Perfomance
 class OpenPosition{
     float price;
     Trade trade;
+    Ticker ticker;
 }

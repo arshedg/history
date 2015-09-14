@@ -33,6 +33,15 @@ public class TickerList extends ArrayList<Ticker>{
    void movePointerToEnd(){
        this.pointer=this.size()-1;
    }
+   void setPointer(int ptr){
+       this.pointer = ptr;
+   }
+   Ticker getPreviousTicker(){
+       if(pointer>0){
+           return this.get(pointer-1);
+       }
+       return null;
+   }
      Ticker getNextTicker(){
          if(isMaketClosed||!source.hasNext(name)){
              return null;
@@ -69,7 +78,13 @@ public class TickerList extends ArrayList<Ticker>{
     }
     void rewind(){
         pointer--;
-        if(pointer<0) throw new RuntimeException("cannot rewind further");
+        if(pointer<0){ 
+            throw new RuntimeException("cannot rewind further");
+        
+        }
+    }
+    int getPointer(){
+        return pointer;
     }
     public Ticker waitForMarket(){
         Ticker ticker ;
@@ -77,7 +92,6 @@ public class TickerList extends ArrayList<Ticker>{
         do{
             ticker = source.getNextTicker(name);
             if(ticker==null) return null;
-            volume+=ticker.getVolume();
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(ticker.getDate());
             hour = calendar.get(Calendar.HOUR_OF_DAY);
@@ -160,17 +174,17 @@ public class TickerList extends ArrayList<Ticker>{
     }
 
     public float simpleMovingAverage(int days){
-        int startDay = 1+(pointer-days);
+        int startDay = 1+(pointer-days-1);
         float sum=0f;
-        for(int i=startDay;i<=pointer;i++){
+        for(int i=startDay;i<pointer;i++){
             sum+=this.get(i).getClosePrice();
         }
         return sum/days;
     }
     public float simpleAverageVolume(int days){
-        int startDay = 1+(pointer-days);
+        int startDay = 1+(pointer-days-1);
         float sum=0f;
-        for(int i=startDay;i<=pointer;i++){
+        for(int i=startDay;i<pointer;i++){
             sum+=this.get(i).getVolume();
         }
         return sum/days;

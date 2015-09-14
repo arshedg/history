@@ -74,7 +74,7 @@ public class EODDao {
                             ticker.getLowPrice(),ticker.getAdjustedClose(),ticker.getVolume(),date};
         QueryRunner run = new QueryRunner( DatabaseProperty.getDataSource() );
         int updates= run.update(sql, params);
-        run.update("delete from EOD where volume=0");
+        //run.update("delete from EOD where volume=0");
         return updates;
     }
     

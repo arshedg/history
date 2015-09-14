@@ -21,34 +21,43 @@ public class SampleS implements Strategy{
     @Override
     public Trade openPosition(Equity eq, Index index) {
         if(eq.eod.size()<4) return null;
-        Ticker older = eq.eod.getTickBeforeNdays(2);
-        Ticker prevsDay = eq.eod.getTickBeforeNdays(1);
-        Ticker currentDay = eq.intraday.getCurrentTicker();
-        if(older.getClosePrice()>prevsDay.getClosePrice()&&
-           currentDay.getHighPrice()>prevsDay.getClosePrice()&&
-            eq.intraday.getCurrentVolume()>prevsDay.getVolume())
-        {
+        if(eq.intraday.size()<50) return null;
+       
+        Ticker prevsDayIndex = index.nifty.eod.getTickBeforeNdays(1);
+        Ticker currentIndexPrice = index.nifty.intraday.getCurrentTicker();
+        if(prevsDayIndex.getClosePrice()>currentIndexPrice.getLowPrice()){
+            //index on red
+            return null;
+        }
+        float avgVolume = eq.intraday.simpleAverageVolume(15);
+        float currentVol = eq.intraday.getCurrentTicker().getVolume();
+        float volDecline = Util.findPercentageChange(avgVolume,currentVol);
+        
+        float last15 = eq.intraday.simpleMovingAverage(15);
+        float currentPrice = eq.intraday.getCurrentTicker().getClosePrice();
+        float change = Util.findPercentageChange(last15,currentPrice);
+        boolean canEnter =  change>-1.5&&change<2&&volDecline>100; 
+        if(canEnter){
             Trade trade = new Trade();
-            trade.isAtMarketPrice=true;
+            trade.isAtMarketPrice=false;
+            trade.openPrice = currentPrice;
             return trade;
         }
-        
-        
-        
         return null;
     }
 
     @Override
     public Trade closePosition(Equity eq, Index index, int entryPoint) {
         Ticker open = eq.intraday.get(entryPoint);
-        if(Util.findPercentageChange(eq.intraday.getCurrentTicker().getHighPrice(),open.getHighPrice())>.8){
+        if(Util.findPercentageChange(eq.intraday.getCurrentTicker().getHighPrice(),open.getClosePrice())>.5){
             Trade trade = new Trade();
             trade.isAtMarketPrice=false;
             trade.openPrice=eq.intraday.getCurrentTicker().getHighPrice();
             return trade;
-        }else if(Util.findPercentageChange(open.getHighPrice(),eq.intraday.getCurrentTicker().getHighPrice())<-.5){
+        }else if(Util.findPercentageChange(open.getHighPrice(),eq.intraday.getCurrentTicker().getHighPrice())>1){
             Trade trade = new Trade();
             trade.isAtMarketPrice=true;
+            trade.openPrice=eq.intraday.getCurrentTicker().getLowPrice();
             return trade;
         }
         return null;

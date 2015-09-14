@@ -18,26 +18,35 @@ public class Index {
     int maxMinBonus=0;
     public Equity nifty;
     public void loadNext(Date date){
-        Ticker ticker = nifty.intraday.getNextTicker();
+        Ticker ticker = nifty.intraday.getCurrentTicker();
+        if(ticker!=null){
+            Integer indexTime = getMinutes(Util.getTime(ticker.getDate()));
+            Integer equityTime = getMinutes(Util.getTime(date));
+            if(indexTime>equityTime){
+                correctIndex(indexTime, equityTime);
+                return;
+            }
+        }
+        ticker = nifty.intraday.getNextTicker();
         if(ticker==null) return;
-        String indexTime = Util.getTime(ticker.getDate());
-        String equityTime = Util.getTime(date);
+       Integer  indexTime = getMinutes(Util.getTime(ticker.getDate()));
+        Integer equityTime = getMinutes(Util.getTime(date));
         if(!indexTime.equals(equityTime)){
             correctIndex(indexTime, equityTime);
         }
     }
-    private boolean correctIndex(String index,String stock){
-        int diff = getMinutes(stock)-getMinutes(index);
+    private boolean correctIndex(int indexTime,int stockTime){
+        int diff = stockTime-indexTime;
         int absDiff = Math.abs(diff);
         if(absDiff<=maxMinBonus){
             return true;
         }
         if(diff>maxMinBonus){
-            setIndexTime(getMinutes(stock), true);
-            lookBackCorrection(getMinutes(stock), true);
+            setIndexTime(stockTime, true);
+            lookBackCorrection(stockTime, true);
         }else{
-            setIndexTime(getMinutes(stock), false);
-            lookBackCorrection(getMinutes(stock), false);
+            setIndexTime(stockTime, false);
+            lookBackCorrection(stockTime, false);
         }
         return true;
     }
@@ -72,7 +81,7 @@ public class Index {
             }
             while(!isMatching(ticker, minute, forward));
         }else{
-            for(int i=nifty.intraday.size()-1;i<=0;i--){
+            for(int i=nifty.intraday.getPointer()-1;i>=0;i--){
                 Ticker tick = nifty.intraday.get(i);
                 if(isMatching(tick, minute, false)){
                     return;
@@ -92,7 +101,7 @@ public class Index {
         return false;
     }
     public Index(Configuration config){
-        nifty = new Equity(".NSED", config);
+        nifty = new Equity(".NSEI", config);
     }
     private int getMinutes(String time){
         String parts[] = time.split(":");

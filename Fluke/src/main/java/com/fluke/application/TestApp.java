@@ -5,9 +5,7 @@
  */
 package com.fluke.application;
 
-import com.fluke.data.processor.IntradayTickerFromDataBase;
 import com.fluke.data.processor.TradeExecutor;
-import com.fluke.database.dataservice.EquityDao;
 import com.fluke.model.StrategyManager;
 import com.fluke.util.Configuration;
 import java.sql.SQLException;
@@ -21,6 +19,7 @@ public class TestApp {
     public static void main(String[] args) throws SQLException {
         TradeExecutor executor = new TradeExecutor();
         Configuration config = Configuration.getDefaultConfiguration(executor, "2012-7-26", "2013-2-1");
+       // config.equities=Arrays.asList("GRASIM");
         for(int i=0;i<1;i++){
             StrategyManager manager = new StrategyManager(config, new SampleS());
             config.executor.setOrderListener(manager);
