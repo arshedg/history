@@ -16,6 +16,7 @@ import com.fluke.model.Trade;
 public interface Strategy {
     
     Trade openPosition(Equity eq,Index index);
-    Trade closePosition(Equity eq,Index index,int entryPoint);
+    Trade closePosition(Equity eq,Index index,int entryPoint,Trade executedTrade);
+    boolean cancelPosition(Equity eq,Index index,int entryPoint,Trade placeTrade);
     boolean isLong();
 }

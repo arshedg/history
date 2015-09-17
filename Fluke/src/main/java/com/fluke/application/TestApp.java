@@ -18,10 +18,10 @@ import java.util.Arrays;
 public class TestApp {
     public static void main(String[] args) throws SQLException {
         TradeExecutor executor = new TradeExecutor();
-        Configuration config = Configuration.getDefaultConfiguration(executor, "2012-7-26", "2013-2-1");
-       // config.equities=Arrays.asList("GRASIM");
+        Configuration config = Configuration.getDefaultConfiguration(executor, "2015-7-26", "2015-9-16");
+        //config.equities=Arrays.asList("AMBUJACEM");
         for(int i=0;i<1;i++){
-            StrategyManager manager = new StrategyManager(config, new SampleS());
+            StrategyManager manager = new StrategyManager(config,new Cloud());
             config.executor.setOrderListener(manager);
             manager.run();
             config.extendEndDate();

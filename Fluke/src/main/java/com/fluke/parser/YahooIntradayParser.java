@@ -12,7 +12,7 @@ import org.apache.commons.lang.StringUtils;
  * @author arshed
  */
 public class YahooIntradayParser {
-   private static final String URL="http://chartapi.finance.yahoo.com/instrument/1.0/%s.NS/chartdata;type=quote;range=30d/json/";
+   private static final String URL="http://chartapi.finance.yahoo.com/instrument/1.0/%s.NS/chartdata;type=quote;range=1d/json";
    protected Object parseData(String data) {
        Gson gson = new Gson();
        return gson.fromJson(data, IntradayDetails.class);

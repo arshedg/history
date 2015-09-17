@@ -40,8 +40,8 @@ public class YahooEODParser {
     public YahooEODParser(String equity){
         this.equity = equity;
         tickerOperation = new EODDao();
-        url="http://in.finance.yahoo.com/q/hp?s="+equity+"&z=66&y=";
-        todayUrl = "https://in.finance.yahoo.com/q?s="+equity+"&ql=1";
+        url="http://in.finance.yahoo.com/q/hp?s="+equity+".ns&z=66&y=";
+        todayUrl = "https://in.finance.yahoo.com/q?s="+equity+".ns&ql=1";
     }
     public void process() throws IOException, ParseException, SQLException{
          Date lastUpdatedDate = new EquityDao().getLastTickerDetails(equity);

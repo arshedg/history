@@ -23,7 +23,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
  */
 public class IntraDayDao {
     
-    private static String sql="insert into intraday (equity,openPrice,closePrice,highPrice,lowPrice,volume,time) values(?,?,?,?,?,?,?)";
+    private static String sql="insert into intraday (equity,openPrice,closePrice,highPrice,lowPrice,volume,time,date) values(?,?,?,?,?,?,?,?)";
 
     public void insert(IntradayDetails data){ 
         QueryRunner runner = new QueryRunner( DatabaseProperty.getDataSource() );
@@ -38,6 +38,7 @@ public class IntraDayDao {
     public void insert(String id,IntradayTicker ticker){
         QueryRunner runner = new QueryRunner( DatabaseProperty.getDataSource() );
         try {
+            
             runner.update(sql, id, ticker.getOpenPrice(),ticker.getClosePrice(),ticker.getHighPrice(),ticker.getLowPrice(),ticker.getVolume(),ticker.getTime());
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -67,14 +68,14 @@ public class IntraDayDao {
     private void addValues(QueryRunner runner, List<Series> values, String id) throws SQLException {
         
         for(Series series:values){
-            runner.update(sql, id, series.getOpen(),series.getClose(),series.getHigh(),series.getLow(),series.getVolume(),series.getTimestamp());
+            runner.update(sql, id, series.getOpen(),series.getClose(),series.getHigh(),series.getLow(),series.getVolume(),series.getTimestamp(),"2015-9-16");
         }
     }
     
     public List<IntradayTicker> getIntraday(String name,String date) {
         try {
             QueryRunner run = new QueryRunner( DatabaseProperty.getDataSource() );
-            String select = "select * from intraday  where equity = ? and  DATE(time)=?  order by time asc";
+            String select = "select * from intraday  where equity = ? and  date=?  order by time asc";
             Object[] params = new Object[]{name, date};
             ResultSetHandler rsh = new BeanListHandler(IntradayTicker.class); 
             return (List<IntradayTicker>)run.query(select, rsh,params);

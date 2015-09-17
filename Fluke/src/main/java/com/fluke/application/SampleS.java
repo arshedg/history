@@ -47,7 +47,7 @@ public class SampleS implements Strategy{
     }
 
     @Override
-    public Trade closePosition(Equity eq, Index index, int entryPoint) {
+    public Trade closePosition(Equity eq, Index index, int entryPoint,Trade executedTrade) {
         Ticker open = eq.intraday.get(entryPoint);
         if(Util.findPercentageChange(eq.intraday.getCurrentTicker().getHighPrice(),open.getClosePrice())>.5){
             Trade trade = new Trade();
@@ -66,6 +66,11 @@ public class SampleS implements Strategy{
     @Override
     public boolean isLong() {
         return true;
+    }
+
+    @Override
+    public boolean cancelPosition(Equity eq, Index index, int entryPoint, Trade placeTrade) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

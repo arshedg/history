@@ -13,5 +13,5 @@ import com.fluke.model.ticker.Ticker;
  */
 public interface TickerDataSource {
     public Ticker getNextTicker(String equity);
-    public boolean hasNext(String equity);
+   public boolean hasNext(String equity);
 }

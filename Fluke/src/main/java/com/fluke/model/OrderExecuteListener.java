@@ -11,4 +11,5 @@ package com.fluke.model;
  */
 public interface OrderExecuteListener {
     public void onTradeExecuted(Trade trade);
+    public void onTargetAchieved(Trade trade);
 }

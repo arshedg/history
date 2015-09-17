@@ -105,4 +105,11 @@ public class Util {
     public static void print(String string){
         System.out.println(string);
     }
+    public static int getMinutes(Date date){
+        String time = Util.getTime(date);
+        String parts[] = time.split(":");
+        int hour = Integer.parseInt(parts[0]);
+        int min = Integer.parseInt(parts[1]);
+        return hour*60+min;
+    }
 }

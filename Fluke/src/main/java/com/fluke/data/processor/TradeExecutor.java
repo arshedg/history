@@ -27,6 +27,7 @@ public class TradeExecutor implements TickerListener{
     Map<String,List<Trade>> tradeMap = new HashMap<>();
     Map<String,OpenPosition> openPositions = new HashMap<>();
     Map<String,Perfomance> perfomance = new HashMap<>();
+    List<Trade> tempTargetList = new ArrayList<>();
     OrderExecuteListener listener;
     @Override
     public void listen(String id, Ticker eq) {
@@ -37,8 +38,11 @@ public class TradeExecutor implements TickerListener{
         List<Trade> fulfilled = new ArrayList<>();
         boolean isSquareOff=false;
         for(Trade trade:trades){
+            if(!isPassingTrigger(trade, eq)){
+                continue;
+            }
             boolean isExecuted=false;
-             String key=trade.equity+":"+trade.strategy;
+            String key=trade.equity+":"+trade.strategy;
             OpenPosition position = openPositions.get(key);
             if(position!=null){
                 isSquareOff = true;
@@ -49,7 +53,6 @@ public class TradeExecutor implements TickerListener{
                isExecuted =  handleSell(eq,trade);
             }
             if(isExecuted){
-                tradeMap.remove(id);
                 callListener(trade);
                 fulfilled.add(trade);
             }
@@ -57,9 +60,29 @@ public class TradeExecutor implements TickerListener{
                 openPositions.remove(key);
             }
         }
+        for(Trade target:tempTargetList){
+            addToTradeMap(target);
+        }
+        tempTargetList.clear();
         trades.removeAll(fulfilled);
     }
-
+    boolean isPassingTrigger(Trade trade,Ticker ticker){
+        if(trade.triggerPrice<=0){
+            //no triggerr/stop loss
+            return true;
+        }
+        if(trade.isLong){
+            if(ticker.getLowPrice()>trade.triggerPrice){
+                return true;
+            }
+        }else if(ticker.getHighPrice()<trade.triggerPrice){
+            return true;
+        }
+        return false;
+    }
+    public void cancelTrade(Trade trade){
+         tradeMap.remove(trade.equity);
+    }
     @Override
     public void endOfData(String id, Ticker eq) {
         List<String> toRemove = new ArrayList<>();
@@ -68,6 +91,9 @@ public class TradeExecutor implements TickerListener{
                 forceClose(entry.getKey(),entry.getValue(),eq);
                 toRemove.add(entry.getKey());
                 
+            }
+            if(tradeMap.containsKey(id)){
+                tradeMap.remove(id);
             }
         }
         for(String key:toRemove){
@@ -87,10 +113,11 @@ public class TradeExecutor implements TickerListener{
         if(trade.isAtMarketPrice){
            price=ticker.getClosePrice();
        }else if(trade.openPrice>ticker.getLowPrice()){
-           price=trade.openPrice;
+           price = trade.openPrice;
        }else{
            return false;
        }
+       trade.executedPrice = price;
        String key=trade.equity+":"+trade.strategy;
        OpenPosition position = openPositions.get(key);
        if(position==null){
@@ -100,6 +127,8 @@ public class TradeExecutor implements TickerListener{
            position.trade = trade;
            position.ticker = ticker;
            openPositions.put(key, position);
+           handleTarget(trade,position);
+           
        }
        else{
             derivePerfomance(position, price, trade,ticker);
@@ -119,10 +148,11 @@ public class TradeExecutor implements TickerListener{
         if(trade.isAtMarketPrice){
            price=ticker.getClosePrice();
        }else if(trade.openPrice<ticker.getHighPrice()){
-           price=trade.openPrice;
+          price = trade.openPrice;
        }else{
            return false;
        }
+       trade.executedPrice = price;
        String key=trade.equity+":"+trade.strategy;
        OpenPosition position = openPositions.get(key);
        if(position==null){
@@ -203,11 +233,24 @@ public class TradeExecutor implements TickerListener{
        trade.equity=stock;
        trade.strategy = position.trade.strategy;
        trade.isLong = !position.trade.isLong;
-       if(trade.isLong){
+        if(trade.isLong){
            handleBuy(ticker, trade);
        }else{
            handleSell(ticker, trade);
        }
+    }
+
+    private void handleTarget(Trade trade, OpenPosition position) {
+        if(trade.target<=0){
+            return;
+        }
+        Trade target = new Trade();
+        target.equity = trade.equity;
+        target.isAtMarketPrice=false;
+        target.isLong = !trade.isLong;
+        target.strategy = trade.strategy;
+        target.openPrice = trade.target;
+        tempTargetList.add(target);
     }
 
     

@@ -19,7 +19,9 @@ public class Trade {
     public boolean isLong;
     public boolean isAtMarketPrice;
     public String strategy;
-    
+    public float target;
+    public float triggerPrice;
+    public float executedPrice;
     /*
     do we really need encapsulation everywhere
     */

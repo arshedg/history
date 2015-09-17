@@ -73,9 +73,13 @@ public class StrategyManager implements OrderExecuteListener {
         for(Strategy strategy:strategies){
             String key = getOrderKey(eq.getName(), strategy.getClass().getName());
             if(orderPlaced.containsKey(key)){
-                continue;
+                boolean shouldCancel = strategy.cancelPosition(eq, index, pointers.get(key), orderPlaced.get(key));
+                if(shouldCancel){
+                    executor.cancelTrade(orderPlaced.get(key));
+                    orderPlaced.remove(key);
+                }
             }else if(executedOrders.containsKey(key)){
-                Trade trade = strategy.closePosition(eq, index, pointers.get(key));
+                Trade trade = strategy.closePosition(eq, index, pointers.get(key),executedOrders.get(key));
                 if(trade!=null){
                     pointers.remove(key);
                     executedOrders.remove(key);
@@ -131,8 +135,16 @@ public class StrategyManager implements OrderExecuteListener {
     public void onTradeExecuted(Trade trade) {
        String key = getOrderKey(trade.equity, trade.strategy);
        if(orderPlaced.containsKey(key)){
-            orderPlaced.remove(key);
-            executedOrders.put(key, trade);
+           Trade placedTrade = orderPlaced.get(key);
+           if(placedTrade.isLong==trade.isLong){
+               executedOrders.put(key, trade);
+           }else{
+               executedOrders.remove(key);
+           }
+           orderPlaced.remove(key);         
+       }else if(executedOrders.containsKey(key)){
+           //auto target acheived from tradeexecuter
+           executedOrders.remove(key);
        }
       
     }
@@ -140,6 +152,15 @@ public class StrategyManager implements OrderExecuteListener {
     private void alertEndOfData(String name, Ticker currentTicker) {
           for(TickerListener listener:listeners){
            listener.endOfData(name,currentTicker);
+       }
+    }
+
+    @Override
+    public void onTargetAchieved(Trade trade) {
+       String key = getOrderKey(trade.equity, trade.strategy);
+        if(orderPlaced.containsKey(key)){
+            //no need to put into executed orders since, the position is squared
+            orderPlaced.remove(key);
        }
     }
 }
