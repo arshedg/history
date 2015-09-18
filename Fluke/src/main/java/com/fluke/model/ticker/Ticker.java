@@ -29,7 +29,14 @@ public class Ticker {
     public void setOpenPrice(float openPrice) {
         this.openPrice = openPrice;
     }
-
+    public boolean isRed(){
+        return this.closePrice<this.openPrice;
+    }
+    
+    public boolean isGreen() {
+        return !isRed();
+    }
+    
     public float getClosePrice() {
         return closePrice;
     }

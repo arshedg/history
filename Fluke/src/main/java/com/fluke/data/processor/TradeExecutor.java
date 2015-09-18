@@ -38,6 +38,7 @@ public class TradeExecutor implements TickerListener{
         List<Trade> fulfilled = new ArrayList<>();
         boolean isSquareOff=false;
         for(Trade trade:trades){
+            isSquareOff=false;
             if(!isPassingTrigger(trade, eq)){
                 continue;
             }
@@ -72,10 +73,10 @@ public class TradeExecutor implements TickerListener{
             return true;
         }
         if(trade.isLong){
-            if(ticker.getLowPrice()>trade.triggerPrice){
+            if(ticker.getHighPrice()>trade.triggerPrice){
                 return true;
             }
-        }else if(ticker.getHighPrice()<trade.triggerPrice){
+        }else if(ticker.getLowPrice()<trade.triggerPrice){
             return true;
         }
         return false;
@@ -85,15 +86,16 @@ public class TradeExecutor implements TickerListener{
     }
     @Override
     public void endOfData(String id, Ticker eq) {
+        List<Trade> trades = tradeMap.get(id);
+        if(trades!=null&&!trades.isEmpty()){
+           trades.clear();
+        }
         List<String> toRemove = new ArrayList<>();
         for(Entry<String,OpenPosition> entry:openPositions.entrySet()){
             if(entry.getKey().startsWith(id+":")){
                 forceClose(entry.getKey(),entry.getValue(),eq);
                 toRemove.add(entry.getKey());
                 
-            }
-            if(tradeMap.containsKey(id)){
-                tradeMap.remove(id);
             }
         }
         for(String key:toRemove){
