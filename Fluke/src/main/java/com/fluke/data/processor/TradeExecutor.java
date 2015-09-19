@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 
 /**
@@ -74,9 +75,11 @@ public class TradeExecutor implements TickerListener{
         }
         if(trade.isLong){
             if(ticker.getHighPrice()>trade.triggerPrice){
+                trade.triggerPrice=0f;
                 return true;
             }
         }else if(ticker.getLowPrice()<trade.triggerPrice){
+            trade.triggerPrice=0f;
             return true;
         }
         return false;
@@ -137,11 +140,18 @@ public class TradeExecutor implements TickerListener{
        }
        return true;
     }
+    protected void cancelChildren(Trade trade,List<Trade> trades){
+        if(trades==null||trade.cancelRelatedTrade==false) return;
+        long id = trade.parentTrade;
+        trades.stream().filter(t ->t.parentTrade==id).collect(Collectors.toList()).forEach(t-> trades.remove(t));
+    }
      private void addToTradeMap(Trade trade){
         List<Trade> list = tradeMap.get(trade.equity);
         if(list==null){
             list = new ArrayList<>();
             tradeMap.put(trade.equity, list);
+        }else{
+            cancelChildren(trade, list);
         }
         list.add(trade);
     }
@@ -162,6 +172,7 @@ public class TradeExecutor implements TickerListener{
            position.price = price;
            position.trade = trade;
            position.ticker = ticker;
+           handleTarget(trade,position);
            openPositions.put(key, position);
        }else{
             derivePerfomance(position, price, trade,ticker);
@@ -252,6 +263,7 @@ public class TradeExecutor implements TickerListener{
         target.isLong = !trade.isLong;
         target.strategy = trade.strategy;
         target.openPrice = trade.target;
+        target.parentTrade = trade.id;
         tempTargetList.add(target);
     }
 

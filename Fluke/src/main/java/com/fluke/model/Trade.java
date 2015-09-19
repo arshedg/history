@@ -17,11 +17,13 @@ public class Trade {
     public String equity;
     public float openPrice;
     public boolean isLong;
-    public boolean isAtMarketPrice;
+    public boolean isAtMarketPrice = true;
     public String strategy;
     public float target;
     public float triggerPrice;
     public float executedPrice;
+    public long parentTrade;
+    public boolean cancelRelatedTrade = false;
     /*
     do we really need encapsulation everywhere
     */

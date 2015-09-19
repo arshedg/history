@@ -82,10 +82,13 @@ public class StrategyManager implements OrderExecuteListener {
                 Trade trade = strategy.closePosition(eq, index, pointers.get(key),executedOrders.get(key));
                 if(trade!=null){
                     pointers.remove(key);
-                    executedOrders.remove(key);
+                    
                     trade.strategy = strategy.getClass().getName();
                     trade.equity = eq.getName();
                     trade.isLong = !strategy.isLong(); //close positiom is opposite
+                    trade.parentTrade = executedOrders.get(key).id;
+                    executedOrders.remove(key);
+                    trade.cancelRelatedTrade=true;
                     executor.placeOrder(trade);
                 }
             }else{

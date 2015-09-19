@@ -123,7 +123,7 @@ public class TickerList extends ArrayList<Ticker>{
             if(highest&&(ticker.getHighPrice()>highTicker.getHighPrice())){
                 highTicker = ticker;
             }
-            else if(ticker.getClosePrice()>highTicker.getClosePrice()){
+            else if(!highest&&ticker.getClosePrice()>highTicker.getClosePrice()){
                 highTicker = ticker;
             }
             count++;
@@ -142,7 +142,7 @@ public class TickerList extends ArrayList<Ticker>{
             if(lowest&&(ticker.getLowPrice()<lowTicker.getLowPrice())){
                 lowTicker = ticker;
             }
-            else if(ticker.getClosePrice()<lowTicker.getClosePrice()){
+            else if(!lowest&&ticker.getClosePrice()<lowTicker.getClosePrice()){
                 lowTicker = ticker;
             }
             count++;
