@@ -5,6 +5,7 @@
  */
 package com.fluke.application;
 
+import com.fluke.data.processor.ReatimeDBReader;
 import com.fluke.data.processor.TradeExecutor;
 import com.fluke.model.StrategyManager;
 import com.fluke.util.Configuration;
@@ -18,10 +19,13 @@ import java.util.Arrays;
 public class TestApp {
     public static void main(String[] args) throws SQLException {
         TradeExecutor executor = new TradeExecutor();
-        Configuration config = Configuration.getDefaultConfiguration(executor, "2015-7-26", "2015-9-16");
-        //config.equities=Arrays.asList("AMBUJACEM");
+    // Configuration config = Configuration.getDefaultConfiguration(executor, "2015-1-26", "2015-9-21");
+    // config.dataSource = new ReatimeDBReader();
+     Configuration config = Configuration.getDefaultConfiguration(executor, "2013-1-26", "2013-3-15");
+   //   config.equities=Arrays.asList("AXISBANK");
+ //    config.equities = new ReatimeDBReader().getAllEquity();
         for(int i=0;i<1;i++){
-            StrategyManager manager = new StrategyManager(config,new Cloud());
+            StrategyManager manager = new StrategyManager(config,new Lion());
             config.executor.setOrderListener(manager);
             manager.run();
             config.extendEndDate();

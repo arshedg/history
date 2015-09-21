@@ -113,7 +113,12 @@ public class TickerList extends ArrayList<Ticker>{
         if(this.isEmpty()) return null;
         return this.get(pointer);
     }
-    
+      public Ticker getHighPrice(){
+        return getHighPrice(this.size(), isMarketOpen);
+    }
+    public Ticker getLeastPrice(){
+        return getLowPrice(this.size(), isMarketOpen);
+    }
     public Ticker getHighPrice(int days,boolean highest){
         int ptr = pointer;
         int count=0;

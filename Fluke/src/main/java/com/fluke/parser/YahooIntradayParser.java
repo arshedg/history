@@ -12,7 +12,7 @@ import org.apache.commons.lang.StringUtils;
  * @author arshed
  */
 public class YahooIntradayParser {
-   private static final String URL="http://chartapi.finance.yahoo.com/instrument/1.0/%s.NS/chartdata;type=quote;range=1d/json";
+   private static  String URL="http://chartapi.finance.yahoo.com/instrument/1.0/%s.NS/chartdata;type=quote;range=1d/json";
    protected Object parseData(String data) {
        Gson gson = new Gson();
        return gson.fromJson(data, IntradayDetails.class);
@@ -22,6 +22,9 @@ public class YahooIntradayParser {
    }
    protected String fetchData(String name) {
        name = name.replaceAll("&", "%26");
+       if(name.contains("^")){
+           URL="http://chartapi.finance.yahoo.com/instrument/1.0/%s/chartdata;type=quote;range=1d/json";
+       }
        String completeUrl = String.format(URL, name);
         InputStream in = null;
         try {

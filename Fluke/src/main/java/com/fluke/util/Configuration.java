@@ -47,6 +47,7 @@ public class Configuration {
         config.dataSource = new IntradayTickerFromDataBase(end);
         try {
             config.equities = new EquityDao().getAllEquity();
+            config.equities.remove(".NSEI");
         } catch (SQLException ex) {
             throw new RuntimeException("dao.get equities failed", ex);
         }

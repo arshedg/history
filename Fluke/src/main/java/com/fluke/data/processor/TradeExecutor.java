@@ -30,6 +30,7 @@ public class TradeExecutor implements TickerListener{
     Map<String,Perfomance> perfomance = new HashMap<>();
     List<Trade> tempTargetList = new ArrayList<>();
     OrderExecuteListener listener;
+    boolean log=true;
     @Override
     public void listen(String id, Ticker eq) {
         List<Trade> trades = tradeMap.get(id);
@@ -41,6 +42,9 @@ public class TradeExecutor implements TickerListener{
         for(Trade trade:trades){
             isSquareOff=false;
             if(!isPassingTrigger(trade, eq)){
+                continue;
+            }
+            if(trade.isPaused){
                 continue;
             }
             boolean isExecuted=false;
@@ -55,6 +59,8 @@ public class TradeExecutor implements TickerListener{
                isExecuted =  handleSell(eq,trade);
             }
             if(isExecuted){
+               // String type=trade.isLong?"buy":"sell ";
+                //System.out.println(type+" trade exeuted for "+id+" at time "+eq.getDate()+" price :"+trade.executedPrice);
                 callListener(trade);
                 fulfilled.add(trade);
             }

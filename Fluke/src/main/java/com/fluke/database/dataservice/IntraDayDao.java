@@ -66,9 +66,12 @@ public class IntraDayDao {
         }
     }
     private void addValues(QueryRunner runner, List<Series> values, String id) throws SQLException {
-        
+          if(id.contains("^")){
+                id=id.replace("^", ".");
+            }
         for(Series series:values){
-            runner.update(sql, id, series.getOpen(),series.getClose(),series.getHigh(),series.getLow(),series.getVolume(),series.getTimestamp(),"2015-9-16");
+          
+            runner.update(sql, id, series.getOpen(),series.getClose(),series.getHigh(),series.getLow(),series.getVolume(),series.getTimestamp(),"2015-9-21");
         }
     }
     
