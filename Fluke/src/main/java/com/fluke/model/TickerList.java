@@ -8,6 +8,7 @@ package com.fluke.model;
 
 import com.fluke.model.ticker.Ticker;
 import com.fluke.data.processor.TickerDataSource;
+import com.fluke.realtime.data.DataStreamLostException;
 import com.fluke.util.Util;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -44,7 +45,7 @@ public class TickerList extends ArrayList<Ticker>{
    }
      Ticker getNextTicker(){
          if(isMaketClosed||!source.hasNext(name)){
-             return null;
+             throw new DataStreamLostException();
          }
          if(pointer<this.size()-1){
              return this.get(pointer++);
@@ -57,7 +58,7 @@ public class TickerList extends ArrayList<Ticker>{
             
          }
         if(tick == null){
-            throw new RuntimeException("source returning empty ticker");
+            return null;
         }
         volume+=tick.getVolume();
         if(isMarketClosed(tick.getDate())){

@@ -11,6 +11,7 @@ import com.fluke.model.Equity;
 import com.fluke.model.Index;
 import com.fluke.model.Trade;
 import com.fluke.model.ticker.Ticker;
+import com.fluke.realtime.data.DataStreamLostException;
 import com.fluke.strategy.Strategy;
 import com.fluke.util.Configuration;
 import java.util.ArrayList;
@@ -54,18 +55,27 @@ public class StrategyManager implements OrderExecuteListener {
     }
     public List<Equity> execute(){
         List<Equity> valid = new ArrayList<>();
+        boolean invalid=false;
          for(Equity equity:equities){
+             Ticker currentTicker=null;
              
-            Ticker currentTicker = equity.intraday.getNextTicker();
+             try{
+                currentTicker = equity.intraday.getNextTicker();
+             }catch(DataStreamLostException ex){
+                // System.out.println("Data lost for "+equity.name);
+                 alertEndOfData(equity.getName(),equity.intraday.getCurrentTicker());
+                 invalid=true;
+             }
             if(currentTicker!=null){
                // System.out.println("Processing "+equity.getName()+" time:"+equity.intraday.getCurrentTicker().getDate());
                 index.loadNext(currentTicker.getDate());
                 callStrategies(equity,currentTicker);
                 callListeners(equity.getName(),currentTicker);
-                valid.add(equity);
-            }else{
-                alertEndOfData(equity.getName(),equity.intraday.getCurrentTicker());
             }
+            if(!invalid){
+                valid.add(equity);
+            }
+            invalid=false;
         }
          return valid;
     }

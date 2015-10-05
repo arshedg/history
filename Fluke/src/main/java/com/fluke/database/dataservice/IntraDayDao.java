@@ -8,14 +8,18 @@ package com.fluke.database.dataservice;
 import com.fluke.data.intraday.IntradayDetails;
 import com.fluke.model.ticker.IntradayTicker;
 import com.fluke.data.intraday.Series;
+import com.fluke.data.processor.ReatimeDBReader;
 import com.fluke.database.DatabaseProperty;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 /**
  *
@@ -23,8 +27,37 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
  */
 public class IntraDayDao {
     
-    private static String sql="insert into intraday (equity,openPrice,closePrice,highPrice,lowPrice,volume,time,date) values(?,?,?,?,?,?,?,?)";
+    private static String sql="insert into intraday (equity,openPrice,closePrice,highPrice,lowPrice,volume,time,date) values(?,?,?,?,?,?,?,Date(?))";
 
+      QueryRunner runner = new QueryRunner( DatabaseProperty.getDataSource() );
+    public void insertRealtimeData(IntradayDetails data){
+      
+        String id = data.getMeta().getId().toUpperCase();
+        Timestamp time = new ReatimeDBReader().getLastTimeStamp(id);
+        try{
+            if(time==null){
+                addRealtimeValues(runner, data.getSeries(), id);
+            }else
+            {
+                addRealtimeValues(runner,data.getSeries().stream().filter(d->d.getTimestamp().after(time)).collect(Collectors.toList()),id);
+            }
+        }
+        catch(Exception e){
+            throw new RuntimeException(e);
+        }
+
+    }
+       public Timestamp getLastTimeStamp(String equity){
+        try {
+            String query="select max(time) from realtime where equity='"+equity+"'";
+           
+            ScalarHandler rsh = new ScalarHandler();
+            return (Timestamp) runner.query(query, rsh);
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        
+    }
     public void insert(IntradayDetails data){ 
         QueryRunner runner = new QueryRunner( DatabaseProperty.getDataSource() );
         try {
@@ -36,10 +69,11 @@ public class IntraDayDao {
         }
     }
     public void insert(String id,IntradayTicker ticker){
-        QueryRunner runner = new QueryRunner( DatabaseProperty.getDataSource() );
+
+        String query="insert into realtime (equity,openPrice,closePrice,highPrice,lowPrice,volume,time,date) values(?,?,?,?,?,?,?,Date(?))";
         try {
             
-            runner.update(sql, id, ticker.getOpenPrice(),ticker.getClosePrice(),ticker.getHighPrice(),ticker.getLowPrice(),ticker.getVolume(),ticker.getTime());
+            runner.update(query, id, ticker.getOpenPrice(),ticker.getClosePrice(),ticker.getHighPrice(),ticker.getLowPrice(),ticker.getVolume(),ticker.getTime(),ticker.getTime());
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
@@ -71,10 +105,27 @@ public class IntraDayDao {
             }
         for(Series series:values){
           
-            runner.update(sql, id, series.getOpen(),series.getClose(),series.getHigh(),series.getLow(),series.getVolume(),series.getTimestamp(),"2015-9-21");
+            runner.update(sql, id, series.getOpen(),series.getClose(),series.getHigh(),series.getLow(),series.getVolume(),series.getTimestamp(),series.getTimestamp());
         }
     }
-    
+    public void insertRealtime(String id,IntradayTicker ticker){
+        String insert="insert into realtime (equity,openPrice,closePrice,highPrice,lowPrice,volume,time,date) values(?,?,?,?,?,?,?,Date(?))"; 
+        try {
+            runner.update(insert, id, ticker.getOpenPrice(),ticker.getClosePrice(),ticker.getHighPrice(),ticker.getLowPrice(),ticker.getVolume(),ticker.getTime(),ticker.getTime());
+        } catch (SQLException ex) {
+           throw new RuntimeException(ex);
+        }
+    }
+    private void addRealtimeValues(QueryRunner runner, List<Series> values, String id) throws SQLException {
+        String insert="insert into realtime (equity,openPrice,closePrice,highPrice,lowPrice,volume,time,date) values(?,?,?,?,?,?,?,Date(?))";  
+        if(id.contains("^")){
+                id=id.replace("^", ".");
+            }
+        for(Series series:values){
+          
+            runner.update(insert, id, series.getOpen(),series.getClose(),series.getHigh(),series.getLow(),series.getVolume(),series.getTimestamp(),series.getTimestamp());
+        }
+    }
     public List<IntradayTicker> getIntraday(String name,String date) {
         try {
             QueryRunner run = new QueryRunner( DatabaseProperty.getDataSource() );
@@ -82,6 +133,14 @@ public class IntraDayDao {
             Object[] params = new Object[]{name, date};
             ResultSetHandler rsh = new BeanListHandler(IntradayTicker.class); 
             return (List<IntradayTicker>)run.query(select, rsh,params);
+        } catch (SQLException ex) {
+           throw new RuntimeException(ex);
+        }
+    }
+
+    public void deleteRealTime(String name) {
+        try {
+            runner.update("delete from realtime where equity='"+name+"'");
         } catch (SQLException ex) {
            throw new RuntimeException(ex);
         }

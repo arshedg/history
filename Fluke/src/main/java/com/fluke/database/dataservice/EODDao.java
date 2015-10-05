@@ -49,7 +49,7 @@ public class EODDao {
         }
     }
     public Date getNextTradingDay(String date) throws SQLException{
-        String sql="select cast(min(date) as date) from EOD where date > '"+date+"'";
+        String sql="select cast(min(date) as date) from intraday where date > '"+date+"'";
         QueryRunner run = new QueryRunner( DatabaseProperty.getDataSource() );
         ResultSetHandler rsh = new ArrayHandler();
         Object[] query = (Object[]) run.query(sql, rsh);

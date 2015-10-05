@@ -25,6 +25,7 @@ public class Trade {
     public long parentTrade;
     public boolean cancelRelatedTrade = false;
     public boolean isPaused=false;
+    public float exitPrice=0f;
     /*
     do we really need encapsulation everywhere
     */

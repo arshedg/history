@@ -9,7 +9,9 @@ import com.fluke.data.intraday.IntradayDetails;
 import com.fluke.model.ticker.IntradayTicker;
 import com.fluke.data.intraday.Meta;
 import com.fluke.data.intraday.Series;
+import com.fluke.data.processor.ReatimeDBReader;
 import com.fluke.database.DatabaseProperty;
+import com.fluke.parser.YahooIntradayParser;
 import com.fluke.util.Util;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -35,6 +37,14 @@ public class IntraDayDaoTest {
          
     }
     @Test
+    public void realtimeData(){
+        YahooIntradayParser parser = new YahooIntradayParser();
+        IntradayDetails details = parser.getIntradayDetails("INFY");
+        IntraDayDao dao = new IntraDayDao();
+        dao.insertRealtimeData(details);
+   
+    }
+   // @Test
     public void testBatchUpdate(){
         IntraDayDao dao = new IntraDayDao();
         IntradayTicker ticker1 = new IntradayTicker();
@@ -56,7 +66,7 @@ public class IntraDayDaoTest {
         series.setHigh(20f);
         series.setLow(10f);
         series.setClose(16f);
-        series.setVolume(55l);
+        series.setVolume(55);
         series.setTimestamp(1438746899l);
         IntradayDetails details = new IntradayDetails();
         details.setMeta(meta);
@@ -73,7 +83,7 @@ public class IntraDayDaoTest {
         Assert.assertEquals(1438746899l*1000, ticker.getTime().getTime());
         
     }
-    @Test
+    //@Test
     public void testTimeStampConversion(){
         IntraDayDao dao = new IntraDayDao();
         List<IntradayTicker> tickers = dao.getIntraday("PARAL", "2010-7-27"); 

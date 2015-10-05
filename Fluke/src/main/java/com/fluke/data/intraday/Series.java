@@ -24,7 +24,7 @@ public class Series {
     @Expose
     private  Float open;
     @Expose
-    private Long volume;
+    private int volume;
 
     /**
      *
@@ -110,7 +110,7 @@ public class Series {
      *
      * @return The volume
      */
-    public Long getVolume() {
+    public int getVolume() {
         return volume;
     }
 
@@ -118,7 +118,7 @@ public class Series {
      *
      * @param volume The volume
      */
-    public void setVolume(Long volume) {
+    public void setVolume(int volume) {
         this.volume = volume;
     }
 

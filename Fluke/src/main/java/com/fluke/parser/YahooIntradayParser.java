@@ -2,8 +2,11 @@ package com.fluke.parser;
 
 import com.fluke.data.intraday.IntradayDetails;
 import com.google.gson.Gson;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 
@@ -27,15 +30,24 @@ public class YahooIntradayParser {
        }
        String completeUrl = String.format(URL, name);
         InputStream in = null;
+        URL uri;
         try {
-              in = new URL( completeUrl ).openStream();
+              uri = new URL(completeUrl);
+              in = uri.openStream();
               return filter(IOUtils.toString( in )); 
         }catch(Exception ex){
             //error while geting historic data, no need to log
             throw new RuntimeException(ex);
         }
         finally {
-            IOUtils.closeQuietly(in);
+           if(in!=null){
+               try {
+                   in.close();
+               } catch (IOException ex) {
+                   throw new RuntimeException(ex);
+               }
+           }
+        
         }
         
    }

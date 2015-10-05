@@ -44,15 +44,17 @@ public class Lion implements Strategy{
         float currentVolume = currentTicker.getVolume();
         int maxVolume = intra.stream().map(t->t.getVolume()).max(Integer::compare).get();
         if(maxVolume==0) return null;
-         double turnover = maxVolume*highest;
+      double turnover = maxVolume*highest;
       
-        if(turnover>5000000&&currentVolume>=maxVolume&&highest<=currentTicker.getHighPrice()){
+        if(currentVolume>=maxVolume&&highest<=currentTicker.getHighPrice()){
            //   
            // System.out.println(eq.getName()+" found at "+currentTicker.getDate()+" buy on further rise");
             
               int secondMaxVolume = getSecondHighestVolume(maxVolume, intra);
                  float volumeDiff = Util.findPercentageChange(maxVolume, secondMaxVolume);
-            if(volumeDiff>8&&getPriceMomentum(highest, intra)>.7){
+                 float low = intra.getLeastPrice().getClosePrice();
+                 float level = Util.findPercentageChange(highest, low);
+            if(volumeDiff>25&&!isStep(intra)&&level>2){
               
                 Entry e = new Entry();
                 e.price = highest;
@@ -62,8 +64,15 @@ public class Lion implements Strategy{
         }
         return null;
     }
+    boolean isStep(TickerList intra){
+        float cp = intra.getCurrentTicker().getClosePrice();
+        float pp = intra.getTickBeforeNdays(1).getClosePrice();
+        if(Util.findPercentageChange(cp, pp)<.3) return true;
+        return false;
+        
+    }
     int getSecondHighestVolume(int highestVolume,TickerList intra){
-        return intra.stream().filter(t->t.getVolume()!=highestVolume).map(t->t.getVolume()).max(Integer::compare).get();
+        return intra.subList(2,intra.size()-2).stream().filter(t->t.getVolume()!=highestVolume).map(t->t.getVolume()).max(Integer::compare).get();
     }
     float getPriceMomentum(float price,TickerList intra){
         float nextPrice = intra.subList(0, intra.size()-3).stream().map(t->t.getHighPrice()).max(Double::compare).get();
@@ -72,7 +81,7 @@ public class Lion implements Strategy{
     @Override
     public Trade closePosition(Equity eq, Index index, int entryPoint, Trade executedTrade) {
         float price = eq.intraday.getCurrentTicker().getClosePrice();
-        float stopLoss = Util.findTargetStopLoss(executedTrade.executedPrice, .8f);
+        float stopLoss = Util.findTargetStopLoss(executedTrade.executedPrice, .6f);
         if(stopLoss>price){
             Trade trade= new Trade();
             trade.isAtMarketPrice = false;
@@ -86,7 +95,9 @@ public class Lion implements Strategy{
 
     @Override
     public boolean cancelPosition(Equity eq, Index index, int entryPoint, Trade placeTrade) {
-        if(Util.getMinutes(eq.getIntraday().getCurrentTicker().getDate())>14*60-30) return true;
+        if(Util.getMinutes(eq.getIntraday().getCurrentTicker().getDate())>14*60-30){ 
+//            System.out.println("cancel position "+eq.getName()+" at "+eq.intraday.getCurrentTicker().getDate());
+            return true;}
         return !isBullish(index);
 
     }
@@ -115,6 +126,11 @@ public class Lion implements Strategy{
            return null;
        }
        float change = Util.findPercentageChange(e.price, currentTicker.getHighPrice());
+       if(change<0){
+           watch.remove(eq.getName());
+           timer.remove(eq.getName());
+           return null;
+       }
        Integer time = timer.get(eq.getName());
        if(time==null&&currentTicker.getHighPrice()>e.price){
            time=0;
@@ -127,14 +143,18 @@ public class Lion implements Strategy{
            return null;
        }
       
-       if(change>.01){
+       if(change>.2f){
            Trade trade = new Trade();
            trade.isAtMarketPrice=false;
-           trade.openPrice = Util.findTargetPrice(e.price,.21f);
-           trade.triggerPrice = trade.openPrice-0.01f;
-           trade.target = Util.findTargetPrice(e.price, .7f);
+           trade.openPrice = Util.findTargetPrice(e.price,.31f);
+           trade.triggerPrice = trade.openPrice-0.05f;
+           trade.target = Util.findTargetPrice(e.price, .9f);
+           trade.exitPrice = Util.findTargetStopLoss(trade.openPrice, .6f);
            watch.remove(eq.getName());
            timer.remove(eq.getName());
+           LionHealer.order.put(eq.getName(), trade.triggerPrice);
+           System.out.println("Buy position with trigger "+trade.triggerPrice+eq.getName()+" at "+eq.intraday.getCurrentTicker().getDate()+"\t target:"+trade.target);
+           //Util.placeBuy(eq.getName(), 1, trade.openPrice, trade.triggerPrice);
            return trade;
        }else{
            timer.put(eq.getName(), ++time);

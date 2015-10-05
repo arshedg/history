@@ -19,19 +19,21 @@ import java.util.Arrays;
 public class TestApp {
     public static void main(String[] args) throws SQLException {
         TradeExecutor executor = new TradeExecutor();
-    // Configuration config = Configuration.getDefaultConfiguration(executor, "2015-1-26", "2015-9-21");
-    // config.dataSource = new ReatimeDBReader();
-     Configuration config = Configuration.getDefaultConfiguration(executor, "2013-1-26", "2013-3-15");
-   //   config.equities=Arrays.asList("AXISBANK");
- //    config.equities = new ReatimeDBReader().getAllEquity();
-        for(int i=0;i<1;i++){
-            StrategyManager manager = new StrategyManager(config,new Lion());
+       ReatimeDBReader reader = new ReatimeDBReader();
+       // reader.startThread();
+    Configuration config = Configuration.getDefaultConfiguration(executor, "2015-1-26", "2015-9-16");
+    config.dataSource = reader;
+   // Configuration config = Configuration.getDefaultConfiguration(executor, "2013-1-26", "2013-2-2");
+  //    config.equities=reader.getAllEquity();
+  // config.equities=Arrays.asList("HAVELLS");
+        for(int i=0;i<2;i++){
+            StrategyManager manager = new StrategyManager(config,new Lion(),new LionHealer(),new Vulture(),new VultureHealer());
             config.executor.setOrderListener(manager);
             manager.run();
             config.extendEndDate();
         }
         config.executor.status();
         
-        
+//        
     }
 }

@@ -6,6 +6,7 @@
 package com.fluke.model;
 
 import com.fluke.model.ticker.Ticker;
+import com.fluke.realtime.data.DataStreamLostException;
 import com.fluke.util.Configuration;
 import com.fluke.util.Util;
 import java.util.Date;
@@ -27,7 +28,11 @@ public class Index {
                 return;
             }
         }
+        try{
         ticker = nifty.intraday.getNextTicker();
+        }catch(DataStreamLostException ex){
+            return;
+        } 
         if(ticker==null) return;
        Integer  indexTime = getMinutes(Util.getTime(ticker.getDate()));
         Integer equityTime = getMinutes(Util.getTime(date));

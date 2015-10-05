@@ -112,9 +112,24 @@ public class TradeExecutor implements TickerListener{
         }
 
     }
-
+    private int getQuantity(float price){
+        int quantity=(int) (10000/price);
+        return quantity==0?1:quantity;
+    }
     public void placeOrder(Trade trade) {
+        int quantity=(int) (10000/trade.openPrice);
+        quantity = quantity==0?1:quantity;
+        String key=trade.equity+":"+trade.strategy;
         addToTradeMap(trade);
+        if(openPositions.get(key)!=null){
+            return;
+        }
+        if(trade.isLong){
+            Util.placeBuy(trade.equity, quantity, trade.openPrice, trade.triggerPrice);
+        }else{
+            Util.placeSell(trade.equity, quantity, trade.openPrice, trade.triggerPrice);
+        }
+        
     }
     public void setOrderListener(OrderExecuteListener listener){
         this.listener=listener;
@@ -133,6 +148,7 @@ public class TradeExecutor implements TickerListener{
        OpenPosition position = openPositions.get(key);
        if(position==null){
            //new trade, not square off
+           placeTarget(trade);
            position = new OpenPosition();
            position.price = price;
            position.trade = trade;
@@ -174,6 +190,7 @@ public class TradeExecutor implements TickerListener{
        String key=trade.equity+":"+trade.strategy;
        OpenPosition position = openPositions.get(key);
        if(position==null){
+           placeTarget(trade);
            position = new OpenPosition();
            position.price = price;
            position.trade = trade;
@@ -273,6 +290,19 @@ public class TradeExecutor implements TickerListener{
         tempTargetList.add(target);
     }
 
+    private void placeTarget(Trade trade) {
+        int quan = getQuantity(trade.openPrice);
+        if(trade.isLong){
+            Util.placeSell(trade.equity, quan, trade.target);
+            float maxLoss=Util.findTargetStopLoss(trade.openPrice, .6f);
+            Util.placeSell(trade.equity, quan, trade.exitPrice-0.05f, trade.exitPrice);
+        }else{
+            Util.placeBuy(trade.equity, quan, trade.target);
+            float maxLoss=Util.findTargetPrice(trade.openPrice, 1f);
+            Util.placeBuy(trade.equity, quan, trade.exitPrice+0.05f,trade.exitPrice);
+        }
+        System.out.println("Traget and stop loss set for "+trade.equity);
+    }
     
 
     
