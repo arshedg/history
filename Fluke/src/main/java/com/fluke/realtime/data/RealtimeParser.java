@@ -21,10 +21,17 @@ public class RealtimeParser implements Runnable{
     public void insert(IntradayTicker ticker){
         dao.insert(name,ticker);
     }
-   
+   String clean(String data){
+       String trimmed = data.trim();
+       if(data.startsWith("[")){
+           trimmed = trimmed.substring(1, trimmed.length()-1);
+       }
+       return trimmed;
+   }
     protected Object parseData(String data,Class claz){
+        
         Gson gson = new Gson();
-        return gson.fromJson(data, claz);
+        return gson.fromJson(clean(data), claz);
         
     }
 

@@ -29,4 +29,5 @@ public class EODTicker extends Ticker {
     public void setAdjustedClose(float adjustedClose) {
         this.adjustedClose = adjustedClose;
     }
+
 }

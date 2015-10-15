@@ -23,6 +23,7 @@ import java.util.Map;
 class Entry{
     float price;
     int volume;
+    Ticker ticker;
 }
 public class Lion implements Strategy{
 
@@ -36,7 +37,7 @@ public class Lion implements Strategy{
         
         
         TickerList intra = eq.intraday;
-        if(intra.size()<30) return null;
+        if(intra.size()<20) return null;
         float highest = intra.getHighPrice().getHighPrice();
         if(highest<100) return null;
         Ticker currentTicker = intra.getCurrentTicker();
@@ -48,7 +49,7 @@ public class Lion implements Strategy{
       
         if(currentVolume>=maxVolume&&highest<=currentTicker.getHighPrice()){
            //   
-           // System.out.println(eq.getName()+" found at "+currentTicker.getDate()+" buy on further rise");
+            System.out.println(eq.getName()+" found at "+currentTicker.getDate()+" buy on further rise");
             
               int secondMaxVolume = getSecondHighestVolume(maxVolume, intra);
                  float volumeDiff = Util.findPercentageChange(maxVolume, secondMaxVolume);
@@ -59,7 +60,7 @@ public class Lion implements Strategy{
                 Entry e = new Entry();
                 e.price = highest;
                 e.volume = maxVolume;
-                watch.put(eq.getName(), e);
+               // watch.put(eq.getName(), e);
             }
         }
         return null;

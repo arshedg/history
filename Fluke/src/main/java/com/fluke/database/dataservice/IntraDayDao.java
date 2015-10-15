@@ -10,6 +10,7 @@ import com.fluke.model.ticker.IntradayTicker;
 import com.fluke.data.intraday.Series;
 import com.fluke.data.processor.ReatimeDBReader;
 import com.fluke.database.DatabaseProperty;
+import com.fluke.model.ticker.Ticker;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
@@ -46,6 +47,16 @@ public class IntraDayDao {
             throw new RuntimeException(e);
         }
 
+    }
+    public Float getPrevsDayPrice(String equity,String date){
+        String query =" select closePrice from intraday where equity=? and date < ? order by time desc limit 1";
+        ScalarHandler rsh = new ScalarHandler();
+        try {
+           return (Float) runner.query(query, rsh,equity,date);
+
+        } catch (SQLException ex) {
+            throw new RuntimeException();
+        }
     }
        public Timestamp getLastTimeStamp(String equity){
         try {

@@ -21,13 +21,13 @@ import org.apache.commons.dbutils.handlers.ColumnListHandler;
 public class EquityDao {
     
     public List<String> getAllEquity() throws SQLException{
-        String sql = "select distinct equity from ticker";
+        String sql = "select distinct equity from EOD";
         QueryRunner run = new QueryRunner( DataSourceFactory.getDataSource() );
         ResultSetHandler rsh = new ColumnListHandler();
        return (List<String>) run.query(sql, rsh);
     }
     public List<String> getAllEquity(String grade) throws SQLException{
-        String sql = "select distinct equity from ticker where grade='"+grade+"'";
+        String sql = "select distinct equity from EOD where grade='"+grade+"'";
         QueryRunner run = new QueryRunner( DataSourceFactory.getDataSource() );
         ResultSetHandler rsh = new ColumnListHandler();
        return (List<String>) run.query(sql, rsh);
@@ -39,7 +39,7 @@ public class EquityDao {
         
     }
     public Date getLastTickerDetails(String equity) throws SQLException{
-        String sql = " select cast(max(date) as date) from ticker  where equity='"+equity+"'";
+        String sql = " select cast(max(date) as date) from EOD  where equity='"+equity+"'";
         QueryRunner run = new QueryRunner(DataSourceFactory.getDataSource());
         ResultSetHandler rsh = new ArrayHandler();
         Object[] query = (Object[]) run.query(sql, rsh);

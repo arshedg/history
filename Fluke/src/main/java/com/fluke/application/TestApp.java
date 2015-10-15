@@ -5,6 +5,7 @@
  */
 package com.fluke.application;
 
+import com.fluke.data.processor.RealTimeExecutor;
 import com.fluke.data.processor.ReatimeDBReader;
 import com.fluke.data.processor.TradeExecutor;
 import com.fluke.model.StrategyManager;
@@ -19,15 +20,16 @@ import java.util.Arrays;
 public class TestApp {
     public static void main(String[] args) throws SQLException {
         TradeExecutor executor = new TradeExecutor();
-       ReatimeDBReader reader = new ReatimeDBReader();
+      ReatimeDBReader reader = new ReatimeDBReader();
        // reader.startThread();
-    Configuration config = Configuration.getDefaultConfiguration(executor, "2015-1-26", "2015-9-16");
+   Configuration config = Configuration.getDefaultConfiguration(executor, "2015-1-1", "2015-10-1");
     config.dataSource = reader;
-   // Configuration config = Configuration.getDefaultConfiguration(executor, "2013-1-26", "2013-2-2");
+    config.executor = new RealTimeExecutor();
+ //  Configuration config = Configuration.getDefaultConfiguration(executor, "2013-1-26", "2013-6-2");
   //    config.equities=reader.getAllEquity();
-  // config.equities=Arrays.asList("HAVELLS");
-        for(int i=0;i<2;i++){
-            StrategyManager manager = new StrategyManager(config,new Lion(),new LionHealer(),new Vulture(),new VultureHealer());
+  config.equities=Arrays.asList("INFY","TCS");
+        for(int i=0;i<1;i++){
+            StrategyManager manager = new StrategyManager(config,new S1());
             config.executor.setOrderListener(manager);
             manager.run();
             config.extendEndDate();

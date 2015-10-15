@@ -44,7 +44,7 @@ public class TickerDao {
     }
     public List<Ticker> getTickers(String equity,Date fromDate,Date toDate) throws SQLException{
         QueryRunner run = new QueryRunner( DataSourceFactory.getDataSource() );
-        String sql = "select * from ticker  where equity = ? and date between ? and ? order by date";
+        String sql = "select * from EOD  where equity = ? and date between ? and ? order by date";
         String from = Util.getDate(fromDate);
         String to =   Util.getDate(toDate);
         Object[] params = new Object[]{equity, from,to};

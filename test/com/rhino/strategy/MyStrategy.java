@@ -15,7 +15,7 @@ public class MyStrategy extends StrategyBase{
 
     @Override
     public boolean canEnter(Equity equity) {
-        
+        return false;
     }
 
     @Override

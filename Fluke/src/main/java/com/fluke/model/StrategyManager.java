@@ -5,6 +5,7 @@
  */
 package com.fluke.model;
 
+import com.fluke.data.processor.ITradeExecutor;
 import com.fluke.data.processor.TickerListener;
 import com.fluke.data.processor.TradeExecutor;
 import com.fluke.model.Equity;
@@ -33,7 +34,7 @@ public class StrategyManager implements OrderExecuteListener {
     Map<String,Trade> executedOrders = new HashMap<>();
     Map<String,Integer> pointers = new HashMap<>();
     List<TickerListener> listeners;
-    TradeExecutor executor;
+    ITradeExecutor executor;
     public StrategyManager(Configuration config,Strategy... strategies) {
         this.config = config;
         executor = config.executor;

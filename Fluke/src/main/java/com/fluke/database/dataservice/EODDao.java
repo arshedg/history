@@ -18,6 +18,7 @@ import com.fluke.util.Util;
 import com.fluke.util.Util;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -60,12 +61,25 @@ public class EODDao {
     }
     public List<EODTicker> getEODTickers(String equity,Date fromDate,Date toDate) throws SQLException{
         QueryRunner run = new QueryRunner( DatabaseProperty.getDataSource() );
-        String sql = "select * from EOD  where equity = ? and date between ? and ? order by date";
+        String sql = "select * from EOD  where equity = ? and date between '%s' and '%s' order by date";
         String from = Util.getDate(fromDate);
         String to =   Util.getDate(toDate);
-        Object[] params = new Object[]{equity, from,to};
+        sql = String.format(sql, from,to);
+        Object[] params = new Object[]{equity};
         ResultSetHandler rsh = new BeanListHandler(EODTicker.class);
-        return (List<EODTicker>)run.query(sql, rsh,params); 
+        return filterDupicateDate((List<EODTicker>)run.query(sql, rsh,params)); 
+    }
+    private List<EODTicker> filterDupicateDate(List<EODTicker> tickers){
+        List<EODTicker> array = new ArrayList<>();
+        Date old = new Date();
+        for(EODTicker ticker:tickers){
+            if(!ticker.getDate().equals(old)){
+                array.add(ticker);
+            }
+            old = ticker.getDate();
+        }
+        return array;
+        
     }
     public int insertEODTicker(String equity,EODTicker ticker) throws SQLException{
         String sql="insert into EOD (equity,openPrice,closePrice,highPrice,lowPrice,adjustedClose,volume,date) values(?,?,?,?,?,?,?,?)";

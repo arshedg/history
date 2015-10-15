@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  *
  * @author arshed
  */
-public class TradeExecutor implements TickerListener{
+public class TradeExecutor implements ITradeExecutor{
 
     
     Map<String,List<Trade>> tradeMap = new HashMap<>();
@@ -125,9 +125,9 @@ public class TradeExecutor implements TickerListener{
             return;
         }
         if(trade.isLong){
-            Util.placeBuy(trade.equity, quantity, trade.openPrice, trade.triggerPrice);
+        //    Util.placeBuy(trade.equity, quantity, trade.openPrice, trade.triggerPrice);
         }else{
-            Util.placeSell(trade.equity, quantity, trade.openPrice, trade.triggerPrice);
+          //  Util.placeSell(trade.equity, quantity, trade.openPrice, trade.triggerPrice);
         }
         
     }
@@ -293,15 +293,15 @@ public class TradeExecutor implements TickerListener{
     private void placeTarget(Trade trade) {
         int quan = getQuantity(trade.openPrice);
         if(trade.isLong){
-            Util.placeSell(trade.equity, quan, trade.target);
+            //Util.placeSell(trade.equity, quan, trade.target);
             float maxLoss=Util.findTargetStopLoss(trade.openPrice, .6f);
-            Util.placeSell(trade.equity, quan, trade.exitPrice-0.05f, trade.exitPrice);
+          //  Util.placeSell(trade.equity, quan, trade.exitPrice-0.05f, trade.exitPrice);
         }else{
-            Util.placeBuy(trade.equity, quan, trade.target);
+            //Util.placeBuy(trade.equity, quan, trade.target);
             float maxLoss=Util.findTargetPrice(trade.openPrice, 1f);
-            Util.placeBuy(trade.equity, quan, trade.exitPrice+0.05f,trade.exitPrice);
+        //    Util.placeBuy(trade.equity, quan, trade.exitPrice+0.05f,trade.exitPrice);
         }
-        System.out.println("Traget and stop loss set for "+trade.equity);
+      //  System.out.println("Traget and stop loss set for "+trade.equity);
     }
     
 

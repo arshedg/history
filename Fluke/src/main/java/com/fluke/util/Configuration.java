@@ -5,6 +5,7 @@
  */
 package com.fluke.util;
 
+import com.fluke.data.processor.ITradeExecutor;
 import com.fluke.data.processor.IntradayTickerFromDataBase;
 import com.fluke.data.processor.TickerDataSource;
 import com.fluke.data.processor.TradeExecutor;
@@ -27,7 +28,7 @@ public class Configuration {
     public TickerDataSource dataSource;
     public List<String> equities;
     float  tradeSize;
-    public TradeExecutor executor;
+    public ITradeExecutor executor;
     public boolean extendEndDate(){
         Date date;
         try {

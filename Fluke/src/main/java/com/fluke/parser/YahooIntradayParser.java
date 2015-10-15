@@ -25,6 +25,9 @@ public class YahooIntradayParser {
    }
    protected String fetchData(String name) {
        name = name.replaceAll("&", "%26");
+       if(name.equals(".NSEI")){
+           name="^NSEI";
+       }
        if(name.contains("^")){
            URL="http://chartapi.finance.yahoo.com/instrument/1.0/%s/chartdata;type=quote;range=1d/json";
        }

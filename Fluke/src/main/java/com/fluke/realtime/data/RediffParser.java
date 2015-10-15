@@ -29,7 +29,7 @@ import org.apache.commons.io.IOUtils;
 public class RediffParser extends RealtimeParser {
     
 
-    private final String baseUrl = "http://money.rediff.com/money1/currentstatus.php?companycode=%s";
+    private final String baseUrl = "http://money.rediff.com/money1/current_status_new.php?companylist=%s";
     private String url;
     Class model = RediffData.class;
     private int counter = 0;
@@ -44,7 +44,11 @@ public class RediffParser extends RealtimeParser {
     public RediffParser(String name,String date) {
         this.name = name;
         this.date = date;
-        url = String.format(baseUrl, name);
+        if(this.name.equals(".NSEI")){
+            url = String.format(baseUrl, "17023929");
+        }else{
+            url = String.format(baseUrl, name);
+        }
     }
     public void fillData(){
         Timestamp lastUpdated = dao.getLastTimeStamp(name);

@@ -35,7 +35,7 @@ public class Vulture implements Strategy{
             return confirmer(eq,index);
         }
         TickerList intra = eq.intraday;
-        if(intra.size()<30) return null;
+        if(intra.size()<20) return null;
         float least = (float) intra.stream().mapToDouble(t->t.getLowPrice()).min().getAsDouble();//intra.getLeastPrice().getLowPrice();
         if(least<100) return null;
         Ticker currentTicker = intra.getCurrentTicker();
@@ -43,7 +43,7 @@ public class Vulture implements Strategy{
         float currentVolume = currentTicker.getVolume();
         int maxVolume = intra.stream().map(t->t.getVolume()).max(Integer::compare).get();
         if(currentVolume>=maxVolume&&least==currentTicker.getLowPrice()){
-          //  System.out.println(eq.getName()+" found at "+currentTicker.getDate()+" Sell on further loss");
+            System.out.println(eq.getName()+" found at "+currentTicker.getDate()+" Sell on further loss");
                  int secondMaxVolume = getSecondHighestVolume(maxVolume, intra);
                  float volumeDiff = Util.findPercentageChange(maxVolume, secondMaxVolume);
                  float high = intra.getHighPrice().getHighPrice();
@@ -52,7 +52,7 @@ public class Vulture implements Strategy{
                // System.out.println(eq.getName()+" found at "+currentTicker.getDate()+" density check passed");
                 EntryV e = new EntryV();
                 e.price = least;
-                e.volume = maxVolume;
+              //  e.volume = maxVolume;
                 watch.put(eq.getName(), e);
             }
         }

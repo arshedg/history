@@ -17,6 +17,8 @@ public class Test {
     public static void main(String[] args) throws SQLException {
         new EquityDao().getAllEquity().stream()
                 .forEach(v->{
+
+                
                      RediffParser parser = new RediffParser(v, "2015-10-5");
                     new Thread(parser).start();
                 });

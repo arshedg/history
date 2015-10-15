@@ -7,7 +7,6 @@ package com.service.launch;
 
 import com.rhino.data.db.TickerDao;
 import com.rhino.data.fetcher.YahooParser;
-import com.rhino.strategy.RiverGrowth;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;

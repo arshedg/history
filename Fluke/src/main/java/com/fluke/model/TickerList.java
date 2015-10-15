@@ -77,6 +77,9 @@ public class TickerList extends ArrayList<Ticker>{
         int min = Integer.parseInt(hourMin[1]);
         return hour>=15&&min>29;
     }
+    public int getHighestVolume(){
+        return this.stream().map(t->t.getVolume()).max(Integer::compare).get();
+    }
     void rewind(){
         pointer--;
         if(pointer<0){ 
