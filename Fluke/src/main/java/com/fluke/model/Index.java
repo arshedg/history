@@ -35,10 +35,17 @@ public class Index {
         } 
         if(ticker==null) return;
        Integer  indexTime = getMinutes(Util.getTime(ticker.getDate()));
-        Integer equityTime = getMinutes(Util.getTime(date));
+       Integer equityTime = getMinutes(Util.getTime(date));
         if(!indexTime.equals(equityTime)){
             correctIndex(indexTime, equityTime);
         }
+    }
+   public float getNiftyChange(){
+        int niftyPosition = this.nifty.intraday.getPointer();
+        if(niftyPosition<30) return 0;
+        float current = this.nifty.getIntraday().getCurrentTicker().getClosePrice();
+        float prevsNifty = this.nifty.getPrevsPrice();
+        return Util.findPercentageChange(current, prevsNifty);
     }
     private boolean correctIndex(int indexTime,int stockTime){
         int diff = stockTime-indexTime;
@@ -81,7 +88,11 @@ public class Index {
         if(forward){
             Ticker ticker;
             do{
+                try{
                   ticker = nifty.intraday.getNextTicker();
+                }catch(DataStreamLostException exc){
+                    ticker=null;
+                }
                   if(ticker==null) return;//end of market
             }
             while(!isMatching(ticker, minute, forward));

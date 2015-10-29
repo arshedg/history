@@ -28,10 +28,12 @@ public class GhostProtocol implements Strategy{
     
     @Override
     public Trade openPosition(Equity eq, Index index) {
+    //  System.out.println(eq.intraday.getCurrentTicker().getDate());
         if(!minDataReached(eq.intraday)) return null;
         float chaangeInNifty = getNiftyChange(index);
         if(chaangeInNifty<-.6f){
             //nifty is -0.6 down
+           // System.out.println(eq.getName());
             Trade trade =  canShort(eq.intraday,eq.getPrevsPrice(),chaangeInNifty);
             if(trade!=null){
                 System.out.println("SELL "+eq.getName()+" at price:"+trade.openPrice+" time:"+eq.intraday.getCurrentTicker().getDate());
@@ -41,7 +43,7 @@ public class GhostProtocol implements Strategy{
         return null;
     }
     private float getNiftyChange(Index index){
-        int niftyPosition = index.nifty.intraday.size();
+        int niftyPosition = index.nifty.intraday.getPointer();
         if(niftyPosition<10) return 0;
         float avgNifty = (float) index.nifty.intraday.subList(niftyPosition-10, niftyPosition).stream().mapToDouble(n->n.getClosePrice()).average().getAsDouble();
         float prevsNifty = index.nifty.getPrevsPrice();
@@ -70,7 +72,10 @@ public class GhostProtocol implements Strategy{
         return false;
     }
 
-    private Trade canShort(TickerList intraday,float prevsPrice,float niftyDiff) {
+    private Trade canShort(TickerList intraday,Float prevsPrice,float niftyDiff) {
+        if(prevsPrice==null){
+            return null;
+        }
        int size = intraday.size();
        float average = (float) intraday.subList(size-15, size).stream().mapToDouble(s->s.getClosePrice()).average().getAsDouble();
        float tOpenPrice = getOpenPrice(intraday, prevsPrice);
@@ -80,7 +85,9 @@ public class GhostProtocol implements Strategy{
            Trade trade = new Trade();
            trade.openPrice = intraday.getCurrentTicker().getClosePrice();
            trade.isAtMarketPrice=false;
-           //trade.target = Util.findTargetStopLoss(trade.openPrice, 1f);
+           
+           trade.exitPrice = Util.findTargetPrice(trade.openPrice, 1f);
+           trade.target = Util.findTargetStopLoss(trade.openPrice, .5f);
            return trade;
             
        }

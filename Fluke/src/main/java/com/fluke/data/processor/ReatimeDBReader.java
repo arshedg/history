@@ -40,7 +40,6 @@ public class ReatimeDBReader implements TickerDataSource,Runnable{
     
     public Ticker getNextTicker(String equity) {
         Long id = ids.get(equity);
-        if(equity.startsWith(".NSE")) return null;
         if(id==null||id==0){
             id = 0l;
         }
@@ -84,7 +83,7 @@ public class ReatimeDBReader implements TickerDataSource,Runnable{
     }
     @Override
     public boolean hasNext(String equity) {
-        if(equity.startsWith(".NSE")||equity.startsWith("ADANIENT")) return false;
+
         return true;
     }
         public List<String> getAllEquity() throws SQLException{

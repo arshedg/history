@@ -18,6 +18,7 @@ public class YahooIntradayParser {
    private static  String URL="http://chartapi.finance.yahoo.com/instrument/1.0/%s.NS/chartdata;type=quote;range=1d/json";
    protected Object parseData(String data) {
        Gson gson = new Gson();
+       System.out.println(data);
        return gson.fromJson(data, IntradayDetails.class);
    }
    public IntradayDetails getIntradayDetails(String name) {

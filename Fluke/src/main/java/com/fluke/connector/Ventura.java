@@ -34,6 +34,15 @@ public class Ventura {
             + "\"place_at_market\": false,\n"
             + "\"order_type\": \"%s\"\n"
             + "}";
+     static String template2 = "{\n"
+            + "\"scrip_code\":\"%s\",\n"
+            + "\"quantity\": %s,\n"
+            + "\"rate\": %s,\n"
+            + "\"trigger_rate\": %s,\n"
+            + "\"is_stoploss\": %s,\n"
+            + "\"place_at_market\": true,\n"
+            + "\"order_type\": \"%s\"\n"
+            + "}";
     static String order = "http://localhost/orders.json";
     static String cancel = "http://localhost/orders/%s/cancell";
     static String details = "http://localhost/orders/%s.json";
@@ -52,7 +61,7 @@ public class Ventura {
 
     public int placeSell(String equity, float price, float trigger) {
         boolean isStopLoss = trigger > 0;
-        String command = String.format(template, equity, getQuantity(price), price, trigger, isStopLoss, "sell");
+        String command = String.format(template2, equity, getQuantity(price), price, trigger, isStopLoss, "sell");
         String response = execute(command, order).trim();
         return getId(response);
 
@@ -63,7 +72,7 @@ public class Ventura {
         try {
 
             String response = executeGet(url);
-            System.out.println(response);
+           // System.out.println(response);
             String status = new JSONObject(response).getString("status");
             if (status.equals("completed")) {
                 return true;
@@ -86,7 +95,7 @@ public class Ventura {
     }
 
     private int getQuantity(float price) {
-        int quantity = (int) (1000 / price);
+        int quantity = (int) (30000 / price);
         return quantity == 0 ? 1 : quantity;
     }
 

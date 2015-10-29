@@ -27,7 +27,7 @@ public class Simul extends StrategyBase{
  
     private List<Equity> getAll() throws SQLException{
         String from = "2015-8-25";
-        String to="2015-10-1";
+        String to="2015-10-19";
         List<Equity> loaded = new ArrayList<>();
         for(String name:new EquityDao().getAllEquity()){
             loaded.add(Equity.loadEquity(name, from, to));

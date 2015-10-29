@@ -49,12 +49,13 @@ public class IntraDayDao {
 
     }
     public Float getPrevsDayPrice(String equity,String date){
-        String query =" select closePrice from intraday where equity=? and date < ? order by time desc limit 1";
+        String query =" select closePrice from EOD where equity=? and date < ? order by date desc limit 1";
         ScalarHandler rsh = new ScalarHandler();
         try {
+            //System.out.println(""+equity);
            return (Float) runner.query(query, rsh,equity,date);
 
-        } catch (SQLException ex) {
+        } catch (Throwable ex) {
             throw new RuntimeException();
         }
     }

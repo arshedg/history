@@ -24,13 +24,29 @@ public class YahooChartReader {
             String name = scan.nextLine().trim();
             System.out.println("processing "+name);
             try{
-                IntradayDetails details = parser.getIntradayDetails(name);
-                dao.insert(details);
+                new Runner(name).start();
+                Thread.sleep(1000);
+                //sleep to bypass DOS securities
+//                IntradayDetails details = parser.getIntradayDetails(name);
+//                dao.insert(details);
             }
             catch(Throwable tr){
                 //throw new RuntimeException(tr);
                 System.out.println("error parsing "+name);
             }
         }
+    }
+}
+class Runner extends Thread{
+    String name;
+    YahooIntradayParser parser = new YahooIntradayParser();
+     IntraDayDao dao = new IntraDayDao();
+    Runner(String name){
+        this.name = name;
+                
+    }
+    public void run(){
+         IntradayDetails details = parser.getIntradayDetails(name);
+                dao.insert(details);
     }
 }

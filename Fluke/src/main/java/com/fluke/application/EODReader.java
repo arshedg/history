@@ -5,6 +5,8 @@
  */
 package com.fluke.application;
 
+import com.fluke.database.dataservice.EODDao;
+import com.fluke.database.dataservice.EquityDao;
 import com.fluke.parser.YahooEODParser;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -20,7 +22,9 @@ import org.apache.commons.io.IOUtils;
 public class EODReader {
     public static void main(String[] args) throws IOException, ParseException, SQLException {
         List<String> list = IOUtils.readLines(ClassLoader.getSystemResourceAsStream("config/stocks"));
-        for(String eq:list){
+        new EODDao().deleteLastData();
+        
+        for(String eq:new EquityDao().getAllEquity()){
             System.out.println(""+eq);
             YahooEODParser parser = new YahooEODParser(eq);
             parser.process();

@@ -31,6 +31,9 @@ public class TickerList extends ArrayList<Ticker>{
         this.source = source;
         this.name = equity;
     }
+    public  int getPointer(){
+        return pointer;
+    }
    void movePointerToEnd(){
        this.pointer=this.size()-1;
    }
@@ -44,6 +47,9 @@ public class TickerList extends ArrayList<Ticker>{
        return null;
    }
      Ticker getNextTicker(){
+         if(this.size()>this.pointer+1){
+             return this.get(++pointer);
+         }
          if(isMaketClosed||!source.hasNext(name)){
              throw new DataStreamLostException();
          }
@@ -57,8 +63,12 @@ public class TickerList extends ArrayList<Ticker>{
              tick =  source.getNextTicker(name);
             
          }
+         
         if(tick == null){
             return null;
+        }
+        if(Util.getMinutes(tick.getDate())>=15*60+29){
+            isMaketClosed=true;
         }
         volume+=tick.getVolume();
         if(isMarketClosed(tick.getDate())){
@@ -80,6 +90,13 @@ public class TickerList extends ArrayList<Ticker>{
     public int getHighestVolume(){
         return this.stream().map(t->t.getVolume()).max(Integer::compare).get();
     }
+    public Float percentile(){
+        Float hp = getHighPrice().getHighPrice();
+        float lp = getLeastPrice().getLowPrice();
+        float cp = getCurrentTicker().getHighPrice();
+        hp = hp-lp;
+        return ((cp-lp)/hp)*100;
+    }
     void rewind(){
         pointer--;
         if(pointer<0){ 
@@ -87,9 +104,7 @@ public class TickerList extends ArrayList<Ticker>{
         
         }
     }
-    int getPointer(){
-        return pointer;
-    }
+
     public Ticker waitForMarket(){
         Ticker ticker ;
         int hour=0,minute=0;
@@ -117,6 +132,7 @@ public class TickerList extends ArrayList<Ticker>{
         if(this.isEmpty()) return null;
         return this.get(pointer);
     }
+    
       public Ticker getHighPrice(){
         return getHighPrice(this.size(), isMarketOpen);
     }
@@ -127,7 +143,8 @@ public class TickerList extends ArrayList<Ticker>{
         int ptr = pointer;
         int count=0;
          Ticker highTicker = getCurrentTicker();
-        while(count<days){
+        while(count<days&&ptr>0){
+            
             Ticker ticker = this.get(ptr--);
             if(highest&&(ticker.getHighPrice()>highTicker.getHighPrice())){
                 highTicker = ticker;
@@ -146,7 +163,7 @@ public class TickerList extends ArrayList<Ticker>{
         int ptr = pointer;
         int count=0;
          Ticker lowTicker = getCurrentTicker();
-        while(count<days){
+        while(count<days&&ptr>0){
             Ticker ticker = this.get(ptr--);
             if(lowest&&(ticker.getLowPrice()<lowTicker.getLowPrice())){
                 lowTicker = ticker;

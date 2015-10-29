@@ -11,6 +11,7 @@ import com.fluke.model.Trade;
 import com.fluke.model.ticker.Ticker;
 import com.fluke.util.Util;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,10 +28,21 @@ public class TradeExecutor implements ITradeExecutor{
     
     Map<String,List<Trade>> tradeMap = new HashMap<>();
     Map<String,OpenPosition> openPositions = new HashMap<>();
+    Map<String,Float> gain = new HashMap<>();
     Map<String,Perfomance> perfomance = new HashMap<>();
     List<Trade> tempTargetList = new ArrayList<>();
     OrderExecuteListener listener;
     boolean log=true;
+    private void profit(Ticker tick,float profit){
+        String date = Util.getDate(tick.getDate());
+        Float current = gain.get(date);
+        if(current==null){
+            current=0f;
+        }
+        current+=profit;
+        gain.put(date, current);
+    
+    }
     @Override
     public void listen(String id, Ticker eq) {
         List<Trade> trades = tradeMap.get(id);
@@ -138,7 +150,7 @@ public class TradeExecutor implements ITradeExecutor{
         float price;
         if(trade.isAtMarketPrice){
            price=ticker.getClosePrice();
-       }else if(trade.openPrice>ticker.getLowPrice()){
+       }else if(trade.openPrice>=ticker.getLowPrice()){
            price = trade.openPrice;
        }else{
            return false;
@@ -181,7 +193,7 @@ public class TradeExecutor implements ITradeExecutor{
         float price;
         if(trade.isAtMarketPrice){
            price=ticker.getClosePrice();
-       }else if(trade.openPrice<ticker.getHighPrice()){
+       }else if(trade.openPrice<=ticker.getHighPrice()){
           price = trade.openPrice;
        }else{
            return false;
@@ -226,6 +238,7 @@ public class TradeExecutor implements ITradeExecutor{
                 pf.lossCount++;
             }
             pf.percentageGain+=change;
+            profit(exitTicker,change);
             System.out.println("Percentage gain:"+change);
         }else{
              float soldPrice = position.price;
@@ -236,6 +249,7 @@ public class TradeExecutor implements ITradeExecutor{
                 pf.lossCount++;
             }
             pf.percentageGain+=change;
+            profit(exitTicker,change);
             System.out.println("Percentage gain:"+change);
         }
        
@@ -259,8 +273,14 @@ public class TradeExecutor implements ITradeExecutor{
         }
         System.out.println("\nGROSS PERFOMANCE");
         System.out.println("Total entry"+(tp+tl)+"\nProfit count: "+tp+"\n loss count:"+tl+"\n percentage gain:"+tg);
+        printDayWiseProfit();
     }
-
+    void printDayWiseProfit(){
+        System.out.println("Day wise profit");
+        for(String day:gain.keySet()){
+            System.out.println("Day:"+day+" profit:"+gain.get(day));
+        }
+    }
     private void forceClose(String key, OpenPosition position, Ticker ticker) {
        String parts[] = key.split(":");
        String stock = parts[0];

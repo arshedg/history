@@ -21,7 +21,7 @@ import java.util.List;
 public final class Equity {
     public TickerList intraday;
     public TickerList eod;
-    private float prevsPrice;
+    private Float prevsPrice=null;
     String name;
     Configuration config;
     public Equity(String equity,Configuration config){
@@ -39,9 +39,6 @@ public final class Equity {
             //System.out.println(equity);
            
             intraday = new TickerList(equity, config.dataSource);
-            if(!intraday.isEmpty()){ 
-                prevsPrice = getPrevsPrice(config.endDate);
-            }
             eod.addAll(tickers);
             if(!tickers.isEmpty()&&tickers.get(tickers.size()-1).getDate().equals(Util.getDate(config.endDate))){
                 eod.remove(tickers.get(tickers.size()-1));
@@ -54,13 +51,14 @@ public final class Equity {
         }
         
     }
-    public float getPrevsPrice(){
-        if(prevsPrice==0f){
-            prevsPrice = getPrevsPrice(config.endDate);
+
+    public Float getPrevsPrice(){
+        if(prevsPrice==null){
+            prevsPrice = getPrevsPrice(Util.getDate(this.intraday.getCurrentTicker().getDate()));
         }
         return prevsPrice;
     }
-    private float getPrevsPrice(String date){
+    private Float getPrevsPrice(String date){
         IntraDayDao dao = new IntraDayDao();
         return dao.getPrevsDayPrice(name, date);
         

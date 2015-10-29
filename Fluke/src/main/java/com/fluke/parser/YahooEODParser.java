@@ -40,7 +40,11 @@ public class YahooEODParser {
     public YahooEODParser(String equity){
         this.equity = equity;
         tickerOperation = new EODDao();
-        if(equity.contains("^")){
+        equity = equity.replaceAll("&", "%26");
+        if(equity.contains("NSEI")){
+            equity = "%5ENSEI";
+        }
+        if(equity.contains("%5ENSEI")){
            url="http://in.finance.yahoo.com/q/hp?s="+equity+"&z=66&y=";
         todayUrl = "https://in.finance.yahoo.com/q?s="+equity+"&ql=1";
         }else{

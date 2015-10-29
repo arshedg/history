@@ -26,6 +26,14 @@ public class Trade {
     public boolean cancelRelatedTrade = false;
     public boolean isPaused=false;
     public float exitPrice=0f;
+    public static Trade limitTrade(float openPrice,float target,float stopLoss){
+        Trade trade = new Trade();
+        trade.openPrice = openPrice;
+        trade.isAtMarketPrice = false;
+        trade.target = target;
+        trade.exitPrice = stopLoss;
+        return trade;
+    }
     /*
     do we really need encapsulation everywhere
     */

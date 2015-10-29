@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.ArrayHandler;
@@ -58,6 +60,16 @@ public class EODDao {
             return null;
         }
         return (java.sql.Date)query[0];
+    }
+    public void deleteLastData(){
+        try {
+            String sql ="  delete from EOD where date =  (select maxD from (select max(date) as maxD from EOD as x) as y) ;";
+            QueryRunner run = new QueryRunner( DatabaseProperty.getDataSource() );
+            run.update(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(EODDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     public List<EODTicker> getEODTickers(String equity,Date fromDate,Date toDate) throws SQLException{
         QueryRunner run = new QueryRunner( DatabaseProperty.getDataSource() );

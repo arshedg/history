@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class Test {
     public static void main(String[] args) throws SQLException {
-        new EquityDao().getAllEquity().stream()
+        new EquityDao().getAllEquity().parallelStream()
                 .forEach(v->{
 
                 

@@ -32,6 +32,7 @@ public class StrategyManager implements OrderExecuteListener {
     List<Strategy> strategies;
     Map<String,Trade> orderPlaced = new HashMap<>();
     Map<String,Trade> executedOrders = new HashMap<>();
+    Map<String,Trade> toClose = new HashMap<>();
     Map<String,Integer> pointers = new HashMap<>();
     List<TickerListener> listeners;
     ITradeExecutor executor;
@@ -67,6 +68,7 @@ public class StrategyManager implements OrderExecuteListener {
                  alertEndOfData(equity.getName(),equity.intraday.getCurrentTicker());
                  invalid=true;
              }
+             
             if(currentTicker!=null){
                // System.out.println("Processing "+equity.getName()+" time:"+equity.intraday.getCurrentTicker().getDate());
                 index.loadNext(currentTicker.getDate());
@@ -99,10 +101,11 @@ public class StrategyManager implements OrderExecuteListener {
                     trade.isLong = !strategy.isLong(); //close positiom is opposite
                     trade.parentTrade = executedOrders.get(key).id;
                     executedOrders.remove(key);
+                    toClose.put(key, trade);
                     trade.cancelRelatedTrade=true;
                     executor.placeOrder(trade);
                 }
-            }else{
+            }else if(!toClose.containsKey(key)){
                 Trade trade = strategy.openPosition(eq, index);
                 if(trade!=null){
                     trade.isLong = strategy.isLong();
@@ -114,8 +117,12 @@ public class StrategyManager implements OrderExecuteListener {
     
     private void addEquties(List<String> eq) {
         for(String equity:eq){
+            if(equity.equals("L&TFH")||equity.contains("M&M")||equity.contains("M&MFIN")||equity.contains("^NSEI")) {
+                continue;
+            }
             equities.add(new Equity(equity,config));
         }
+
     }
     public void addListener(TickerListener listener){
         if(listeners==null){
@@ -150,10 +157,12 @@ public class StrategyManager implements OrderExecuteListener {
        String key = getOrderKey(trade.equity, trade.strategy);
        if(orderPlaced.containsKey(key)){
            Trade placedTrade = orderPlaced.get(key);
+           
            if(placedTrade.isLong==trade.isLong){
                executedOrders.put(key, trade);
            }else{
                executedOrders.remove(key);
+               toClose.remove(key);
            }
            orderPlaced.remove(key);         
        }else if(executedOrders.containsKey(key)){
