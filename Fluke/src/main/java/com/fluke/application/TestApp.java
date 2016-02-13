@@ -23,14 +23,14 @@ public class TestApp {
         TradeExecutor executor = new TradeExecutor();
      ReatimeDBReader reader = new ReatimeDBReader();
         // reader.startThread();
-      Configuration config = Configuration.getDefaultConfiguration(executor, "2015-10-1", "2015-10-29");
-      config.dataSource = reader;
-    //   config.executor = new RealTimeExecutor();
+      Configuration config = Configuration.getDefaultConfiguration(executor, "2015-1-1", "2015-1-1");
+ //     config.dataSource = reader;
+   //   config.executor = new RealTimeExecutor();
      //     Configuration config = Configuration.getDefaultConfiguration(executor, "2013-1-26", "2013-3-2");
         //    config.equities=reader.getAllEquity();
-//config.equities = Arrays.asList("PETRONEt");
-        for (int i = 0; i < 1; i++) {
-            StrategyManager manager = new StrategyManager(config, new S1());
+//config.equities = Arrays.asList("INFY");
+        for (int i = 0; i < 50; i++) {
+            StrategyManager manager = new StrategyManager(config, new GapUp());
             config.executor.setOrderListener(manager);
             System.out.println("Running for "+config.endDate);
             manager.run();

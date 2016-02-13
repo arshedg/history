@@ -95,7 +95,7 @@ public class Ventura {
     }
 
     private int getQuantity(float price) {
-        int quantity = (int) (30000 / price);
+        int quantity = (int) (40000 / price);
         return quantity == 0 ? 1 : quantity;
     }
 

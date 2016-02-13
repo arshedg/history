@@ -1,0 +1,90 @@
+/**** Trying to style h1 and paragraph *******/
+.myHeader {
+    margin-top: 0!important;
+    color: blue;
+}
+.alert-box {
+    color:#555;
+    border-radius:10px;
+    font-family:Tahoma,Geneva,Arial,sans-serif;font-size:11px;
+    padding:10px 10px 10px 36px;
+    margin:10px;
+}
+.alert-box span {
+    font-weight:bold;
+    text-transform:uppercase;
+}
+.notice {
+    background:#e3f7fc no-repeat 10px 50%;
+    border:1px solid #8ed9f6;
+}
+.discount {
+    background:#e3f7fc no-repeat 10px 50%;
+    border:1px solid red;
+}
+.redborder {
+    border:3px solid red;
+}
+.myParagraph {
+    color:#333;
+    overflow:show;
+    text-overflow:clip;
+    white-space:normal;
+    margin-bottom:0px;
+    height: auto;
+    margin-bottom: 0;
+    color: red;
+}
+#page {
+    display: none;
+}
+#loading {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(192, 192, 192, 0.5);
+    background-image: url("http://i.stack.imgur.com/MnyxU.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.item-link {
+    padding-bottom: 5px;
+}
+
+.row {
+    font-size: 16px;
+    color: red;
+}
+
+.actual-price {
+    font-size: 16px;
+    position: relative;
+}
+
+.actual-price::after {
+    content: " ";
+    position: absolute;
+    border-top: solid 1px #000;
+    left: 0;
+    right: 0;
+    top: 50%;
+}
+
+.size {
+    font-size: 13px;
+    font-weight: 100;
+}
+.center-button{
+
+    margin: 0 auto !important;
+    width: 90%;
+
+}
+
+
